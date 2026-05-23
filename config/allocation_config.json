@@ -1,0 +1,111 @@
+{
+  "_version": "2.0",
+  "_last_updated": "2026-05-23",
+  "_note": "Codified from Hybrid SIP Framework doc + Engine 2 + Engine 3 source files. Edit here only.",
+
+  "sleeves": {
+    "Core": {
+      "label": "Core Strategic",
+      "target_pct": 60, "range_min": 55, "range_max": 65,
+      "instruments": [
+        "SETFNIF50.NS","NIFTYBEES.NS","JUNIORBEES.NS","NIFTY100.NS","NIFTYQLITY.NS"
+      ]
+    },
+    "Tactical": {
+      "label": "Tactical Sector Rotation",
+      "target_pct": 25, "range_min": 20, "range_max": 30,
+      "instruments": [
+        "BANKBEES.NS","INFRABEES.NS","AUTOBEES.NS","METALBEES.NS",
+        "PSUBNKBEES.NS","REALTYBEES.NS","ITBEES.NS","PHARMABEES.NS",
+        "FMCGBEES.NS","ENERGYBEES.NS","HDFCNIFBAN.NS"
+      ]
+    },
+    "Thematic": {
+      "label": "Thematic / Structural",
+      "target_pct": 10, "range_min": 10, "range_max": 15,
+      "instruments": ["MON100.NS","MASP500.NS","MAFANG.NS","WELSPUNLIV.NS","ICICIB22.NS"]
+    },
+    "Hedge": {
+      "label": "Hedge / Gold / Cash",
+      "target_pct": 5, "range_min": 5, "range_max": 10,
+      "instruments": ["GOLDBEES.NS","LIQUIDBEES.NS","SILVERBEES.NS","HNGSNGBEES.NS"]
+    }
+  },
+
+  "sleeve_rules": {
+    "underweight_aggressive_threshold_pct": 3,
+    "overweight_stop_threshold_pct": 5,
+    "underweight_budget_share": 0.65,
+    "cycle_boost_pct": 4,
+    "cycle_boost_phases": ["STRONG RECOVERY","EARLY EXPANSION"],
+    "cycle_boost_sleeve": "Tactical",
+    "min_instrument_allocation_inr": 500
+  },
+
+  "scoring_weights": {
+    "macro_stance":  0.40,
+    "signal_engine": 0.35,
+    "rsi_health":    0.15,
+    "momentum_4w":   0.10
+  },
+
+  "scoring_rules": {
+    "macro_stance":  {"OW": 1.0, "N": 0.5, "UW": 0.2},
+    "signal_engine": {"engine_confirmed": 1.0, "macro_buy": 0.8, "watchlist": 0.4},
+    "rsi":           {"healthy_min": 30, "healthy_max": 70, "healthy": 1.0, "unhealthy": 0.5},
+    "momentum_4w":   {"strong_threshold": 5.0, "strong": 1.0, "positive": 0.6, "negative": 0.2}
+  },
+
+  "phase_tactical_weights": {
+    "STRONG RECOVERY": {"BANKBEES.NS":8,"PSUBNKBEES.NS":7,"METALBEES.NS":6,"REALTYBEES.NS":5,"SETFNIF50.NS":10},
+    "EARLY EXPANSION": {"BANKBEES.NS":8,"INFRABEES.NS":6,"AUTOBEES.NS":4,"METALBEES.NS":4,"REALTYBEES.NS":3},
+    "MID CYCLE":       {"BANKBEES.NS":7,"ITBEES.NS":6,"AUTOBEES.NS":5,"ENERGYBEES.NS":5},
+    "LATE CYCLE":      {"ITBEES.NS":6,"PHARMABEES.NS":5,"FMCGBEES.NS":4,"ENERGYBEES.NS":5},
+    "CONTRACTION":     {"GOLDBEES.NS":8,"LIQUIDBEES.NS":6,"PHARMABEES.NS":5,"FMCGBEES.NS":6}
+  },
+
+  "buy_date_rules": {
+    "signal_confirmed_cadence": "Friday",
+    "monthly_sip_day": 15,
+    "rebalance_rule": "next_trading_day",
+    "urgent_alert_rule": "next_trading_day"
+  },
+
+  "email_timing": {
+    "_note": "Actual observed delivery times — used to set safe workflow schedule gaps",
+    "engine3_macro_day": "Monday",
+    "engine3_macro_delivery_window": "11:00-13:00 IST",
+    "engine3_macro_workflow_fires": "before delivery window",
+    "engine2_signal_day": "Friday",
+    "engine2_signal_delivery_window": "22:00-23:00 IST",
+    "engine2_signal_workflow_fires": "before delivery window",
+    "orchestrator_weekly_sync": "Saturday 08:00 IST",
+    "orchestrator_monthly_run": "Monday 15:00 IST"
+  },
+
+  "gmail": {
+    "sender": "shubhamshivhare27@gmail.com",
+    "recipient": "shubhamshivhare554@gmail.com",
+    "macro_subject_keyword": "India Business Cycle Report",
+    "macro_subject_fallback": "EXPANSION|CONTRACTION|MID CYCLE|LATE CYCLE|STRONG RECOVERY",
+    "signal_subject_keyword": "Nifty 500 Signals",
+    "lookback_days": 10,
+    "imap_host": "imap.gmail.com",
+    "imap_port": 993
+  },
+
+  "upstox": {
+    "api_base": "https://api.upstox.com/v2",
+    "holdings_endpoint": "/portfolio/long-term-holdings",
+    "token_env_var": "UPSTOX_TOKEN",
+    "token_expiry_env_var": "UPSTOX_TOKEN_EXPIRY"
+  },
+
+  "nse_holidays": [
+    "2025-01-26","2025-02-26","2025-03-14","2025-03-31","2025-04-10",
+    "2025-04-14","2025-04-18","2025-05-01","2025-08-15","2025-08-27",
+    "2025-10-02","2025-10-20","2025-10-21","2025-11-05","2025-12-25",
+    "2026-01-26","2026-03-03","2026-03-30","2026-04-14","2026-05-01",
+    "2026-08-15","2026-09-17","2026-10-02","2026-12-25"
+  ]
+}
