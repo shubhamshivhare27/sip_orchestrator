@@ -1,0 +1,50 @@
+name: Weekly Signal Sync
+
+on:
+  schedule:
+    - cron: "30 2 * * 6"   # Saturday 8:00 AM IST (2:30 UTC Sat)
+                             # Engine 2 emails arrive Fri 10-11 PM IST — safe gap
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11", cache: "pip"}
+      - run: pip install -r requirements.txt
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: sip-cache-${{ github.run_id }}
+          restore-keys: sip-cache-
+
+      - name: Sync emails and holdings
+        env:
+          GMAIL_USER:          ${{ secrets.GMAIL_USER }}
+          GMAIL_PASS:          ${{ secrets.GMAIL_PASS }}
+          UPSTOX_TOKEN:        ${{ secrets.UPSTOX_TOKEN }}
+          UPSTOX_TOKEN_EXPIRY: ${{ secrets.UPSTOX_TOKEN_EXPIRY }}
+        run: python scripts/sync_signals.py
+
+      - name: Commit updated inputs
+        run: |
+          git config user.name  "SIP Orchestrator Bot"
+          git config user.email "bot@sip-orchestrator.local"
+          git add data/inputs/ data/cache/
+          git diff --staged --quiet || git commit -m "Sync $(date +'%Y-%m-%d %H:%M IST')"
+          git push
+
+      - name: Save cache
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: sip-cache-${{ github.run_id }}
