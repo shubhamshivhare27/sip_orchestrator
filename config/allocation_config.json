@@ -84,15 +84,16 @@
   },
 
   "gmail": {
-  "imap_login_account": "shubhamshivhare554@gmail.com",
-  "sender_filter": "shubhamshivhare27@gmail.com",
-  "macro_subject_keyword": "India Business Cycle Report",
-  "macro_subject_fallback": "EXPANSION|CONTRACTION|MID CYCLE|LATE CYCLE|STRONG RECOVERY",
-  "signal_subject_keyword": "Nifty 500 Signals",
-  "lookback_days": 10,
-  "imap_host": "imap.gmail.com",
-  "imap_port": 993
-},
+    "_note": "IMAP logs into the RECEIVING account (554). Searches FROM the SENDING account (27).",
+    "imap_login_account": "shubhamshivhare554@gmail.com",
+    "sender_filter": "shubhamshivhare27@gmail.com",
+    "macro_subject_keyword": "India Business Cycle Report",
+    "macro_subject_fallback": "EXPANSION|CONTRACTION|MID CYCLE|LATE CYCLE|STRONG RECOVERY",
+    "signal_subject_keyword": "Nifty 500 Signals",
+    "lookback_days": 10,
+    "imap_host": "imap.gmail.com",
+    "imap_port": 993
+  },
 
   "upstox": {
     "api_base": "https://api.upstox.com/v2",
