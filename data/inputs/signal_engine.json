@@ -1,0 +1,38 @@
+{
+  "signal_date": "2026-05-22",
+  "next_run_date": "2026-05-29",
+  "stocks_in_universe": 0,
+  "etfs_in_universe": 0,
+  "strategies_run": [],
+  "buy_signals": [],
+  "sell_signals": [],
+  "urgent_alerts": [
+    {
+      "ticker": "AUTOBEES.NS",
+      "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
+    },
+    {
+      "ticker": "INFRABEES.NS",
+      "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
+    },
+    {
+      "ticker": "JUNIORBEES.NS",
+      "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
+    },
+    {
+      "ticker": "METALIETF.NS",
+      "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
+    },
+    {
+      "ticker": "MON100.NS",
+      "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
+    },
+    {
+      "ticker": "WELSPUNLIV.NS",
+      "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
+    }
+  ],
+  "universe_changes": [],
+  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-05-22 | 0 BUY | 0 SELL",
+  "parsed_at": "2026-05-24T19:51:17.900831"
+}
