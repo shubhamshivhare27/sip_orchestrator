@@ -166,7 +166,7 @@ def fetch_latest_macro_email(config: dict) -> dict | None:
     g = config["gmail"]
     return _fetch_email(
         subject_keyword=g["macro_subject_keyword"],
-        sender=g["sender"],
+        sender=g["sender_filter"],          # ← changed from "sender"
         lookback_days=g["lookback_days"],
     )
 
@@ -181,6 +181,6 @@ def fetch_latest_signal_email(config: dict) -> dict | None:
     g = config["gmail"]
     return _fetch_email(
         subject_keyword=g["signal_subject_keyword"],
-        sender=g["sender"],
+        sender=g["sender_filter"],          # ← changed from "sender"
         lookback_days=g["lookback_days"],
     )
