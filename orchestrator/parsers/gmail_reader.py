@@ -107,12 +107,18 @@ def _extract_html(msg) -> str:
 
 # ── Core search and fetch ─────────────────────────────────────────────────────
 
-def _fetch_email(subject_keyword: str, sender: str, lookback_days: int) -> dict | None:
+def _fetch_email(subject_keywords: list[str], sender: str, lookback_days: int) -> dict | None:
     """
-    Search Gmail inbox for most recent email matching keyword + sender.
+    Search Gmail inbox for most recent email matching ANY of the subject keywords
+    from the given sender within the lookback window.
+
+    Tries keywords in order. First match wins.
+    This handles Engine 3 emails where the subject is:
+      "[Macro] EARLY EXPANSION | Score: 0.766 | Stable | 04-May-2026"
+    instead of "India Business Cycle Report" (which appears in the body, not subject).
 
     IMAP login uses GMAIL_USER (the 554 receiving account).
-    Search filter uses sender (the 27 sending account) to find the right emails.
+    Search filter uses sender (the 27 sending account).
 
     Returns dict: {subject, date, html, text, soup} or None.
     """
@@ -128,29 +134,36 @@ def _fetch_email(subject_keyword: str, sender: str, lookback_days: int) -> dict 
             mail.logout()
             return None
 
-        log.info(f"Found {len(ids)} emails from '{sender}' — scanning for '{subject_keyword}'...")
+        log.info(f"Found {len(ids)} emails from '{sender}' — scanning for keywords: {subject_keywords}...")
 
-        for msg_id in reversed(ids):     # newest first
+        # Scan newest → oldest, try all keywords
+        for msg_id in reversed(ids):
             _, data = mail.fetch(msg_id, "(RFC822)")
             raw_msg = data[0][1]
             msg     = email.message_from_bytes(raw_msg)
             subject = _decode_subject(msg)
 
-            if subject_keyword.lower() in subject.lower():
-                html = _extract_html(msg)
-                soup = BeautifulSoup(html, "html.parser") if html else BeautifulSoup("", "html.parser")
-                text = soup.get_text(separator="\n")
-                mail.logout()
-                log.info(f"Matched email: '{subject}'")
-                return {
-                    "subject": subject,
-                    "date":    msg.get("Date", ""),
-                    "html":    html,
-                    "text":    text,
-                    "soup":    soup,
-                }
+            for keyword in subject_keywords:
+                if keyword.lower() in subject.lower():
+                    html = _extract_html(msg)
+                    soup = BeautifulSoup(html, "html.parser") if html else BeautifulSoup("", "html.parser")
+                    text = soup.get_text(separator="\n")
+                    mail.logout()
+                    log.info(f"Matched email (keyword='{keyword}'): '{subject}'")
+                    return {
+                        "subject": subject,
+                        "date":    msg.get("Date", ""),
+                        "html":    html,
+                        "text":    text,
+                        "soup":    soup,
+                    }
 
-        log.warning(f"No email with subject keyword '{subject_keyword}' found.")
+        # Log all subjects found so user can debug
+        log.warning(f"No email matched keywords {subject_keywords}. Subjects found:")
+        for msg_id in reversed(ids):
+            _, data = mail.fetch(msg_id, "(RFC822)")
+            msg = email.message_from_bytes(data[0][1])
+            log.warning(f"  - {_decode_subject(msg)}")
         mail.logout()
         return None
 
@@ -173,14 +186,18 @@ def fetch_latest_macro_email(config: dict) -> dict | None:
     """
     Fetch the latest Engine 3 India Business Cycle Report email.
 
-    Engine 3 sends FROM shubhamshivhare27@gmail.com
-    TO shubhamshivhare554@gmail.com every Monday ~11AM-1PM IST.
+    Engine 3 email subject format (from report_sender.py):
+      "[Macro] EARLY EXPANSION | Score: 0.766 | Stable | 04-May-2026"
 
-    We log into the 554 inbox and search FROM the 27 account.
+    Note: "India Business Cycle Report" appears in the BODY, not the subject.
+    So we search for "[Macro]" as primary keyword, with phase names as fallbacks.
     """
     g = config["gmail"]
+    # Build keyword list: primary keyword + alt keywords
+    keywords = [g["macro_subject_keyword"]]
+    keywords.extend(g.get("macro_subject_keywords_alt", []))
     return _fetch_email(
-        subject_keyword=g["macro_subject_keyword"],
+        subject_keywords=keywords,
         sender=g["sender_filter"],
         lookback_days=g["lookback_days"],
     )
@@ -190,14 +207,12 @@ def fetch_latest_signal_email(config: dict) -> dict | None:
     """
     Fetch the latest Engine 2 Nifty 500 Signal Engine email.
 
-    Engine 2 sends FROM shubhamshivhare27@gmail.com
-    TO shubhamshivhare554@gmail.com every Friday ~10PM-11PM IST.
-
-    We log into the 554 inbox and search FROM the 27 account.
+    Engine 2 email subject format (from email_report.py):
+      "📊 Nifty 500 Signals — 2026-05-01 | 1 BUY | 0 SELL"
     """
     g = config["gmail"]
     return _fetch_email(
-        subject_keyword=g["signal_subject_keyword"],
+        subject_keywords=[g["signal_subject_keyword"]],
         sender=g["sender_filter"],
         lookback_days=g["lookback_days"],
     )
