@@ -1,26 +1,29 @@
 """
 orchestrator/parsers/gmail_reader.py
 ─────────────────────────────────────
-Reads emails from Gmail via IMAP using the same GMAIL_USER + GMAIL_PASS
-credentials that Engine 2 (email_report.py) and Engine 3 (report_sender.py)
-already use for SMTP sending.
+Reads emails from Gmail via IMAP.
+
+EMAIL ACCOUNT SETUP:
+  Engine 2 and Engine 3 SEND from:  shubhamshivhare27@gmail.com
+  Emails are RECEIVED at:           shubhamshivhare554@gmail.com
+
+  Therefore:
+    IMAP login    → shubhamshivhare554@gmail.com  (GMAIL_USER env var)
+    Search filter → FROM shubhamshivhare27@gmail.com  (sender_filter in config)
+
+  GMAIL_USER = shubhamshivhare554@gmail.com   ← the RECEIVING account
+  GMAIL_PASS = App Password for the 554 account (NOT the 27 account)
+
+  Generate the App Password while logged into shubhamshivhare554@gmail.com:
+  Google Account → Security → 2-Step Verification → App Passwords
 
 HOW IT WORKS:
-  1. Opens an IMAP SSL connection to imap.gmail.com:993
-  2. Logs in with GMAIL_USER + GMAIL_PASS (Gmail App Password)
-  3. Searches inbox for emails FROM the sender within lookback window
-  4. Scans from newest → oldest for subject keyword match
+  1. Opens IMAP SSL connection to imap.gmail.com:993
+  2. Logs in with GMAIL_USER (554 account) + GMAIL_PASS
+  3. Searches inbox for emails FROM sender_filter (27 account) within lookback window
+  4. Scans newest → oldest for subject keyword match
   5. Extracts HTML body, parses with BeautifulSoup
-  6. Returns raw email dict for the relevant parser to process
-
-Why IMAP and not Gmail API?
-  Engine 2 and Engine 3 already use GMAIL_USER + GMAIL_PASS for SMTP.
-  Using IMAP with the same credentials means zero new auth setup.
-  No OAuth2 client IDs, no refresh tokens, no Google Cloud Console.
-  One pair of credentials works for both sending (engines) and reading (orchestrator).
-
-GMAIL_PASS must be a Gmail App Password (16 chars, no spaces).
-How to get one: Google Account → Security → 2-Step Verification → App Passwords.
+  6. Returns raw email dict for the parser to process
 """
 
 import email
@@ -38,14 +41,18 @@ log = logging.getLogger("gmail_reader")
 # ── Credentials ───────────────────────────────────────────────────────────────
 
 def _creds() -> tuple[str, str]:
+    """
+    GMAIL_USER = shubhamshivhare554@gmail.com  (the RECEIVING account)
+    GMAIL_PASS = App Password for the 554 account
+    """
     user = os.environ.get("GMAIL_USER", "").strip()
     pwd  = os.environ.get("GMAIL_PASS", "").strip()
     if not user or not pwd:
         raise EnvironmentError(
             "GMAIL_USER and GMAIL_PASS environment variables must be set.\n"
-            "These are the same credentials used by Engine 2 and Engine 3 for SMTP.\n"
-            "GMAIL_PASS must be a Gmail App Password — not your account password.\n"
-            "Create one at: Google Account → Security → 2-Step Verification → App Passwords."
+            "GMAIL_USER must be the RECEIVING email account (shubhamshivhare554@gmail.com)\n"
+            "GMAIL_PASS must be the App Password for that account.\n"
+            "Generate it at: Google Account (554) → Security → App Passwords."
         )
     return user, pwd
 
@@ -57,7 +64,7 @@ def _connect() -> imaplib.IMAP4_SSL:
     mail = imaplib.IMAP4_SSL("imap.gmail.com", 993)
     mail.login(user, pwd)
     mail.select("inbox")
-    log.info("Gmail IMAP connected.")
+    log.info(f"Gmail IMAP connected as {user}")
     return mail
 
 
@@ -79,9 +86,9 @@ def _decode_subject(msg) -> str:
 
 def _extract_html(msg) -> str:
     """
-    Extract HTML body from email message.
+    Extract HTML body from email.
     Engine 2 (email_report.py) and Engine 3 (report_sender.py) both send
-    MIMEMultipart('alternative') with a text/html part — this extracts it.
+    MIMEMultipart('alternative') with a text/html part.
     """
     if msg.is_multipart():
         for part in msg.walk():
@@ -103,9 +110,11 @@ def _extract_html(msg) -> str:
 def _fetch_email(subject_keyword: str, sender: str, lookback_days: int) -> dict | None:
     """
     Search Gmail inbox for most recent email matching keyword + sender.
-    Scans newest → oldest within the lookback window.
 
-    Returns dict: {subject, date, html, text, soup} or None if not found.
+    IMAP login uses GMAIL_USER (the 554 receiving account).
+    Search filter uses sender (the 27 sending account) to find the right emails.
+
+    Returns dict: {subject, date, html, text, soup} or None.
     """
     try:
         mail = _connect()
@@ -147,7 +156,11 @@ def _fetch_email(subject_keyword: str, sender: str, lookback_days: int) -> dict 
 
     except imaplib.IMAP4.error as e:
         log.error(f"IMAP error: {e}")
-        log.error("Check GMAIL_USER and GMAIL_PASS. GMAIL_PASS must be an App Password.")
+        log.error(
+            "Check GMAIL_USER and GMAIL_PASS.\n"
+            "GMAIL_USER must be: shubhamshivhare554@gmail.com (the RECEIVING account)\n"
+            "GMAIL_PASS must be the App Password for the 554 account."
+        )
         return None
     except Exception as e:
         log.error(f"Gmail fetch failed: {e}")
@@ -159,14 +172,16 @@ def _fetch_email(subject_keyword: str, sender: str, lookback_days: int) -> dict 
 def fetch_latest_macro_email(config: dict) -> dict | None:
     """
     Fetch the latest Engine 3 India Business Cycle Report email.
-    Engine 3 sends from GMAIL_USER → RECIPIENT_EMAIL every Monday.
-    Observed delivery: 11 AM – 1 PM IST.
-    Orchestrator monthly run is at 3 PM IST Monday — safe gap.
+
+    Engine 3 sends FROM shubhamshivhare27@gmail.com
+    TO shubhamshivhare554@gmail.com every Monday ~11AM-1PM IST.
+
+    We log into the 554 inbox and search FROM the 27 account.
     """
     g = config["gmail"]
     return _fetch_email(
         subject_keyword=g["macro_subject_keyword"],
-        sender=g["sender_filter"],          # ← changed from "sender"
+        sender=g["sender_filter"],
         lookback_days=g["lookback_days"],
     )
 
@@ -174,13 +189,15 @@ def fetch_latest_macro_email(config: dict) -> dict | None:
 def fetch_latest_signal_email(config: dict) -> dict | None:
     """
     Fetch the latest Engine 2 Nifty 500 Signal Engine email.
-    Engine 2 sends from GMAIL_USER → RECIPIENT_EMAIL every Friday.
-    Observed delivery: 10 PM – 11 PM IST Friday.
-    Orchestrator weekly sync is Saturday 8 AM IST — safe gap.
+
+    Engine 2 sends FROM shubhamshivhare27@gmail.com
+    TO shubhamshivhare554@gmail.com every Friday ~10PM-11PM IST.
+
+    We log into the 554 inbox and search FROM the 27 account.
     """
     g = config["gmail"]
     return _fetch_email(
         subject_keyword=g["signal_subject_keyword"],
-        sender=g["sender_filter"],          # ← changed from "sender"
+        sender=g["sender_filter"],
         lookback_days=g["lookback_days"],
     )
