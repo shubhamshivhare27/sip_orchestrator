@@ -38,11 +38,11 @@ def _token() -> str:
     return token
 
 
-def fetch_holdings() -> list[dict]:
+def fetch_equity_holdings() -> list[dict]:
     """
-    Fetch long-term holdings. Mirrors Engine 2's portfolio.get_portfolio_details().
-    Returns list of dicts with ticker, quantity, avg_cost_price, last_price,
-    current_value, pnl, pnl_pct, exchange.
+    Fetch equity holdings (stocks + exchange-traded ETFs).
+    Endpoint: GET /v2/portfolio/long-term-holdings
+    Mirrors Engine 2's portfolio.get_portfolio_details().
     """
     url  = "https://api.upstox.com/v2/portfolio/long-term-holdings"
     resp = requests.get(url, headers={
@@ -74,10 +74,158 @@ def fetch_holdings() -> list[dict]:
             "pnl_pct":        round((ltp - avg) / avg * 100, 2) if avg else 0.0,
             "exchange":       item.get("exchange", "NSE"),
             "company_name":   item.get("company_name", symbol),
+            "asset_type":     "EQUITY",
         })
 
-    log.info(f"Fetched {len(holdings)} holdings from Upstox.")
+    log.info(f"Equity holdings: {len(holdings)}")
     return holdings
+
+
+def fetch_mf_holdings() -> list[dict]:
+    """
+    Fetch mutual fund holdings (Gold ETFs via MF route, LIQUIDBEES,
+    and all other mutual fund units from various fund houses).
+    Endpoint: GET /v2/mf/holdings
+    Launched April 2026 by Upstox.
+
+    MF response fields differ from equity:
+      - units instead of quantity
+      - average_nav instead of average_price
+      - last_nav instead of last_price
+      - scheme_name / trading_symbol / isin
+    """
+    url  = "https://api.upstox.com/v2/mf/holdings"
+    try:
+        resp = requests.get(url, headers={
+            "Authorization": f"Bearer {_token()}",
+            "Accept": "application/json",
+        }, timeout=30)
+
+        if resp.status_code == 401:
+            log.warning("MF holdings: UPSTOX_TOKEN expired (401).")
+            return []
+        if resp.status_code == 403:
+            log.warning("MF holdings: 403 — MF API may not be enabled for your Upstox app.")
+            return []
+        if resp.status_code != 200:
+            log.warning(f"MF holdings: HTTP {resp.status_code} — {resp.text[:200]}")
+            return []
+
+        data = resp.json().get("data", [])
+        if not data:
+            log.info("MF holdings: empty response (no mutual fund holdings).")
+            return []
+
+        holdings = []
+        for item in data:
+            # Try multiple field names — Upstox MF API field names may vary
+            symbol = (
+                item.get("trading_symbol") or
+                item.get("tradingsymbol") or
+                item.get("scheme_name") or
+                ""
+            )
+
+            # Normalise to SYMBOL.NS format for sleeve matching
+            ticker = symbol.strip()
+            if ticker and not ticker.endswith(".NS"):
+                # Remove spaces and special chars for matching
+                clean = ticker.replace(" ", "").replace("-", "").upper()
+                # Map common MF names to ETF tickers for sleeve classification
+                MF_TICKER_MAP = {
+                    "GOLDBEES": "GOLDBEES.NS",
+                    "LIQUIDBEES": "LIQUIDBEES.NS",
+                    "SILVERBEES": "SILVERBEES.NS",
+                    "MON100": "MON100.NS",
+                    "HNGSNGBEES": "HNGSNGBEES.NS",
+                    "NIFTYBEES": "NIFTYBEES.NS",
+                    "JUNIORBEES": "JUNIORBEES.NS",
+                }
+                # Check if any known ticker is in the symbol name
+                matched = False
+                for key, mapped in MF_TICKER_MAP.items():
+                    if key in clean:
+                        ticker = mapped
+                        matched = True
+                        break
+                if not matched:
+                    ticker = f"{ticker}.MF"  # Mark as mutual fund for sleeve classification
+
+            units    = float(item.get("units", item.get("quantity", 0)))
+            avg_nav  = float(item.get("average_nav", item.get("average_price", item.get("avg_price", 0))))
+            last_nav = float(item.get("last_nav", item.get("last_price", item.get("nav", 0))))
+            cur_val  = float(item.get("current_value", item.get("market_value", 0)))
+
+            if units <= 0:
+                continue
+
+            # Calculate current value if not provided
+            if cur_val <= 0 and last_nav > 0:
+                cur_val = units * last_nav
+
+            pnl     = cur_val - (units * avg_nav) if avg_nav > 0 else 0
+            pnl_pct = ((last_nav - avg_nav) / avg_nav * 100) if avg_nav > 0 else 0.0
+
+            holdings.append({
+                "ticker":         ticker,
+                "isin":           item.get("isin", ""),
+                "quantity":       units,
+                "avg_cost_price": round(avg_nav, 4),
+                "last_price":     round(last_nav, 4),
+                "current_value":  round(cur_val, 2),
+                "pnl":            round(pnl, 2),
+                "pnl_pct":        round(pnl_pct, 2),
+                "exchange":       "MF",
+                "company_name":   item.get("scheme_name", item.get("fund_name", symbol)),
+                "asset_type":     "MUTUAL_FUND",
+                "folio":          item.get("folio", item.get("folio_number", "")),
+                "fund_house":     item.get("amc", item.get("fund_house", "")),
+            })
+
+        log.info(f"MF holdings: {len(holdings)}")
+        return holdings
+
+    except Exception as e:
+        log.warning(f"MF holdings fetch failed: {e}")
+        return []
+
+
+def fetch_holdings() -> list[dict]:
+    """
+    Fetch ALL holdings — equity + mutual funds merged.
+    Equity: GET /v2/portfolio/long-term-holdings (stocks, exchange ETFs)
+    MF:     GET /v2/mf/holdings (Gold ETFs via MF, LIQUIDBEES, fund house MFs)
+    """
+    equity = fetch_equity_holdings()
+    mf     = fetch_mf_holdings()
+
+    # Merge — if same ticker appears in both, combine values
+    combined = {}
+    for h in equity + mf:
+        t = h["ticker"].upper()
+        if t in combined:
+            # Same ticker in both equity and MF — add values
+            existing = combined[t]
+            existing["quantity"]      += h["quantity"]
+            existing["current_value"] += h["current_value"]
+            existing["pnl"]           += h["pnl"]
+            # Recalculate weighted avg cost
+            total_qty = existing["quantity"]
+            if total_qty > 0:
+                existing["avg_cost_price"] = round(
+                    (existing["avg_cost_price"] * (total_qty - h["quantity"]) +
+                     h["avg_cost_price"] * h["quantity"]) / total_qty, 4
+                )
+            existing["pnl_pct"] = round(
+                (existing["last_price"] - existing["avg_cost_price"]) /
+                existing["avg_cost_price"] * 100, 2
+            ) if existing["avg_cost_price"] > 0 else 0.0
+        else:
+            combined[t] = h.copy()
+
+    all_holdings = list(combined.values())
+    log.info(f"Total holdings: {len(all_holdings)} (equity: {len(equity)}, MF: {len(mf)})")
+    return all_holdings
 
 
 def get_portfolio_snapshot() -> dict:
@@ -87,6 +235,8 @@ def get_portfolio_snapshot() -> dict:
         "total_value":    round(sum(h["current_value"] for h in holdings), 2),
         "holdings":       holdings,
         "holdings_count": len(holdings),
+        "equity_count":   sum(1 for h in holdings if h.get("asset_type") == "EQUITY"),
+        "mf_count":       sum(1 for h in holdings if h.get("asset_type") == "MUTUAL_FUND"),
     }
 
 
