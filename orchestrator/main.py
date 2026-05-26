@@ -37,6 +37,7 @@ from orchestrator.engine.allocation_engine import classify_holdings, compute_por
 from orchestrator.engine.instrument_scorer import score_instruments
 from orchestrator.engine.buy_date_resolver import attach_buy_dates
 from orchestrator.engine.exit_advisor      import compute_exit_actions
+from orchestrator.email_sender             import send_execution_plan_email
 
 logging.basicConfig(
     level=logging.INFO,
@@ -284,6 +285,17 @@ def run(sip_amount: float = None, dry_run: bool = False) -> dict:
     ts = datetime.now().strftime("%Y%m%d_%H%M")
     save_json(result, f"execution_plan_{ts}", OUTPUTS_DIR)
     save_json(result, "latest_execution_plan", OUTPUTS_DIR)
+
+    # ── Step 9: Send email ────────────────────────────────────────────────────
+    log.info("STEP 9/9 — Sending execution plan email...")
+    if not dry_run:
+        email_sent = send_execution_plan_email(result, config)
+        if email_sent:
+            log.info("  Email sent ✓")
+        else:
+            log.warning("  Email not sent (check config/credentials)")
+    else:
+        log.info("  Dry run — email skipped")
 
     log.info("=" * 60)
     log.info(f"DONE  {len(scored)} instruments  ₹{alloc_plan.total_allocated:,.0f} deployed  {len(exits)} exits")
