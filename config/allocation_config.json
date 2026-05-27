@@ -57,26 +57,26 @@
         "AUTOBEES.NS"
       ],
       "phase_rotation": {
-        "_note": "When cycle phase changes, EXIT old phase ETFs and ENTER new phase ETFs. Total stays 15%.",
+        "_note": "ETFs chosen from Thematic.instruments list only. When phase changes, EXIT old → ENTER new. Total stays 15%.",
         "STRONG RECOVERY": {
-          "active_etfs": ["BANKBEES.NS","METALBEES.NS","PSUBNKBEES.NS"],
-          "weights": {"BANKBEES.NS": 6, "METALBEES.NS": 5, "PSUBNKBEES.NS": 4}
+          "_sectors": "Financials, Real Estate, Consumer Discretionary, Industrials",
+          "active_etfs": ["BANKBEES.NS","AUTOBEES.NS","INFRABEES.NS"],
+          "weights": {"BANKBEES.NS": 6, "AUTOBEES.NS": 5, "INFRABEES.NS": 4}
         },
-        "EARLY EXPANSION": {
-          "active_etfs": ["INFRABEES.NS","MODEFENCE.NS","ITBEES.NS"],
-          "weights": {"INFRABEES.NS": 6, "MODEFENCE.NS": 6, "ITBEES.NS": 3}
-        },
-        "MID CYCLE": {
-          "active_etfs": ["BANKBEES.NS","ITBEES.NS","ENERGYBEES.NS"],
-          "weights": {"BANKBEES.NS": 6, "ITBEES.NS": 5, "ENERGYBEES.NS": 4}
+        "MID EXPANSION": {
+          "_sectors": "IT, Materials/Metals, Energy, Industrials (Capex)",
+          "active_etfs": ["ITBEES.NS","METALBEES.NS","MODEFENCE.NS"],
+          "weights": {"ITBEES.NS": 6, "METALBEES.NS": 5, "MODEFENCE.NS": 4}
         },
         "LATE CYCLE": {
-          "active_etfs": ["PHARMABEES.NS","FMCGBEES.NS","ITBEES.NS"],
-          "weights": {"PHARMABEES.NS": 6, "FMCGBEES.NS": 5, "ITBEES.NS": 4}
+          "_sectors": "Energy, Materials, Healthcare, Consumer Staples",
+          "active_etfs": ["ENERGYBEES.NS","PHARMABEES.NS","FMCGBEES.NS"],
+          "weights": {"ENERGYBEES.NS": 6, "PHARMABEES.NS": 5, "FMCGBEES.NS": 4}
         },
         "CONTRACTION": {
-          "active_etfs": ["PHARMABEES.NS","FMCGBEES.NS","GOLDBEES.NS"],
-          "weights": {"PHARMABEES.NS": 6, "FMCGBEES.NS": 5, "GOLDBEES.NS": 4}
+          "_sectors": "Consumer Staples (FMCG), Healthcare, Utilities, IT (Defensive)",
+          "active_etfs": ["FMCGBEES.NS","PHARMABEES.NS","ITBEES.NS"],
+          "weights": {"FMCGBEES.NS": 6, "PHARMABEES.NS": 5, "ITBEES.NS": 4}
         }
       }
     },
@@ -105,7 +105,7 @@
     "overweight_stop_threshold_pct": 5,
     "underweight_budget_share": 0.65,
     "cycle_boost_pct": 4,
-    "cycle_boost_phases": ["STRONG RECOVERY","EARLY EXPANSION"],
+    "cycle_boost_phases": ["STRONG RECOVERY","MID EXPANSION"],
     "cycle_boost_sleeve": "Thematic",
     "min_instrument_allocation_inr": 500
   },
@@ -147,7 +147,7 @@
     "imap_login_account": "shubhamshivhare554@gmail.com",
     "sender_filter": "shubhamshivhare27@gmail.com",
     "macro_subject_keyword": "[Macro]",
-    "macro_subject_keywords_alt": ["Macro", "EXPANSION", "CONTRACTION", "MID CYCLE", "LATE CYCLE", "STRONG RECOVERY", "India Business Cycle Report"],
+    "macro_subject_keywords_alt": ["Macro", "RECOVERY", "EXPANSION", "CONTRACTION", "LATE CYCLE", "MID EXPANSION", "STRONG RECOVERY", "India Business Cycle Report"],
     "signal_subject_keyword": "Nifty 500 Signals",
     "lookback_days": 10,
     "imap_host": "imap.gmail.com",
