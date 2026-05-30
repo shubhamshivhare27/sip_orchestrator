@@ -1,10 +1,62 @@
 {
-  "signal_date": "2026-05-22",
-  "next_run_date": "2026-05-29",
+  "signal_date": "2026-05-29",
+  "next_run_date": "2026-06-05",
   "stocks_in_universe": 0,
   "etfs_in_universe": 0,
   "strategies_run": [],
-  "buy_signals": [],
+  "buy_signals": [
+    {
+      "ticker": "AUTOBEES.NS",
+      "strategy_id": "S5_weekly_etf_breakout",
+      "strategy_name": "Weekly ETF Breakout [Mod-1]",
+      "signal_type": "BUY",
+      "date": "2026-05-25",
+      "rsi_weekly": 52.88,
+      "rsi_daily": null,
+      "rsi_monthly": null,
+      "macd_line_weekly": null,
+      "macd_signal_weekly": null,
+      "ssf50_weekly": 273.88,
+      "conditions": [
+        "price_crossed_above_SSF50_weekly",
+        "RSI14_above_RSI14_MA"
+      ]
+    },
+    {
+      "ticker": "QUAL30IETF.NS",
+      "strategy_id": "S5_weekly_etf_breakout",
+      "strategy_name": "Weekly ETF Breakout [Mod-1]",
+      "signal_type": "BUY",
+      "date": "2026-05-25",
+      "rsi_weekly": 52.0,
+      "rsi_daily": null,
+      "rsi_monthly": null,
+      "macd_line_weekly": null,
+      "macd_signal_weekly": null,
+      "ssf50_weekly": 20.79,
+      "conditions": [
+        "price_crossed_above_SSF50_weekly",
+        "RSI14_above_RSI14_MA"
+      ]
+    },
+    {
+      "ticker": "MOMOMENTUM.NS",
+      "strategy_id": "S5_weekly_etf_breakout",
+      "strategy_name": "Weekly ETF Breakout [Mod-1]",
+      "signal_type": "BUY",
+      "date": "2026-05-25",
+      "rsi_weekly": 53.32,
+      "rsi_daily": null,
+      "rsi_monthly": null,
+      "macd_line_weekly": null,
+      "macd_signal_weekly": null,
+      "ssf50_weekly": 61.23,
+      "conditions": [
+        "price_crossed_above_SSF50_weekly",
+        "RSI14_above_RSI14_MA"
+      ]
+    }
+  ],
   "sell_signals": [],
   "urgent_alerts": [
     {
@@ -33,6 +85,6 @@
     }
   ],
   "universe_changes": [],
-  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-05-22 | 0 BUY | 0 SELL",
-  "parsed_at": "2026-05-28T11:06:56.897373"
+  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-05-29 | 3 BUY | 0 SELL",
+  "parsed_at": "2026-05-30T06:01:10.783099"
 }

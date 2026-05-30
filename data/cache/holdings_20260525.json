@@ -1,0 +1,79 @@
+{
+  "as_of": "2026-05-25T14:06:59.116452",
+  "total_value": 270289.11,
+  "holdings": [
+    {
+      "ticker": "JUNIORBEES.NS",
+      "isin": "INF732E01045",
+      "quantity": 67.0,
+      "avg_cost_price": 762.44,
+      "last_price": 764.8,
+      "current_value": 51241.6,
+      "pnl": 158.12,
+      "pnl_pct": 0.31,
+      "exchange": "NSE",
+      "company_name": "NIP IND ETF JUNIOR BEES"
+    },
+    {
+      "ticker": "AUTOBEES.NS",
+      "isin": "INF204KC1337",
+      "quantity": 108.0,
+      "avg_cost_price": 280.88,
+      "last_price": 271.45,
+      "current_value": 29316.6,
+      "pnl": -1018.44,
+      "pnl_pct": -3.36,
+      "exchange": "NSE",
+      "company_name": "NIPPONAMC - NETFAUTO"
+    },
+    {
+      "ticker": "MON100.NS",
+      "isin": "INF247L01AP3",
+      "quantity": 291.0,
+      "avg_cost_price": 243.33,
+      "last_price": 330.7,
+      "current_value": 96233.7,
+      "pnl": 25424.67,
+      "pnl_pct": 35.91,
+      "exchange": "NSE",
+      "company_name": "MOTILAL OS NASDAQ100 ETF"
+    },
+    {
+      "ticker": "INFRABEES.NS",
+      "isin": "INF732E01268",
+      "quantity": 51.0,
+      "avg_cost_price": 980.53,
+      "last_price": 972.4,
+      "current_value": 49592.4,
+      "pnl": -414.63,
+      "pnl_pct": -0.83,
+      "exchange": "NSE",
+      "company_name": "NIP IND ETF INFRA BEES"
+    },
+    {
+      "ticker": "WELSPUNLIV.NS",
+      "isin": "INE192B01031",
+      "quantity": 170.0,
+      "avg_cost_price": 147.14,
+      "last_price": 138.62,
+      "current_value": 23565.4,
+      "pnl": -1448.4,
+      "pnl_pct": -5.79,
+      "exchange": "NSE",
+      "company_name": "WELSPUN LIVING LIMITED"
+    },
+    {
+      "ticker": "METALIETF.NS",
+      "isin": "INF109KC19W1",
+      "quantity": 1519.0,
+      "avg_cost_price": 13.15,
+      "last_price": 13.39,
+      "current_value": 20339.41,
+      "pnl": 364.56,
+      "pnl_pct": 1.83,
+      "exchange": "NSE",
+      "company_name": "ICICIPRAMC - METALIETF"
+    }
+  ],
+  "holdings_count": 6
+}

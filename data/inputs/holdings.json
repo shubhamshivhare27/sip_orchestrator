@@ -1,0 +1,102 @@
+{
+  "as_of": "2026-05-30T06:01:11.534777",
+  "total_value": 1821190.15,
+  "holdings": [
+    {
+      "ticker": "JUNIORBEES.NS",
+      "isin": "INF732E01045",
+      "quantity": 67.0,
+      "avg_cost_price": 762.44,
+      "last_price": 767.86,
+      "current_value": 51446.62,
+      "pnl": 363.14,
+      "pnl_pct": 0.71,
+      "exchange": "NSE",
+      "company_name": "NIP IND ETF JUNIOR BEES",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "MON100.NS",
+      "isin": "INF247L01AP3",
+      "quantity": 291.0,
+      "avg_cost_price": 243.33,
+      "last_price": 336.1,
+      "current_value": 97805.1,
+      "pnl": 26996.07,
+      "pnl_pct": 38.13,
+      "exchange": "NSE",
+      "company_name": "MOTILAL OS NASDAQ100 ETF",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "INFRABEES.NS",
+      "isin": "INF732E01268",
+      "quantity": 51.0,
+      "avg_cost_price": 980.53,
+      "last_price": 965.81,
+      "current_value": 49256.31,
+      "pnl": -750.72,
+      "pnl_pct": -1.5,
+      "exchange": "NSE",
+      "company_name": "NIP IND ETF INFRA BEES",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "AUTOBEES.NS",
+      "isin": "INF204KC1337",
+      "quantity": 108.0,
+      "avg_cost_price": 280.88,
+      "last_price": 272.89,
+      "current_value": 29472.12,
+      "pnl": -862.92,
+      "pnl_pct": -2.84,
+      "exchange": "NSE",
+      "company_name": "NIPPONAMC - NETFAUTO",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "WELSPUNLIV.NS",
+      "isin": "INE192B01031",
+      "quantity": 170.0,
+      "avg_cost_price": 147.14,
+      "last_price": 137.97,
+      "current_value": 23454.9,
+      "pnl": -1558.9,
+      "pnl_pct": -6.23,
+      "exchange": "NSE",
+      "company_name": "WELSPUN LIVING LIMITED",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "METALIETF.NS",
+      "isin": "INF109KC19W1",
+      "quantity": 1519.0,
+      "avg_cost_price": 13.15,
+      "last_price": 13.6,
+      "current_value": 20658.4,
+      "pnl": 683.55,
+      "pnl_pct": 3.42,
+      "exchange": "NSE",
+      "company_name": "ICICIPRAMC - METALIETF",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "",
+      "isin": "",
+      "quantity": 23097.766,
+      "avg_cost_price": 41.8501,
+      "last_price": 104.3129,
+      "current_value": 1549096.7,
+      "pnl": 582454.22,
+      "pnl_pct": 149.25,
+      "exchange": "MF",
+      "company_name": "",
+      "asset_type": "MUTUAL_FUND",
+      "folio": "91086098182",
+      "fund_house": ""
+    }
+  ],
+  "holdings_count": 7,
+  "equity_count": 6,
+  "mf_count": 1
+}
