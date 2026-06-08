@@ -15,7 +15,7 @@ def _inr(v):
     try: return f"₹{float(v):,.0f}"
     except: return "—"
 
-def _build_html(result):
+def _build_html(result, config=None):
     meta=result.get("meta",{}); sleeves=result.get("sleeve_status",{})
     insts=result.get("execution_plan",[]); exits=result.get("exit_actions",[])
     live_scores=result.get("live_scores",[]); rotation=result.get("thematic_rotation",{})
@@ -102,7 +102,9 @@ def _build_html(result):
             html+=f'<tr><td style="{td}font-weight:bold;">{ls["ticker"].replace(".NS","")}</td><td style="{td}">{ls.get("total_points",0)}/110 ({ls.get("pct",0)}%)</td><td style="{td}color:{sc};font-weight:bold;">{sig}</td><td style="{td}">₹{ls.get("price",0):,.1f}</td></tr>'
         html+='</table></div>'
 
-    html+=f'<div style="text-align:center;padding:16px;color:{light};font-size:11px;">SIP Orchestrator v3 · {datetime.now().strftime("%d %b %Y %I:%M %p")} · Not financial advice</div></body></html>'
+    dash_url=config.get("email_sender",{}).get("dashboard_url","")
+    dash_btn=f'<div style="text-align:center;margin-bottom:16px;"><a href="{dash_url}" style="display:inline-block;background:#1B4FD8;color:#fff;padding:12px 32px;border-radius:8px;font-size:14px;font-weight:bold;text-decoration:none;">Open Dashboard →</a></div>' if dash_url else ""
+    html+=f'{dash_btn}<div style="text-align:center;padding:16px;color:{light};font-size:11px;">SIP Orchestrator v3 · {datetime.now().strftime("%d %b %Y %I:%M %p")} · Not financial advice</div></body></html>'
     return html
 
 def send_execution_plan_email(result, config):
@@ -117,7 +119,7 @@ def send_execution_plan_email(result, config):
     rot_flag=" | 🔄 ROTATION" if rotation.get("phase_changed") else ""
     subject=f"[SIP Orchestrator] {_inr(sip)} | {phase} | {len(insts)} instruments{rot_flag} | {meta.get('run_date','')}"
     msg=MIMEMultipart("alternative"); msg["Subject"]=subject; msg["From"]=user; msg["To"]=recipient
-    msg.attach(MIMEText(_build_html(result),"html"))
+    msg.attach(MIMEText(_build_html(result, config),"html"))
     try:
         with smtplib.SMTP_SSL(email_cfg.get("smtp_host","smtp.gmail.com"),email_cfg.get("smtp_port",465)) as s:
             s.login(user,pwd); s.sendmail(user,recipient,msg.as_string())
