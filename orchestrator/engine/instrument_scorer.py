@@ -40,6 +40,9 @@ class ScoredInstrument:
     composite:            int = 0
     confidence:           str = "Low"
     allocated_inr:        float = 0.0
+    deploy_now_inr:       float = 0.0
+    deploy_tranche:       Optional[str] = None
+    deploy_multiplier:    float = 1.0
     buy_date:             Optional[str] = None
     buy_date_rule:        Optional[str] = None
     buy_date_source:      Optional[str] = None
