@@ -17,6 +17,15 @@
       "amount_base": 15000.0,
       "amount_actual": 22500.0,
       "reason": "MODERATE DIP \u2014 RSI 41.5 in 35-45 range"
+    },
+    "C": {
+      "deployed": true,
+      "deploy_date": "2026-06-08",
+      "trigger_type": "MODERATE_DIP",
+      "multiplier": 1.5,
+      "amount_base": 10000.0,
+      "amount_actual": 15000.0,
+      "reason": "MODERATE DIP \u2014 RSI 41.5 in 35-45 range"
     }
   }
 }
