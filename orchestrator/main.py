@@ -228,16 +228,65 @@ def run(sip_amount: float = None, dry_run: bool = False) -> dict:
 
     tranche_summary = get_monthly_summary(sip_amount, INPUTS_DIR)
 
+    # ── Compute effective deployment amount based on tranche state ─────────
+    # The execution plan shows the FULL monthly target per ETF.
+    # deploy_now_pct tells you what fraction to actually deploy RIGHT NOW.
+    deploy_now_pct = 1.0    # default: deploy full amount (no tranche system active)
+    deploy_multiplier = 1.0
+    active_tranche = "FULL"
+
+    if tranche_summary.get("tranches"):
+        # Tranche system is active — check what just deployed
+        if tranche_result and tranche_result.get("action") == "DEPLOYED":
+            # A tranche just fired — deploy that tranche's share × multiplier
+            t_name = tranche_result["tranche"]
+            t_pct_map = {"A": 0.50, "B": 0.30, "C": 0.20}
+            deploy_now_pct = t_pct_map.get(t_name, 0.50)
+            deploy_multiplier = tranche_result.get("multiplier", 1.0)
+            active_tranche = f"Tranche {t_name}"
+            log.info(f"  Deploy: Tranche {t_name} ({deploy_now_pct*100:.0f}%) × {deploy_multiplier}× = {deploy_now_pct * deploy_multiplier * 100:.0f}% of monthly plan")
+        elif tranche_result and tranche_result.get("action") == "HOLD":
+            # No trigger fired — don't deploy anything this run
+            deploy_now_pct = 0.0
+            active_tranche = "HOLD"
+            log.info(f"  Deploy: HOLD — waiting for dip trigger. Fallback: {tranche_result.get('fallback_date','')}")
+        elif tranche_result and tranche_result.get("action") == "ALL_DEPLOYED":
+            # All tranches already deployed this month — nothing more
+            deploy_now_pct = 0.0
+            active_tranche = "ALL_DONE"
+            log.info("  Deploy: All 3 tranches already deployed this month.")
+
+    effective_deploy_factor = deploy_now_pct * deploy_multiplier
+
     # ── Step 9: Score instruments + buy dates ─────────────────────────────────
     log.info("STEP 9/12 — Scoring eligible ETFs (macro x signal)...")
     scored = score_instruments(macro_data, signal_data, alloc_plan, config)
 
     log.info("STEP 10/12 — Resolving buy dates...")
     scored = attach_buy_dates(scored, signal_data, config, today)
+
+    # Compute deploy_now amounts for each instrument
+    total_deploy_now = 0
     for inst in scored:
+        inst.deploy_now_inr = round(inst.allocated_inr * effective_deploy_factor)
+        inst.deploy_tranche = active_tranche
+        inst.deploy_multiplier = deploy_multiplier
+        total_deploy_now += inst.deploy_now_inr
+
+        # Override buy date when tranche fires — deploy now, not on fixed 15th
+        if active_tranche not in ("FULL", "HOLD", "ALL_DONE") and inst.deploy_now_inr > 0:
+            if not inst.has_engine2_signal:  # Engine 2 signals keep their Friday date
+                inst.buy_date = today.strftime("%d %b %Y")
+                inst.buy_date_rule = (
+                    f"{active_tranche} deployed at {deploy_multiplier}x. "
+                    f"Dip trigger fired — deploy immediately instead of waiting for 15th."
+                )
+                inst.buy_date_source = f"Tranche system — {tranche_result.get('reason','')}"
+
         ls = live_scores.get(inst.ticker)
         ls_info = f" live={ls.pct}%/{ls.signal}" if ls else ""
-        log.info(f"  {inst.ticker}: score={inst.composite} Rs.{inst.allocated_inr:,.0f} buy={inst.buy_date} [{'ENG2' if inst.has_engine2_signal else 'MACRO'}]{ls_info}")
+        deploy_info = f" deploy_now=Rs.{inst.deploy_now_inr:,.0f}" if effective_deploy_factor != 1.0 else ""
+        log.info(f"  {inst.ticker}: score={inst.composite} Rs.{inst.allocated_inr:,.0f}{deploy_info} buy={inst.buy_date} [{'ENG2' if inst.has_engine2_signal else 'MACRO'}]{ls_info}")
 
     # ── Step 10: Exit actions ─────────────────────────────────────────────────
     log.info("STEP 11/12 — Computing exit actions...")
@@ -283,6 +332,10 @@ def run(sip_amount: float = None, dry_run: bool = False) -> dict:
             "portfolio_value":  weights["total_value"],
             "total_allocated":  alloc_plan.total_allocated,
             "cycle_boost":      alloc_plan.cycle_boost_applied,
+            "active_tranche":   active_tranche,
+            "deploy_multiplier": deploy_multiplier,
+            "deploy_factor":    effective_deploy_factor,
+            "total_deploy_now": total_deploy_now,
             "dry_run":          dry_run,
             "pipeline_version": "v3_phase_b",
         },
@@ -324,6 +377,9 @@ def run(sip_amount: float = None, dry_run: bool = False) -> dict:
             "mom_score":           i.mom_score,
             "confidence":          i.confidence,
             "allocated_inr":       i.allocated_inr,
+            "deploy_now_inr":      i.deploy_now_inr,
+            "deploy_tranche":      active_tranche,
+            "deploy_multiplier":   deploy_multiplier,
             "buy_date":            i.buy_date,
             "buy_date_rule":       i.buy_date_rule,
             "buy_date_source":     i.buy_date_source,
