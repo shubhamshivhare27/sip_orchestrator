@@ -1,0 +1,181 @@
+{
+  "_version": "3.0",
+  "_last_updated": "2026-05-26",
+  "_note": "v3.0: ETF tickers updated to lowest-ER options per ETF Dashboard v4. Email sender added. Thematic sleeve aligned to dashboard allocation.",
+
+  "sleeves": {
+    "Core": {
+      "label": "Core Strategic",
+      "target_pct": 60, "range_min": 55, "range_max": 65,
+      "_note": "60% = NIFTYIETF 25% + JUNIORBEES 15% + MID150BEES 10% + QUAL30IETF 5% + MOMOMENTUM 5%",
+      "instruments": [
+        "NIFTYIETF.NS",
+        "JUNIORBEES.NS",
+        "MID150BEES.NS",
+        "QUAL30IETF.NS",
+        "MOMOMENTUM.NS"
+      ],
+      "sub_allocations": {
+        "NIFTYIETF.NS":    {"pct_of_sleeve": 41.7, "note": "25% of 60% = Nifty 50, ER 0.02%, lowest cost"},
+        "JUNIORBEES.NS":   {"pct_of_sleeve": 25.0, "note": "15% of 60% = Nifty Next 50, ER 0.17%"},
+        "MID150BEES.NS":   {"pct_of_sleeve": 16.7, "note": "10% of 60% = Midcap 150, ER 0.15%"},
+        "QUAL30IETF.NS":   {"pct_of_sleeve": 8.3,  "note": "5% of 60% = Quality 30, ER 0.30%"},
+        "MOMOMENTUM.NS":   {"pct_of_sleeve": 8.3,  "note": "5% of 60% = Momentum 30, ER 0.30%"}
+      }
+    },
+    "International": {
+      "label": "International Exposure",
+      "target_pct": 20, "range_min": 15, "range_max": 25,
+      "_note": "20% = MON100 8% + MOUS500 5% + MAFANG 5% + HSET 2%",
+      "instruments": [
+        "MON100.NS",
+        "MOUS500.NS",
+        "MAFANG.NS",
+        "HSET.NS"
+      ],
+      "sub_allocations": {
+        "MON100.NS":  {"pct_of_sleeve": 40.0, "note": "8% of 20% = NASDAQ 100, ER 0.59%"},
+        "MOUS500.NS": {"pct_of_sleeve": 25.0, "note": "5% of 20% = S&P 500, ER 0.50%"},
+        "MAFANG.NS":  {"pct_of_sleeve": 25.0, "note": "5% of 20% = FANG+, ER 0.69%"},
+        "HSET.NS":    {"pct_of_sleeve": 10.0, "note": "2% of 20% = Hang Seng, ER 1.05%"}
+      }
+    },
+    "Thematic": {
+      "label": "Thematic / Business Cycle",
+      "target_pct": 15, "range_min": 10, "range_max": 20,
+      "_note": "15% total. ETFs rotate based on Engine 3 cycle phase. Current phase determines which 2-3 ETFs are active.",
+      "instruments": [
+        "INFRABEES.NS",
+        "MODEFENCE.NS",
+        "ITBEES.NS",
+        "BANKBEES.NS",
+        "PHARMABEES.NS",
+        "FMCGBEES.NS",
+        "METALBEES.NS",
+        "PSUBNKBEES.NS",
+        "ENERGYBEES.NS",
+        "AUTOBEES.NS"
+      ],
+      "phase_rotation": {
+        "_note": "ETFs chosen from Thematic.instruments list only. When phase changes, EXIT old → ENTER new. Total stays 15%.",
+        "STRONG RECOVERY": {
+          "_sectors": "Financials, Real Estate, Consumer Discretionary, Industrials",
+          "active_etfs": ["BANKBEES.NS","AUTOBEES.NS","INFRABEES.NS"],
+          "weights": {"BANKBEES.NS": 6, "AUTOBEES.NS": 5, "INFRABEES.NS": 4}
+        },
+        "MID EXPANSION": {
+          "_sectors": "IT, Materials/Metals, Energy, Industrials (Capex)",
+          "active_etfs": ["ITBEES.NS","METALBEES.NS","MODEFENCE.NS"],
+          "weights": {"ITBEES.NS": 6, "METALBEES.NS": 5, "MODEFENCE.NS": 4}
+        },
+        "LATE CYCLE": {
+          "_sectors": "Energy, Materials, Healthcare, Consumer Staples",
+          "active_etfs": ["ENERGYBEES.NS","PHARMABEES.NS","FMCGBEES.NS"],
+          "weights": {"ENERGYBEES.NS": 6, "PHARMABEES.NS": 5, "FMCGBEES.NS": 4}
+        },
+        "CONTRACTION": {
+          "_sectors": "Consumer Staples (FMCG), Healthcare, Utilities, IT (Defensive)",
+          "active_etfs": ["FMCGBEES.NS","PHARMABEES.NS","ITBEES.NS"],
+          "weights": {"FMCGBEES.NS": 6, "PHARMABEES.NS": 5, "ITBEES.NS": 4}
+        }
+      }
+    },
+    "Hedge": {
+      "label": "Hedge / Gold / Cash",
+      "target_pct": 5, "range_min": 5, "range_max": 10,
+      "instruments": ["GOLDBEES.NS","LIQUIDBEES.NS"]
+    }
+  },
+
+  "etf_replacements_log": {
+    "_note": "Track what was replaced and why — for audit trail",
+    "SETFNIF50.NS":  "REPLACED by NIFTYIETF.NS — same Nifty 50 index, ER 0.02% vs 0.07% (67% lower cost)",
+    "NIFTYBEES.NS":  "REPLACED by NIFTYIETF.NS — same Nifty 50 index, ER 0.02% vs 0.05% (60% lower cost)",
+    "NIFTY100.NS":   "REMOVED — covered by JUNIORBEES (Next 50) + NIFTYIETF (Nifty 50)",
+    "NIFTYQLITY.NS": "REPLACED by QUAL30IETF.NS — more focused quality factor, better Morningstar rating",
+    "MASP500.NS":    "REPLACED by MOUS500.NS — same S&P 500 index, better AUM and liquidity",
+    "SILVERBEES.NS": "REMOVED — gold is primary hedge; silver is too volatile for hedge sleeve",
+    "HNGSNGBEES.NS": "REPLACED by HSET.NS — same Hang Seng index, ICICI branded, moved to International sleeve",
+    "WELSPUNLIV.NS": "REMOVED — single stock, not suitable for systematic ETF-only framework",
+    "ICICIB22.NS":   "REMOVED — bond ETF, not in dashboard framework"
+  },
+
+  "sleeve_rules": {
+    "underweight_aggressive_threshold_pct": 3,
+    "overweight_stop_threshold_pct": 5,
+    "underweight_budget_share": 0.65,
+    "cycle_boost_pct": 4,
+    "cycle_boost_phases": ["STRONG RECOVERY","MID EXPANSION"],
+    "cycle_boost_sleeve": "Thematic",
+    "min_instrument_allocation_inr": 500
+  },
+
+  "scoring_weights": {
+    "macro_stance":  0.40,
+    "signal_engine": 0.35,
+    "rsi_health":    0.15,
+    "momentum_4w":   0.10
+  },
+
+  "scoring_rules": {
+    "macro_stance":  {"OW": 1.0, "N": 0.5, "UW": 0.2},
+    "signal_engine": {"engine_confirmed": 1.0, "macro_buy": 0.8, "watchlist": 0.4},
+    "rsi":           {"healthy_min": 30, "healthy_max": 70, "healthy": 1.0, "unhealthy": 0.5},
+    "momentum_4w":   {"strong_threshold": 5.0, "strong": 1.0, "positive": 0.6, "negative": 0.2}
+  },
+
+  "buy_date_rules": {
+    "signal_confirmed_cadence": "Friday",
+    "monthly_sip_day": 15,
+    "monthly_fallback_day": "3rd_thursday",
+    "rebalance_rule": "next_trading_day",
+    "urgent_alert_rule": "next_trading_day"
+  },
+
+  "email_timing": {
+    "_note": "Actual observed delivery times",
+    "engine3_macro_day": "Monday",
+    "engine3_macro_delivery_window": "11:00-13:00 IST",
+    "engine2_signal_day": "Friday",
+    "engine2_signal_delivery_window": "22:00-23:00 IST",
+    "orchestrator_weekly_sync": "Saturday 08:00 IST",
+    "orchestrator_monthly_run": "1st of month 15:00 IST"
+  },
+
+  "gmail": {
+    "_note": "IMAP logs into the RECEIVING account (554). Searches FROM the SENDING account (27).",
+    "imap_login_account": "shubhamshivhare554@gmail.com",
+    "sender_filter": "shubhamshivhare27@gmail.com",
+    "macro_subject_keyword": "[Macro]",
+    "macro_subject_keywords_alt": ["Macro", "RECOVERY", "EXPANSION", "CONTRACTION", "LATE CYCLE", "MID EXPANSION", "STRONG RECOVERY", "India Business Cycle Report"],
+    "signal_subject_keyword": "Nifty 500 Signals",
+    "lookback_days": 10,
+    "imap_host": "imap.gmail.com",
+    "imap_port": 993
+  },
+
+  "email_sender": {
+    "_note": "Orchestrator sends execution plan emails to the RECEIVING account (554) FROM the same account.",
+    "enabled": true,
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 465,
+    "subject_prefix": "[SIP Orchestrator]",
+    "recipient": "shubhamshivhare554@gmail.com"
+  },
+
+  "upstox": {
+    "api_base": "https://api.upstox.com/v2",
+    "holdings_endpoint": "/portfolio/long-term-holdings",
+    "mf_holdings_endpoint": "/mf/holdings",
+    "token_env_var": "UPSTOX_TOKEN",
+    "token_expiry_env_var": "UPSTOX_TOKEN_EXPIRY"
+  },
+
+  "nse_holidays": [
+    "2025-01-26","2025-02-26","2025-03-14","2025-03-31","2025-04-10",
+    "2025-04-14","2025-04-18","2025-05-01","2025-08-15","2025-08-27",
+    "2025-10-02","2025-10-20","2025-10-21","2025-11-05","2025-12-25",
+    "2026-01-26","2026-03-03","2026-03-30","2026-04-14","2026-05-01",
+    "2026-08-15","2026-09-17","2026-10-02","2026-12-25"
+  ]
+}
