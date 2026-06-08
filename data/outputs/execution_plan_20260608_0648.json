@@ -1,0 +1,2721 @@
+{
+  "meta": {
+    "run_at": "2026-06-08T06:48:48.461649",
+    "run_date": "2026-06-08",
+    "sip_amount": 50000.0,
+    "cycle_phase": "EARLY EXPANSION",
+    "macro_score": 0.75,
+    "macro_momentum": "Stable",
+    "macro_confidence": "High",
+    "signal_date": "2026-06-05",
+    "next_signal_run": "2026-06-12",
+    "portfolio_value": 1821190.15,
+    "total_allocated": 32500.0,
+    "cycle_boost": false,
+    "dry_run": false,
+    "pipeline_version": "v3_phase_b"
+  },
+  "sleeve_status": {
+    "Core": {
+      "label": "Core Strategic",
+      "target_pct": 60,
+      "current_pct": 90.31,
+      "drift_pct": 30.31,
+      "status": "STOP",
+      "sip_allocation": 0.0,
+      "allocation_rule": "PAUSED \u2014 overweight +30.3% exceeds +5% threshold",
+      "current_value": 1644656.6199999999,
+      "holdings": [
+        {
+          "ticker": "JUNIORBEES.NS",
+          "quantity": 67.0,
+          "avg_cost": 762.44,
+          "last_price": 767.86,
+          "current_value": 51446.62,
+          "pnl_pct": 0.71
+        },
+        {
+          "ticker": "WELSPUNLIV.NS",
+          "quantity": 170.0,
+          "avg_cost": 147.14,
+          "last_price": 137.97,
+          "current_value": 23454.9,
+          "pnl_pct": -6.23
+        },
+        {
+          "ticker": "METALIETF.NS",
+          "quantity": 1519.0,
+          "avg_cost": 13.15,
+          "last_price": 13.6,
+          "current_value": 20658.4,
+          "pnl_pct": 3.42
+        },
+        {
+          "ticker": "",
+          "quantity": 23097.766,
+          "avg_cost": 41.8501,
+          "last_price": 104.3129,
+          "current_value": 1549096.7,
+          "pnl_pct": 149.25
+        }
+      ]
+    },
+    "International": {
+      "label": "International Exposure",
+      "target_pct": 20,
+      "current_pct": 5.37,
+      "drift_pct": -14.63,
+      "status": "BOOST",
+      "sip_allocation": 15687,
+      "allocation_rule": "AGGRESSIVE \u2014 underweight -14.6%, priority share 48% of underweight budget",
+      "current_value": 97805.1,
+      "holdings": [
+        {
+          "ticker": "MON100.NS",
+          "quantity": 291.0,
+          "avg_cost": 243.33,
+          "last_price": 336.1,
+          "current_value": 97805.1,
+          "pnl_pct": 38.13
+        }
+      ]
+    },
+    "Thematic": {
+      "label": "Thematic / Business Cycle",
+      "target_pct": 15,
+      "current_pct": 4.32,
+      "drift_pct": -10.68,
+      "status": "BOOST",
+      "sip_allocation": 11452,
+      "allocation_rule": "AGGRESSIVE \u2014 underweight -10.7%, priority share 35% of underweight budget",
+      "current_value": 78728.43,
+      "holdings": [
+        {
+          "ticker": "INFRABEES.NS",
+          "quantity": 51.0,
+          "avg_cost": 980.53,
+          "last_price": 965.81,
+          "current_value": 49256.31,
+          "pnl_pct": -1.5
+        },
+        {
+          "ticker": "AUTOBEES.NS",
+          "quantity": 108.0,
+          "avg_cost": 280.88,
+          "last_price": 272.89,
+          "current_value": 29472.12,
+          "pnl_pct": -2.84
+        }
+      ]
+    },
+    "Hedge": {
+      "label": "Hedge / Gold / Cash",
+      "target_pct": 5,
+      "current_pct": 0.0,
+      "drift_pct": -5.0,
+      "status": "BOOST",
+      "sip_allocation": 5361,
+      "allocation_rule": "AGGRESSIVE \u2014 underweight -5.0%, priority share 16% of underweight budget",
+      "current_value": 0.0,
+      "holdings": []
+    }
+  },
+  "execution_plan": [
+    {
+      "ticker": "GOLDBEES.NS",
+      "sleeve": "Hedge",
+      "tag": "WATCHLIST",
+      "stance": "N",
+      "price": 129.0,
+      "rsi": 52.0,
+      "mom_4w": 4.2,
+      "ma_signal": "Golden Cross",
+      "ann_vol": 21.0,
+      "composite": 55,
+      "macro_score": 50,
+      "signal_score": 40,
+      "rsi_score": 100,
+      "mom_score": 60,
+      "confidence": "Medium",
+      "allocated_inr": 5361,
+      "buy_date": "15 Jun 2026",
+      "buy_date_rule": "Standard monthly SIP date (15th of month). If today is past 15th, uses next month's 15th. If 15th is NSE holiday or weekend, uses previous trading day.",
+      "buy_date_source": "Engine 3 \u2014 tag: WATCHLIST, stance: Neutral",
+      "has_engine2_signal": false,
+      "engine2_strategy": null,
+      "engine2_strategy_id": null,
+      "engine2_conditions": [],
+      "engine2_ssf50": null,
+      "engine2_rsi_weekly": null,
+      "live_score_pct": 64.5,
+      "live_signal": "PARTIAL"
+    },
+    {
+      "ticker": "INFRABEES.NS",
+      "sleeve": "Thematic",
+      "tag": "WATCHLIST",
+      "stance": "N",
+      "price": 966.0,
+      "rsi": 44.0,
+      "mom_4w": -0.4,
+      "ma_signal": "Golden Cross",
+      "ann_vol": 18.0,
+      "composite": 51,
+      "macro_score": 50,
+      "signal_score": 40,
+      "rsi_score": 100,
+      "mom_score": 20,
+      "confidence": "Low",
+      "allocated_inr": 5960,
+      "buy_date": "15 Jun 2026",
+      "buy_date_rule": "Standard monthly SIP date (15th of month). If today is past 15th, uses next month's 15th. If 15th is NSE holiday or weekend, uses previous trading day.",
+      "buy_date_source": "Engine 3 \u2014 tag: WATCHLIST, stance: Neutral",
+      "has_engine2_signal": false,
+      "engine2_strategy": null,
+      "engine2_strategy_id": null,
+      "engine2_conditions": [],
+      "engine2_ssf50": null,
+      "engine2_rsi_weekly": null,
+      "live_score_pct": 40.9,
+      "live_signal": "WATCH"
+    },
+    {
+      "ticker": "PHARMABEES.NS",
+      "sleeve": "Thematic",
+      "tag": "WATCHLIST",
+      "stance": "N",
+      "price": 25.0,
+      "rsi": 71.0,
+      "mom_4w": 4.6,
+      "ma_signal": "Golden Cross",
+      "ann_vol": 14.0,
+      "composite": 47,
+      "macro_score": 50,
+      "signal_score": 40,
+      "rsi_score": 50,
+      "mom_score": 60,
+      "confidence": "Low",
+      "allocated_inr": 5492,
+      "buy_date": "15 Jun 2026",
+      "buy_date_rule": "Standard monthly SIP date (15th of month). If today is past 15th, uses next month's 15th. If 15th is NSE holiday or weekend, uses previous trading day.",
+      "buy_date_source": "Engine 3 \u2014 tag: WATCHLIST, stance: Neutral",
+      "has_engine2_signal": false,
+      "engine2_strategy": null,
+      "engine2_strategy_id": null,
+      "engine2_conditions": [],
+      "engine2_ssf50": null,
+      "engine2_rsi_weekly": null,
+      "live_score_pct": 67.3,
+      "live_signal": "BUY"
+    }
+  ],
+  "exit_actions": [
+    {
+      "ticker": "",
+      "sleeve": "Core",
+      "exit_type": "REBALANCE",
+      "reason": "Sleeve Core overweight +30.3% (threshold +5%). Reduce to target.",
+      "units_held": 23097.766,
+      "units_to_exit": 5291,
+      "exit_value": 551919.55,
+      "avg_cost": 41.85,
+      "current_price": 104.31,
+      "pnl": 330490.67,
+      "pnl_pct": 149.25,
+      "tax_note": "Equity ETF \u2014 STCG 20% if <1yr held | LTCG 12.5% above \u20b91.25L if >1yr",
+      "drift_pct": 30.31,
+      "suggested_date": "09 Jun 2026",
+      "date_rule": "Earliest next trading day. Executed promptly to prevent drift compounding. Skips NSE holidays and weekends."
+    },
+    {
+      "ticker": "METALIETF.NS",
+      "sleeve": "Core",
+      "exit_type": "REBALANCE",
+      "reason": "Sleeve Core overweight +30.3% (threshold +5%). Reduce to target.",
+      "units_held": 1519.0,
+      "units_to_exit": 6,
+      "exit_value": 81.6,
+      "avg_cost": 13.15,
+      "current_price": 13.6,
+      "pnl": 2.7,
+      "pnl_pct": 3.42,
+      "tax_note": "Equity ETF \u2014 STCG 20% if <1yr held | LTCG 12.5% above \u20b91.25L if >1yr",
+      "drift_pct": 30.31,
+      "suggested_date": "09 Jun 2026",
+      "date_rule": "Earliest next trading day. Executed promptly to prevent drift compounding. Skips NSE holidays and weekends."
+    }
+  ],
+  "live_scores": [
+    {
+      "ticker": "BANKBEES.NS",
+      "price": 563.0800170898438,
+      "total_points": 64,
+      "max_points": 110,
+      "pct": 58.2,
+      "signal": "PARTIAL",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 3,
+          "value": "582.7",
+          "detail": "Below falling SSF200 (582.7)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 10,
+          "value": "561.7",
+          "detail": "Above flat SSF50 (561.7)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 5,
+          "value": "Death",
+          "detail": "Death Cross active (SMA50=563<SMA200=588)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "60.0",
+          "detail": "RSI 60.0 bullish"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "60.0/47.5",
+          "detail": "RSI above RSI_MA (60.0>47.5)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 10,
+          "value": "38%",
+          "detail": "Near 20D high breakout zone"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 7,
+          "value": "563.1",
+          "detail": "23.6-38.2% Fib pullback"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 2,
+          "value": "0.8x",
+          "detail": "Vol 0.8x normal"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "MOUS500.NS",
+      "price": null,
+      "total_points": 0,
+      "max_points": 110,
+      "pct": 0.0,
+      "signal": "WATCH",
+      "error": "Insufficient data",
+      "indicators": []
+    },
+    {
+      "ticker": "MON100.NS",
+      "price": 342.54998779296875,
+      "total_points": 91,
+      "max_points": 110,
+      "pct": 82.7,
+      "signal": "STRONG BUY",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 20,
+          "value": "262.3",
+          "detail": "Above rising SSF200 (262.3)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 15,
+          "value": "329.8",
+          "detail": "Above rising SSF50 (329.8)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 12,
+          "value": "Golden",
+          "detail": "Golden Cross active (SMA50=297>SMA200=245)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "68.2",
+          "detail": "RSI 68.2 bullish"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 5,
+          "value": "68.2/73.3",
+          "detail": "RSI below RSI_MA (68.2<73.3)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 10,
+          "value": "100%",
+          "detail": "Near 20D high breakout zone"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 8,
+          "value": "342.5",
+          "detail": "Above 23.6% Fib"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 3,
+          "value": "1.8x",
+          "detail": "Vol 1.8x high conviction"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "METALBEES.NS",
+      "price": null,
+      "total_points": 0,
+      "max_points": 110,
+      "pct": 0.0,
+      "signal": "WATCH",
+      "error": "Insufficient data",
+      "indicators": []
+    },
+    {
+      "ticker": "FMCGBEES.NS",
+      "price": null,
+      "total_points": 0,
+      "max_points": 110,
+      "pct": 0.0,
+      "signal": "WATCH",
+      "error": "Insufficient data",
+      "indicators": []
+    },
+    {
+      "ticker": "QUAL30IETF.NS",
+      "price": 20.56999969482422,
+      "total_points": 53,
+      "max_points": 110,
+      "pct": 48.2,
+      "signal": "WATCH",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 3,
+          "value": "20.7",
+          "detail": "Below falling SSF200 (20.7)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 2,
+          "value": "20.9",
+          "detail": "Below falling SSF50 (20.9)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 5,
+          "value": "Death",
+          "detail": "Death Cross active (SMA50=20<SMA200=21)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "47.5",
+          "detail": "RSI 47.5 neutral healthy"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "47.5/47.0",
+          "detail": "RSI above RSI_MA (47.5>47.0)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 5,
+          "value": "51%",
+          "detail": "Mid range (51%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 7,
+          "value": "20.6",
+          "detail": "23.6-38.2% Fib pullback"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 3,
+          "value": "1.9x",
+          "detail": "Vol 1.9x high conviction"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 0,
+          "value": "Distrib",
+          "detail": "OBV distribution"
+        }
+      ]
+    },
+    {
+      "ticker": "GOLDBEES.NS",
+      "price": 127.77999877929688,
+      "total_points": 71,
+      "max_points": 110,
+      "pct": 64.5,
+      "signal": "PARTIAL",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 20,
+          "value": "126.4",
+          "detail": "Above rising SSF200 (126.4)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 6,
+          "value": "128.5",
+          "detail": "Below rising SSF50 (128.5)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 12,
+          "value": "Golden",
+          "detail": "Golden Cross active (SMA50=125>SMA200=113)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 10,
+          "value": "39.3",
+          "detail": "RSI 39.3 approaching oversold"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 5,
+          "value": "39.3/59.5",
+          "detail": "RSI below RSI_MA (39.3<59.5)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 3,
+          "value": "71%",
+          "detail": "Upper range (71%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 7,
+          "value": "127.8",
+          "detail": "23.6-38.2% Fib pullback"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.6x",
+          "detail": "Vol 0.6x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 0,
+          "value": "Distrib",
+          "detail": "OBV distribution"
+        }
+      ]
+    },
+    {
+      "ticker": "PSUBNKBEES.NS",
+      "price": 92.27999877929688,
+      "total_points": 57,
+      "max_points": 110,
+      "pct": 51.8,
+      "signal": "PARTIAL",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 3,
+          "value": "97.7",
+          "detail": "Below falling SSF200 (97.7)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 10,
+          "value": "91.1",
+          "detail": "Above flat SSF50 (91.1)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 12,
+          "value": "Golden",
+          "detail": "Golden Cross active (SMA50=94>SMA200=92)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 4,
+          "value": "70.5",
+          "detail": "RSI 70.5 overbought"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "70.5/44.6",
+          "detail": "RSI above RSI_MA (70.5>44.6)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 5,
+          "value": "50%",
+          "detail": "Mid range (50%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 2,
+          "value": "92.3",
+          "detail": "Below 61.8% Fib \u2014 trend broken"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 3,
+          "value": "1.5x",
+          "detail": "Vol 1.5x high conviction"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "MAFANG.NS",
+      "price": 206.9199981689453,
+      "total_points": 87,
+      "max_points": 110,
+      "pct": 79.1,
+      "signal": "BUY",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 20,
+          "value": "169.5",
+          "detail": "Above rising SSF200 (169.5)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 15,
+          "value": "196.0",
+          "detail": "Above rising SSF50 (196.0)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 12,
+          "value": "Golden",
+          "detail": "Golden Cross active (SMA50=181>SMA200=170)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "67.3",
+          "detail": "RSI 67.3 bullish"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 3,
+          "value": "67.3/71.0",
+          "detail": "Fresh RSI bearish cross"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 10,
+          "value": "98%",
+          "detail": "Near 20D high breakout zone"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 8,
+          "value": "206.9",
+          "detail": "Above 23.6% Fib"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.5x",
+          "detail": "Vol 0.5x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "JUNIORBEES.NS",
+      "price": 757.760009765625,
+      "total_points": 81,
+      "max_points": 110,
+      "pct": 73.6,
+      "signal": "BUY",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 20,
+          "value": "734.1",
+          "detail": "Above rising SSF200 (734.1)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 6,
+          "value": "760.5",
+          "detail": "Below rising SSF50 (760.5)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 15,
+          "value": "Golden",
+          "detail": "Fresh Golden Cross"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "63.4",
+          "detail": "RSI 63.4 bullish"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "63.4/51.7",
+          "detail": "RSI above RSI_MA (63.4>51.7)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 3,
+          "value": "84%",
+          "detail": "Upper range (84%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 8,
+          "value": "757.8",
+          "detail": "Above 23.6% Fib"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 2,
+          "value": "0.8x",
+          "detail": "Vol 0.8x normal"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "NIFTYIETF.NS",
+      "price": 263.989990234375,
+      "total_points": 47,
+      "max_points": 110,
+      "pct": 42.7,
+      "signal": "WATCH",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 3,
+          "value": "273.8",
+          "detail": "Below falling SSF200 (273.8)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 2,
+          "value": "268.0",
+          "detail": "Below falling SSF50 (268.0)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 5,
+          "value": "Death",
+          "detail": "Death Cross active (SMA50=267<SMA200=281)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "41.5",
+          "detail": "RSI 41.5 neutral healthy"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 5,
+          "value": "41.5/42.8",
+          "detail": "RSI below RSI_MA (41.5<42.8)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 8,
+          "value": "17%",
+          "detail": "Near 52W support (17%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 4,
+          "value": "264.0",
+          "detail": "50-61.8% deep correction"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.6x",
+          "detail": "Vol 0.6x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 0,
+          "value": "Distrib",
+          "detail": "OBV distribution"
+        }
+      ]
+    },
+    {
+      "ticker": "ITBEES.NS",
+      "price": 32.25,
+      "total_points": 66,
+      "max_points": 110,
+      "pct": 60.0,
+      "signal": "PARTIAL",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 3,
+          "value": "34.5",
+          "detail": "Below falling SSF200 (34.5)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 15,
+          "value": "32.1",
+          "detail": "Above rising SSF50 (32.1)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 5,
+          "value": "Death",
+          "detail": "Death Cross active (SMA50=33<SMA200=37)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "56.9",
+          "detail": "RSI 56.9 neutral healthy"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "56.9/55.2",
+          "detail": "RSI above RSI_MA (56.9>55.2)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 8,
+          "value": "16%",
+          "detail": "Near 52W support (16%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 4,
+          "value": "32.2",
+          "detail": "50-61.8% deep correction"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.7x",
+          "detail": "Vol 0.7x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "INFRABEES.NS",
+      "price": 948.6400146484375,
+      "total_points": 45,
+      "max_points": 110,
+      "pct": 40.9,
+      "signal": "WATCH",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 3,
+          "value": "954.2",
+          "detail": "Below falling SSF200 (954.2)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 2,
+          "value": "966.9",
+          "detail": "Below falling SSF50 (966.9)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 5,
+          "value": "Death",
+          "detail": "Death Cross active (SMA50=951<SMA200=959)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "43.9",
+          "detail": "RSI 43.9 neutral healthy"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 5,
+          "value": "43.9/47.0",
+          "detail": "RSI below RSI_MA (43.9<47.0)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 5,
+          "value": "53%",
+          "detail": "Mid range (53%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 5,
+          "value": "948.6",
+          "detail": "At 50% Fib level"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.7x",
+          "detail": "Vol 0.7x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 0,
+          "value": "Distrib",
+          "detail": "OBV distribution"
+        }
+      ]
+    },
+    {
+      "ticker": "HSET.NS",
+      "price": null,
+      "total_points": 0,
+      "max_points": 110,
+      "pct": 0.0,
+      "signal": "WATCH",
+      "error": "Insufficient data",
+      "indicators": []
+    },
+    {
+      "ticker": "MODEFENCE.NS",
+      "price": 99.55999755859375,
+      "total_points": 80,
+      "max_points": 110,
+      "pct": 72.7,
+      "signal": "BUY",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 20,
+          "value": "91.6",
+          "detail": "Above rising SSF200 (91.6)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 6,
+          "value": "100.5",
+          "detail": "Below rising SSF50 (100.5)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 12,
+          "value": "Golden",
+          "detail": "Golden Cross active (SMA50=96>SMA200=89)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "56.1",
+          "detail": "RSI 56.1 neutral healthy"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "56.1/49.6",
+          "detail": "RSI above RSI_MA (56.1>49.6)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 3,
+          "value": "82%",
+          "detail": "Upper range (82%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 8,
+          "value": "99.6",
+          "detail": "Above 23.6% Fib"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.4x",
+          "detail": "Vol 0.4x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "ENERGYBEES.NS",
+      "price": null,
+      "total_points": 0,
+      "max_points": 110,
+      "pct": 0.0,
+      "signal": "WATCH",
+      "error": "Insufficient data",
+      "indicators": []
+    },
+    {
+      "ticker": "MID150BEES.NS",
+      "price": 230.0,
+      "total_points": 80,
+      "max_points": 110,
+      "pct": 72.7,
+      "signal": "BUY",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 20,
+          "value": "222.8",
+          "detail": "Above rising SSF200 (222.8)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 6,
+          "value": "232.4",
+          "detail": "Below rising SSF50 (232.4)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 15,
+          "value": "Golden",
+          "detail": "Fresh Golden Cross"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "51.2",
+          "detail": "RSI 51.2 neutral healthy"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 5,
+          "value": "51.2/53.4",
+          "detail": "RSI below RSI_MA (51.2<53.4)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 3,
+          "value": "81%",
+          "detail": "Upper range (81%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 8,
+          "value": "230.0",
+          "detail": "Above 23.6% Fib"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 2,
+          "value": "1.0x",
+          "detail": "Vol 1.0x normal"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "MOMOMENTUM.NS",
+      "price": 60.779998779296875,
+      "total_points": 54,
+      "max_points": 110,
+      "pct": 49.1,
+      "signal": "WATCH",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 3,
+          "value": "61.1",
+          "detail": "Below falling SSF200 (61.1)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 2,
+          "value": "61.6",
+          "detail": "Below falling SSF50 (61.6)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 5,
+          "value": "Death",
+          "detail": "Death Cross active (SMA50=61<SMA200=62)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "51.9",
+          "detail": "RSI 51.9 neutral healthy"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "51.9/47.8",
+          "detail": "Fresh RSI bullish cross (51.9>47.8)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 5,
+          "value": "54%",
+          "detail": "Mid range (54%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 7,
+          "value": "60.8",
+          "detail": "23.6-38.2% Fib pullback"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.1x",
+          "detail": "Vol 0.1x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 0,
+          "value": "Distrib",
+          "detail": "OBV distribution"
+        }
+      ]
+    },
+    {
+      "ticker": "AUTOBEES.NS",
+      "price": 269.6499938964844,
+      "total_points": 54,
+      "max_points": 110,
+      "pct": 49.1,
+      "signal": "WATCH",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 3,
+          "value": "271.7",
+          "detail": "Below falling SSF200 (271.7)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 6,
+          "value": "270.2",
+          "detail": "Below rising SSF50 (270.2)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 5,
+          "value": "Death",
+          "detail": "Death Cross active (SMA50=267<SMA200=275)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "62.8",
+          "detail": "RSI 62.8 bullish"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 9,
+          "value": "62.8/49.8",
+          "detail": "RSI above RSI_MA (62.8>49.8)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 5,
+          "value": "52%",
+          "detail": "Mid range (52%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 7,
+          "value": "269.6",
+          "detail": "23.6-38.2% Fib pullback"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.7x",
+          "detail": "Vol 0.7x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "LIQUIDBEES.NS",
+      "price": 1000.0,
+      "total_points": 77,
+      "max_points": 110,
+      "pct": 70.0,
+      "signal": "BUY",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 3,
+          "value": "1000.2",
+          "detail": "Below falling SSF200 (1000.2)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 10,
+          "value": "1000.0",
+          "detail": "Above flat SSF50 (1000.0)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 12,
+          "value": "Golden",
+          "detail": "Golden Cross active (SMA50=1000>SMA200=999)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "50.0",
+          "detail": "RSI 50.0 neutral healthy"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 12,
+          "value": "50.0/48.1",
+          "detail": "Fresh RSI bullish cross (50.0>48.1)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 10,
+          "value": "59%",
+          "detail": "Near 20D high breakout zone"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 8,
+          "value": "1000.0",
+          "detail": "Above 23.6% Fib"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.8x",
+          "detail": "Vol 0.8x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    },
+    {
+      "ticker": "PHARMABEES.NS",
+      "price": 24.899999618530273,
+      "total_points": 74,
+      "max_points": 110,
+      "pct": 67.3,
+      "signal": "BUY",
+      "error": null,
+      "indicators": [
+        {
+          "name": "SSF200",
+          "category": "Trend",
+          "max_points": 20,
+          "points": 20,
+          "value": "23.5",
+          "detail": "Above rising SSF200 (23.5)"
+        },
+        {
+          "name": "SSF50",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 6,
+          "value": "25.0",
+          "detail": "Below rising SSF50 (25.0)"
+        },
+        {
+          "name": "Golden/Death Cross",
+          "category": "Trend",
+          "max_points": 15,
+          "points": 12,
+          "value": "Golden",
+          "detail": "Golden Cross active (SMA50=24>SMA200=23)"
+        },
+        {
+          "name": "RSI Zone",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 10,
+          "value": "38.7",
+          "detail": "RSI 38.7 approaching oversold"
+        },
+        {
+          "name": "RSI\u00d7RSI_MA",
+          "category": "Momentum",
+          "max_points": 12,
+          "points": 5,
+          "value": "38.7/63.6",
+          "detail": "RSI below RSI_MA (38.7<63.6)"
+        },
+        {
+          "name": "Support/Resistance",
+          "category": "Structure",
+          "max_points": 10,
+          "points": 3,
+          "value": "70%",
+          "detail": "Upper range (70%)"
+        },
+        {
+          "name": "Fibonacci",
+          "category": "Structure",
+          "max_points": 8,
+          "points": 8,
+          "value": "24.9",
+          "detail": "Above 23.6% Fib"
+        },
+        {
+          "name": "PE Ratio",
+          "category": "Macro",
+          "max_points": 5,
+          "points": 3,
+          "value": "N/A",
+          "detail": "PE N/A"
+        },
+        {
+          "name": "India VIX",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 3,
+          "value": "16.8",
+          "detail": "VIX 16.8 normal"
+        },
+        {
+          "name": "FII Flow",
+          "category": "Macro",
+          "max_points": 4,
+          "points": 1,
+          "value": "-5000Cr",
+          "detail": "FII heavy selling ~-5000Cr"
+        },
+        {
+          "name": "Volume",
+          "category": "Macro",
+          "max_points": 3,
+          "points": 1,
+          "value": "0.4x",
+          "detail": "Vol 0.4x weak"
+        },
+        {
+          "name": "OBV",
+          "category": "Macro",
+          "max_points": 2,
+          "points": 2,
+          "value": "Accum",
+          "detail": "OBV accumulation"
+        }
+      ]
+    }
+  ],
+  "thematic_rotation": {
+    "phase_changed": false,
+    "signals": []
+  },
+  "tranche_deployment": {
+    "current_check": {
+      "action": "DEPLOYED",
+      "tranche": "A",
+      "amount_base": 25000.0,
+      "amount_actual": 37500.0,
+      "multiplier": 1.5,
+      "trigger_type": "MODERATE_DIP",
+      "reason": "Dip trigger fired: MODERATE DIP \u2014 RSI 41.5 in 35-45 range",
+      "dip_condition": "MODERATE DIP \u2014 RSI 41.5 in 35-45 range",
+      "deploy_date": "2026-06-08"
+    },
+    "monthly_summary": {
+      "month": "2026-06",
+      "sip_amount": 50000.0,
+      "total_base": 50000.0,
+      "total_deployed": 37500.0,
+      "effective_multiplier": 0.75,
+      "tranches": [
+        {
+          "name": "A",
+          "pct": 0.5,
+          "deployed": true,
+          "deploy_date": "2026-06-08",
+          "trigger_type": "MODERATE_DIP",
+          "multiplier": 1.5,
+          "amount_base": 25000.0,
+          "amount_actual": 37500.0
+        },
+        {
+          "name": "B",
+          "pct": 0.3,
+          "deployed": false,
+          "deploy_date": null,
+          "trigger_type": null,
+          "multiplier": 1.0,
+          "amount_base": 15000.0,
+          "amount_actual": 0
+        },
+        {
+          "name": "C",
+          "pct": 0.2,
+          "deployed": false,
+          "deploy_date": null,
+          "trigger_type": null,
+          "multiplier": 1.0,
+          "amount_base": 10000.0,
+          "amount_actual": 0
+        }
+      ],
+      "remaining_tranches": 2
+    }
+  },
+  "macro_signal": {
+    "phase": "EARLY EXPANSION",
+    "score": 0.75,
+    "momentum": "Stable",
+    "confidence": "High",
+    "live_count": 15,
+    "estimated_count": 0,
+    "manual_count": 0,
+    "rebalance_signal": false,
+    "historical_precedent": "2014-15, 2021-22, 2023-24",
+    "report_date": "2026-06-01",
+    "indicators": [
+      {
+        "name": "Cycle Phase",
+        "value": "EARLY EXPANSION",
+        "signal": "Bullish",
+        "group": "Leading",
+        "fetch_status": "OK",
+        "notes": ""
+      },
+      {
+        "name": "Composite Score",
+        "value": "0.7500 (75.0%)",
+        "signal": "Bullish",
+        "group": "Leading",
+        "fetch_status": "OK",
+        "notes": ""
+      },
+      {
+        "name": "Score Momentum",
+        "value": "Stable",
+        "signal": "Neutral",
+        "group": "Leading",
+        "fetch_status": "OK",
+        "notes": ""
+      },
+      {
+        "name": "Confidence",
+        "value": "High",
+        "signal": "Neutral",
+        "group": "Leading",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": ""
+      },
+      {
+        "name": "Rebalance Signal",
+        "value": "No",
+        "signal": "Neutral",
+        "group": "Leading",
+        "fetch_status": "OK",
+        "notes": ""
+      },
+      {
+        "name": "Historical Precedent",
+        "value": "2014-15, 2021-22, 2023-24",
+        "signal": "Neutral",
+        "group": "Leading",
+        "fetch_status": "OK",
+        "notes": ""
+      },
+      {
+        "name": "Nifty 50 6M Price Change",
+        "value": "-9.4%",
+        "signal": "Neutral",
+        "group": "Leading",
+        "fetch_status": "OK",
+        "notes": "Nifty at 23,511; 6M ago 25,960"
+      },
+      {
+        "name": "PMI Manufacturing",
+        "value": "58.5",
+        "signal": "Neutral",
+        "group": "Leading",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "S&P Global India Manufacturing PMI \u2014 released 1st business d"
+      },
+      {
+        "name": "RBI Repo Rate Trend (3M Change)",
+        "value": "-25 bps",
+        "signal": "Neutral",
+        "group": "Leading",
+        "fetch_status": "OK",
+        "notes": "Current repo rate: 6.25%"
+      },
+      {
+        "name": "Bank Credit Growth YoY",
+        "value": "11.1%",
+        "signal": "Neutral",
+        "group": "Leading",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "Non-food credit growth YoY \u2014 update from rbi.org.in/WSS mont"
+      },
+      {
+        "name": "Housing Starts / New Launches",
+        "value": "Rising",
+        "signal": "Neutral",
+        "group": "Leading",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "Residential new launches \u2014 source: PropEquity / Anarock quar"
+      },
+      {
+        "name": "GDP Growth QoQ Annualised",
+        "value": "5.6%",
+        "signal": "Neutral",
+        "group": "Coincident",
+        "fetch_status": "OK",
+        "notes": "GDP at constant prices, YoY \u2014 MOSPI quarterly"
+      },
+      {
+        "name": "IIP Industrial Production YoY",
+        "value": "4.1%",
+        "signal": "Neutral",
+        "group": "Coincident",
+        "fetch_status": "OK",
+        "notes": "Index of Industrial Production \u2014 MOSPI monthly release"
+      },
+      {
+        "name": "Corporate Earnings Growth (Nifty PAT)",
+        "value": "15.2%",
+        "signal": "Neutral",
+        "group": "Coincident",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "Nifty 50 aggregate PAT growth YoY \u2014 post quarterly results s"
+      },
+      {
+        "name": "Auto Sales YoY",
+        "value": "39.0%",
+        "signal": "Neutral",
+        "group": "Coincident",
+        "fetch_status": "OK",
+        "notes": "Total vehicle retail sales YoY"
+      },
+      {
+        "name": "GST Collections YoY",
+        "value": "18.0%",
+        "signal": "Neutral",
+        "group": "Coincident",
+        "fetch_status": "ESTIMATED",
+        "notes": "Monthly GST revenue YoY growth \u2014 announced 1st of each month"
+      },
+      {
+        "name": "CPI Inflation (Combined)",
+        "value": "4.2%",
+        "signal": "Neutral",
+        "group": "Lagging",
+        "fetch_status": "OK",
+        "notes": "CPI Combined YoY \u2014 MOSPI release ~12th of each month. Invers"
+      },
+      {
+        "name": "Unemployment Rate (30-day rolling)",
+        "value": "7.8%",
+        "signal": "Neutral",
+        "group": "Lagging",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "CMIE 30-day rolling unemployment rate \u2014 updated monthly. CMI"
+      },
+      {
+        "name": "Bank NPA Ratio (Gross)",
+        "value": "2.6%",
+        "signal": "Neutral",
+        "group": "Lagging",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "Gross NPA ratio \u2014 RBI FSR released June & December"
+      },
+      {
+        "name": "Current Account Deficit (% of GDP)",
+        "value": "-0.6%",
+        "signal": "Neutral",
+        "group": "Lagging",
+        "fetch_status": "OK",
+        "notes": "Current Account Deficit as % of GDP \u2014 negative = deficit. <2"
+      },
+      {
+        "name": "WPI Inflation (Wholesale Prices)",
+        "value": "2.3%",
+        "signal": "Neutral",
+        "group": "Lagging",
+        "fetch_status": "OK",
+        "notes": "Wholesale Price Index YoY \u2014 DPIIT release mid-month"
+      },
+      {
+        "name": "Nifty 50 6M Price Change Equity market leads the economy by 3\u20136 months \u2014 rising 6M return signals broad economic optimism ahead",
+        "value": "-9.4% \ud83d\udd34 Bearish",
+        "signal": "Bullish",
+        "group": "Leading",
+        "fetch_status": "OK",
+        "notes": "HOW FETCHED \u2705 Auto Auto \u2014 yfinance live NSE price"
+      },
+      {
+        "name": "PMI Manufacturing Highest-frequency demand signal \u2014 purchasing managers see order trends before any official data is collected",
+        "value": "58.5 \ud83d\udfe2 Bullish",
+        "signal": "Bullish",
+        "group": "Leading",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "HOW FETCHED \ud83d\udcdd Manual Manual \u2014 weekly_inputs.json (S&P Global paywalled; headline free"
+      },
+      {
+        "name": "RBI Repo Rate Trend (3M Change) Rate direction drives credit cost, banking NIMs, real-estate demand and capital flows \u2014 the most direct policy lever",
+        "value": "-25 bps \ud83d\udfe2 Bullish",
+        "signal": "Bullish",
+        "group": "Leading",
+        "fetch_status": "OK",
+        "notes": "HOW FETCHED \u2705 Auto Auto \u2014 RBI website scrape"
+      },
+      {
+        "name": "Bank Credit Growth YoY Credit is the fuel of economic expansion \u2014 above 15% confirms expansion; below 8% is a recessionary warning signal",
+        "value": "11.1% \ud83d\udfe1 Neutral",
+        "signal": "Bullish",
+        "group": "Leading",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "HOW FETCHED \ud83d\udcdd Manual Manual \u2014 weekly_inputs.json (check rbi.org.in/WSS fortnightly)"
+      },
+      {
+        "name": "Housing Starts / New Launches New launches lead cement, steel, consumer durables and NBFC demand by 12\u201318 months \u2014 key capex cycle signal",
+        "value": "Rising \ud83d\udfe2 Bullish",
+        "signal": "Bullish",
+        "group": "Leading",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "HOW FETCHED \ud83d\udcdd Manual Manual \u2014 weekly_inputs.json (update quarterly: Rising / Stable /"
+      },
+      {
+        "name": "GDP Growth QoQ Annualised The headline coincident indicator \u2014 confirms whether the economy actually grew at the rate PMI and IIP suggested",
+        "value": "5.6% \ud83d\udfe1 Neutral",
+        "signal": "Bullish",
+        "group": "Coincident",
+        "fetch_status": "OK",
+        "notes": "HOW FETCHED \u2705 Auto Auto \u2014 MOSPI / TradingEconomics scrape"
+      },
+      {
+        "name": "IIP Industrial Production YoY Measures actual factory output \u2014 leads corporate earnings by one quarter; validates or challenges the PMI reading",
+        "value": "4.1% \ud83d\udfe1 Neutral",
+        "signal": "Bullish",
+        "group": "Coincident",
+        "fetch_status": "OK",
+        "notes": "HOW FETCHED \u2705 Auto Auto \u2014 MOSPI / TradingEconomics scrape"
+      },
+      {
+        "name": "Corporate Earnings Growth (Nifty PAT) Actual PAT growth confirms whether macro conditions are translating into real corporate profits \u2014 the ultimate test",
+        "value": "15.2% \ud83d\udfe2 Bullish",
+        "signal": "Bullish",
+        "group": "Coincident",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "HOW FETCHED \ud83d\udcdd Manual Manual \u2014 weekly_inputs.json (update after quarterly results seaso"
+      },
+      {
+        "name": "Auto Sales YoY Auto retail is the broadest real-time consumption indicator \u2014 captures urban and rural demand across all income segments",
+        "value": "39.0% \ud83d\udfe2 Bullish",
+        "signal": "Bullish",
+        "group": "Coincident",
+        "fetch_status": "OK",
+        "notes": "HOW FETCHED \u2705 Auto Auto \u2014 SIAM/FADA via TradingEconomics scrape"
+      },
+      {
+        "name": "GST Collections YoY Every transaction in the economy generates GST \u2014 YoY growth is the most real-time proxy for nominal GDP growth",
+        "value": "18.0% \ud83d\udfe2 Bullish",
+        "signal": "Bullish",
+        "group": "Coincident",
+        "fetch_status": "OK",
+        "notes": "HOW FETCHED \u2705 Auto Auto \u2014 PIB / Finance Ministry scrape"
+      },
+      {
+        "name": "CPI Inflation (Combined) INVERSE \u2014 CPI above RBI 6% ceiling forces rate hikes that compress equity valuations across all sectors simultaneously",
+        "value": "4.2% \ud83d\udfe1 Neutral",
+        "signal": "Bullish",
+        "group": "Lagging",
+        "fetch_status": "ESTIMATED",
+        "notes": "HOW FETCHED \u2705 Auto Auto \u2014 MOSPI / TradingEconomics scrape"
+      },
+      {
+        "name": "Unemployment Rate (30-day rolling) INVERSE lagging \u2014 confirms whether expansion is generating employment; rising unemployment at late cycle is an early exit signal",
+        "value": "7.8% \ud83d\udfe1 Neutral",
+        "signal": "Bullish",
+        "group": "Lagging",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "HOW FETCHED \ud83d\udcdd Manual Manual \u2014 weekly_inputs.json (CMIE paywalled; monthly headline in"
+      },
+      {
+        "name": "Bank NPA Ratio (Gross) INVERSE lagging \u2014 NPA level determines how aggressively banks can lend; rising NPAs are a leading indicator of credit crunch",
+        "value": "2.6% \ud83d\udfe2 Bullish",
+        "signal": "Bullish",
+        "group": "Lagging",
+        "fetch_status": "MANUAL_REQUIRED",
+        "notes": "HOW FETCHED \ud83d\udcdd Manual Manual \u2014 weekly_inputs.json (update after June and December RBI F"
+      },
+      {
+        "name": "Current Account Deficit (% of GDP) INVERSE lagging \u2014 wide CAD weakens INR, triggers FII outflows, and forces RBI tightening even during slowdowns",
+        "value": "-0.6% \ud83d\udfe2 Bullish",
+        "signal": "Bullish",
+        "group": "Lagging",
+        "fetch_status": "ESTIMATED",
+        "notes": "HOW FETCHED \u2705 Auto Auto \u2014 RBI / TradingEconomics scrape"
+      },
+      {
+        "name": "WPI Inflation (Wholesale Prices) INVERSE lagging \u2014 wholesale prices feed into CPI with a 4\u20136 week lag; a WPI spike is the earliest warning for retail inflation",
+        "value": "2.3% \ud83d\udfe2 Bullish",
+        "signal": "Bullish",
+        "group": "Lagging",
+        "fetch_status": "ESTIMATED",
+        "notes": "HOW FETCHED \u2705 Auto Auto \u2014 DPIIT / TradingEconomics scrape"
+      }
+    ],
+    "key_drivers": [],
+    "risks": [
+      "\u26a0 Yellow = Estimated / scraped |",
+      "\u26a0 Estimated",
+      "<4% = Bullish | 4\u20136% = Neutral | >6% = Bearish \u26a0 INVERSE",
+      "<6% = Bullish | 6\u20138% = Neutral | >8% = Bearish \u26a0 INVERSE",
+      "<3% = Bullish | 3\u20136% = Neutral | >6% = Bearish \u26a0 INVERSE",
+      "<2% deficit = Bullish | 2\u20133% = Neutral | >3% = Bearish \u26a0 INVERSE",
+      "<3% = Bullish | 3\u20136% = Neutral | >6% = Bearish \u26a0 INVERSE"
+    ],
+    "watch_items": [],
+    "sector_stance": {
+      "Nifty IT": "Underweight",
+      "Nifty Metal": "Underweight",
+      "Nifty Energy": "Overweight",
+      "Nifty Infra": "Underweight",
+      "Nifty Bank / Financials": "Neutral",
+      "Nifty Auto": "Neutral",
+      "Nifty Pharma": "Underweight",
+      "Nifty FMCG": "Underweight",
+      "Nifty Healthcare": "Underweight",
+      "E \u2014 NSE Sectoral ETF Recommendations": "Underweight",
+      "Scoring: Cycle fit (40%) + Momentum (35%) + MA/RSI technical (25%)": "Underweight",
+      "Name": "Underweight",
+      "Ticker": "Underweight",
+      "Cycle Stance": "Underweight",
+      "Price": "Underweight",
+      "RSI(14)": "Underweight",
+      "4W Mom": "Underweight",
+      "MA Cross": "Underweight",
+      "Ann Vol": "Underweight",
+      "Nifty Bank": "Underweight",
+      "BANKBEES.NS": "Underweight",
+      "AVOID": "Underweight",
+      "\u20b9561": "Underweight",
+      "-1.0%": "Underweight",
+      "Death Cross": "Underweight",
+      "ITBEES.NS": "Underweight",
+      "-0.5%": "Underweight",
+      "PHARMABEES.NS": "Underweight",
+      "WATCHLIST": "Underweight",
+      "+4.6%": "Underweight",
+      "Golden Cross": "Underweight",
+      "FMCGBEES.NS": "Underweight",
+      "METALBEES.NS": "Underweight",
+      "Nifty PSU Bank": "Underweight",
+      "PSUBNKBEES.NS": "Underweight",
+      "-3.5%": "Underweight",
+      "INFRABEES.NS": "Underweight",
+      "\u20b9966": "Underweight",
+      "-0.4%": "Underweight",
+      "Gold ETF": "Underweight",
+      "GOLDBEES.NS": "Underweight",
+      "\u20b9129": "Underweight",
+      "+4.2%": "Underweight",
+      "Nifty 50": "Underweight",
+      "SETFNIF50.NS": "Underweight",
+      "\u20b9253": "Underweight",
+      "-1.6%": "Underweight",
+      "F \u2014 This Week's Action": "Underweight",
+      "THIS WEEK'S ACTION:": "Underweight",
+      "Strong earnings growth. Commodity cycle up. Global IT demand rises. IT + Materials/Metals + Energy + Capex industrials.": "Underweight",
+      "G \u2014 Source Verification & Data Authenticity": "Underweight",
+      "Use this table to verify every input value before acting on the report.": "Underweight",
+      "Each row shows the exact value used in the composite score calculation": "Underweight",
+      "the signal it triggered": "Underweight",
+      "the Excel threshold formula applied": "Underweight",
+      "the official government source with a direct link": "Underweight",
+      "a second independent cross-check source": "Underweight",
+      "how fresh the data is": "Underweight",
+      "and how the system obtained it.": "Underweight",
+      "Click any \ud83d\udd17 link to open the source page directly.": "Underweight",
+      "\u2705 Auto": "Neutral",
+      "Fetched automatically from free official source |": "Underweight",
+      "\ud83d\udcdd Manual": "Underweight",
+      "You entered this in weekly_inputs.json |": "Underweight",
+      "\u26a0 Estimated": "Underweight",
+      "Scraped from secondary source \u2014 cross-verify before trusting": "Underweight",
+      "Indicator & Why It Matters": "Underweight",
+      "Value & Signal": "Underweight",
+      "Threshold (Excel IF formula)": "Underweight",
+      "Official Source & Cross-Check": "Underweight",
+      "Release & Max Age": "Underweight",
+      "How Fetched": "Underweight",
+      "LEADING INDICATORS | Weight: 50% of composite score | 50% of composite score \u2014 predict turning points 3\u20136 months ahead": "Underweight",
+      "Nifty 50 6M Price Change": "Underweight",
+      "Equity market leads the economy by 3\u20136 months \u2014 rising 6M return signals broad economic optimism ahead": "Underweight",
+      "-9.4%": "Underweight",
+      "\ud83d\udd34 Bearish": "Underweight",
+      "THRESHOLD (Excel formula)": "Neutral",
+      ">10% = Bullish | 0\u201310% = Neutral | <0% = Bearish": "Underweight",
+      "OFFICIAL SOURCE": "Neutral",
+      "\ud83d\udd17 NSE India": "Underweight",
+      "CROSS-CHECK": "Neutral",
+      "\ud83d\udd0d Yahoo Finance ^NSEI": "Underweight",
+      "RELEASE SCHEDULE": "Neutral",
+      "Daily (live price)": "Underweight",
+      "MAX DATA AGE": "Neutral",
+      "1 trading day": "Underweight",
+      "HOW FETCHED": "Neutral",
+      "Auto \u2014 yfinance live NSE price": "Underweight",
+      "PMI Manufacturing": "Underweight",
+      "Highest-frequency demand signal \u2014 purchasing managers see order trends before any official data is collected": "Underweight",
+      "58.5": "Underweight",
+      "\ud83d\udfe2 Bullish": "Neutral",
+      ">55 = Bullish | 50\u201355 = Neutral | <50 = Bearish": "Underweight",
+      "\ud83d\udd17 S&P Global India Manufacturing PMI": "Underweight",
+      "\ud83d\udd0d Economic Times \u2014 India PMI": "Underweight",
+      "Monthly (1st business day of month)": "Underweight",
+      "~4 weeks": "Underweight",
+      "Manual \u2014 weekly_inputs.json (S&P Global paywalled; headline free": "Underweight",
+      "RBI Repo Rate Trend (3M Change)": "Underweight",
+      "Rate direction drives credit cost": "Underweight",
+      "banking NIMs": "Underweight",
+      "real-estate demand and capital flows \u2014 the most direct policy lever": "Underweight",
+      "-25 bps": "Underweight",
+      "Rate cut = Bullish | Hold = Neutral | Rate hike = Bearish": "Underweight",
+      "\ud83d\udd17 Reserve Bank of India \u2014 MPC Press Release": "Underweight",
+      "\ud83d\udd0d TradingEconomics \u2014 India Interest Rate": "Underweight",
+      "Bi-monthly (every ~6 weeks)": "Underweight",
+      "~6 weeks": "Neutral",
+      "Auto \u2014 RBI website scrape": "Underweight",
+      "Bank Credit Growth YoY": "Underweight",
+      "Credit is the fuel of economic expansion \u2014 above 15% confirms expansion; below 8% is a recessionary warning signal": "Underweight",
+      "11.1%": "Underweight",
+      "\ud83d\udfe1 Neutral": "Underweight",
+      ">15% = Bullish | 8\u201315% = Neutral | <8% = Bearish": "Underweight",
+      "\ud83d\udd17 RBI Weekly Statistical Supplement (H.1)": "Underweight",
+      "\ud83d\udd0d RBI DBIE Database": "Underweight",
+      "Fortnightly": "Underweight",
+      "~2 weeks": "Underweight",
+      "Manual \u2014 weekly_inputs.json (check rbi.org.in/WSS fortnightly)": "Underweight",
+      "Housing Starts / New Launches": "Underweight",
+      "New launches lead cement": "Underweight",
+      "steel": "Underweight",
+      "consumer durables and NBFC demand by 12\u201318 months \u2014 key capex cycle signal": "Underweight",
+      "Rising": "Underweight",
+      "Rising = Bullish | Stable = Neutral | Falling = Bearish": "Underweight",
+      "\ud83d\udd17 Anarock Research (quarterly report)": "Underweight",
+      "\ud83d\udd0d PropEquity Research": "Underweight",
+      "Quarterly": "Underweight",
+      "~13 weeks": "Underweight",
+      "Manual \u2014 weekly_inputs.json (update quarterly: Rising / Stable /": "Underweight",
+      "COINCIDENT INDICATORS | Weight: 33% of composite score | 33% of composite score \u2014 confirm the current state of the economy": "Underweight",
+      "GDP Growth QoQ Annualised": "Underweight",
+      "The headline coincident indicator \u2014 confirms whether the economy actually grew at the rate PMI and IIP suggested": "Underweight",
+      "5.6%": "Underweight",
+      ">7% = Bullish | 5\u20137% = Neutral | <5% = Bearish": "Underweight",
+      "\ud83d\udd17 MOSPI \u2014 National Accounts Statistics": "Underweight",
+      "\ud83d\udd0d TradingEconomics \u2014 India GDP Growth": "Underweight",
+      "Quarterly (released ~60 days after quarter end)": "Neutral",
+      "~4 months": "Neutral",
+      "Auto \u2014 MOSPI / TradingEconomics scrape": "Underweight",
+      "IIP Industrial Production YoY": "Underweight",
+      "Measures actual factory output \u2014 leads corporate earnings by one quarter; validates or challenges the PMI reading": "Underweight",
+      "4.1%": "Underweight",
+      ">8% = Bullish | 3\u20138% = Neutral | <3% = Bearish": "Underweight",
+      "\ud83d\udd17 MOSPI \u2014 Index of Industrial Production": "Underweight",
+      "\ud83d\udd0d TradingEconomics \u2014 India IIP": "Underweight",
+      "Monthly (released ~45 days after month end)": "Underweight",
+      "Corporate Earnings Growth (Nifty PAT)": "Underweight",
+      "Actual PAT growth confirms whether macro conditions are translating into real corporate profits \u2014 the ultimate test": "Underweight",
+      "15.2%": "Underweight",
+      "\ud83d\udd17 NSE India / Motilal Oswal Quarterly Tracker": "Underweight",
+      "\ud83d\udd0d Motilal Oswal \u2014 Nifty Earnings Tracker": "Underweight",
+      "Quarterly (Apr": "Underweight",
+      "Jan \u2014 after results season)": "Underweight",
+      "Manual \u2014 weekly_inputs.json (update after quarterly results seaso": "Underweight",
+      "Auto Sales YoY": "Underweight",
+      "Auto retail is the broadest real-time consumption indicator \u2014 captures urban and rural demand across all income segments": "Underweight",
+      "39.0%": "Underweight",
+      ">15% = Bullish | 5\u201315% = Neutral | <5% = Bearish": "Underweight",
+      "\ud83d\udd17 FADA \u2014 Federation of Automobile Dealers": "Underweight",
+      "\ud83d\udd0d SIAM \u2014 Society of Indian Automobile Manufacturers": "Underweight",
+      "Monthly (1st week of following month)": "Underweight",
+      "~5 weeks": "Underweight",
+      "Auto \u2014 SIAM/FADA via TradingEconomics scrape": "Underweight",
+      "GST Collections YoY": "Underweight",
+      "Every transaction in the economy generates GST \u2014 YoY growth is the most real-time proxy for nominal GDP growth": "Underweight",
+      "18.0%": "Underweight",
+      ">12% = Bullish | 6\u201312% = Neutral | <6% = Bearish": "Underweight",
+      "\ud83d\udd17 Finance Ministry / Press Information Bureau": "Underweight",
+      "\ud83d\udd0d GST Council \u2014 Official Updates": "Underweight",
+      "Monthly (1st of each month": "Underweight",
+      "previous month data)": "Underweight",
+      "Auto \u2014 PIB / Finance Ministry scrape": "Underweight",
+      "LAGGING INDICATORS | Weight: 17% of composite score | 17% of composite score \u2014 validate past cycle phases": "Underweight",
+      "CPI Inflation (Combined)": "Underweight",
+      "INVERSE \u2014 CPI above RBI 6% ceiling forces rate hikes that compress equity valuations across all sectors simultaneously": "Underweight",
+      "4.2%": "Underweight",
+      "<4% = Bullish | 4\u20136% = Neutral | >6% = Bearish \u26a0 INVERSE": "Underweight",
+      "\ud83d\udd17 MOSPI \u2014 Consumer Price Index": "Underweight",
+      "\ud83d\udd0d TradingEconomics \u2014 India CPI Inflation": "Underweight",
+      "Monthly (released ~12th of following month)": "Underweight",
+      "Unemployment Rate (30-day rolling)": "Underweight",
+      "INVERSE lagging \u2014 confirms whether expansion is generating employment; rising unemployment at late cycle is an early exit signal": "Underweight",
+      "7.8%": "Underweight",
+      "<6% = Bullish | 6\u20138% = Neutral | >8% = Bearish \u26a0 INVERSE": "Underweight",
+      "\ud83d\udd17 CMIE \u2014 Consumer Pyramids Household Survey": "Underweight",
+      "\ud83d\udd0d TradingEconomics \u2014 India Unemployment": "Underweight",
+      "Monthly (30-day rolling average)": "Underweight",
+      "Manual \u2014 weekly_inputs.json (CMIE paywalled; monthly headline in": "Underweight",
+      "Bank NPA Ratio (Gross)": "Underweight",
+      "INVERSE lagging \u2014 NPA level determines how aggressively banks can lend; rising NPAs are a leading indicator of credit crunch": "Underweight",
+      "2.6%": "Underweight",
+      "<3% = Bullish | 3\u20136% = Neutral | >6% = Bearish \u26a0 INVERSE": "Neutral",
+      "\ud83d\udd17 RBI Financial Stability Report (FSR)": "Underweight",
+      "\ud83d\udd0d TradingEconomics \u2014 India Non-Performing Loans": "Underweight",
+      "Semi-annual (June and December)": "Underweight",
+      "~6 months": "Underweight",
+      "Manual \u2014 weekly_inputs.json (update after June and December RBI F": "Underweight",
+      "Current Account Deficit (% of GDP)": "Underweight",
+      "INVERSE lagging \u2014 wide CAD weakens INR": "Underweight",
+      "triggers FII outflows": "Underweight",
+      "and forces RBI tightening even during slowdowns": "Underweight",
+      "-0.6%": "Underweight",
+      "| >3% = Bearish \u26a0 INVERSE": "Neutral",
+      "\ud83d\udd17 RBI \u2014 Balance of Payments Statistics": "Neutral",
+      "\ud83d\udd0d TradingEconomics \u2014 India Current Account to GDP": "Neutral",
+      "Auto \u2014 RBI / TradingEconomics scrape": "Neutral",
+      "WPI Inflation (Wholesale Prices)": "Neutral",
+      "INVERSE lagging \u2014 wholesale prices feed into CPI with a 4\u20136 week lag; a WPI spike is the earliest warning for retail inflation": "Neutral",
+      "2.3%": "Neutral",
+      "\ud83d\udd17 DPIIT \u2014 Office of Economic Adviser": "Neutral",
+      "\ud83d\udd0d TradingEconomics \u2014 India Producer Prices": "Neutral",
+      "Monthly (released ~14th of following month)": "Neutral",
+      "Auto \u2014 DPIIT / TradingEconomics scrape": "Neutral",
+      "Data Authenticity Summary:": "Neutral",
+      "\u2705 9 indicators fetched automatically from official free sources": "Neutral",
+      "\ud83d\udcdd 6 indicators entered manually from paywalled or quarterly sources": "Neutral",
+      "All signal thresholds match the exact IF formulas in your Excel sheet (cells C/D/E": "Neutral",
+      "rows 8\u201328)": "Neutral",
+      "Composite score formula: =SUM(I8:I12": "Neutral",
+      "I16:I20": "Neutral",
+      "I24:I28) \u2014 identical in Excel and Python": "Neutral",
+      "Generated by India Macro Cycle System on 01 Jun 2026 07:29.": "Neutral",
+      "Data sources: MOSPI": "Neutral",
+      "Finance Ministry": "Neutral",
+      "SIAM/FADA": "Neutral",
+      "NSE India via yfinance. Free official sources only.": "Neutral",
+      "This report is for personal investment research only \u2014 not financial advice.": "Neutral",
+      "Always cross-verify values using the Source Verification table above before making portfolio decisions.": "Neutral"
+    },
+    "etf_tags": [
+      {
+        "ticker": "BANKBEES.NS",
+        "tag": "AVOID",
+        "stance": "N",
+        "price": 561.0,
+        "rsi": 32.0,
+        "mom_4w": -1.0,
+        "ma_signal": "Death Cross",
+        "ann_vol": 25.0
+      },
+      {
+        "ticker": "ITBEES.NS",
+        "tag": "AVOID",
+        "stance": "N",
+        "price": 32.0,
+        "rsi": 39.0,
+        "mom_4w": -0.5,
+        "ma_signal": "Death Cross",
+        "ann_vol": 30.0
+      },
+      {
+        "ticker": "PHARMABEES.NS",
+        "tag": "WATCHLIST",
+        "stance": "N",
+        "price": 25.0,
+        "rsi": 71.0,
+        "mom_4w": 4.6,
+        "ma_signal": "Golden Cross",
+        "ann_vol": 14.0
+      },
+      {
+        "ticker": "FMCGBEES.NS",
+        "tag": "AVOID",
+        "stance": "N",
+        "price": null,
+        "rsi": null,
+        "mom_4w": null,
+        "ma_signal": "N/A",
+        "ann_vol": null
+      },
+      {
+        "ticker": "METALBEES.NS",
+        "tag": "AVOID",
+        "stance": "N",
+        "price": null,
+        "rsi": null,
+        "mom_4w": null,
+        "ma_signal": "N/A",
+        "ann_vol": null
+      },
+      {
+        "ticker": "PSUBNKBEES.NS",
+        "tag": "AVOID",
+        "stance": "N",
+        "price": 91.0,
+        "rsi": 30.0,
+        "mom_4w": -3.5,
+        "ma_signal": "Death Cross",
+        "ann_vol": 27.0
+      },
+      {
+        "ticker": "INFRABEES.NS",
+        "tag": "WATCHLIST",
+        "stance": "N",
+        "price": 966.0,
+        "rsi": 44.0,
+        "mom_4w": -0.4,
+        "ma_signal": "Golden Cross",
+        "ann_vol": 18.0
+      },
+      {
+        "ticker": "GOLDBEES.NS",
+        "tag": "WATCHLIST",
+        "stance": "N",
+        "price": 129.0,
+        "rsi": 52.0,
+        "mom_4w": 4.2,
+        "ma_signal": "Golden Cross",
+        "ann_vol": 21.0
+      },
+      {
+        "ticker": "SETFNIF50.NS",
+        "tag": "AVOID",
+        "stance": "N",
+        "price": 253.0,
+        "rsi": 34.0,
+        "mom_4w": -1.6,
+        "ma_signal": "Death Cross",
+        "ann_vol": 18.0
+      }
+    ],
+    "source_email_subject": "[Macro] EARLY EXPANSION | Score: 0.750 | Stable | 01-Jun-2026",
+    "parsed_at": "2026-06-08T06:48:21.434781"
+  },
+  "signal_engine": {
+    "signal_date": "2026-06-05",
+    "next_run_date": "2026-06-12",
+    "stocks_in_universe": 0,
+    "etfs_in_universe": 0,
+    "strategies_run": [],
+    "buy_signals": [],
+    "sell_signals": [],
+    "urgent_alerts": [],
+    "universe_changes": [],
+    "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-06-05 | 0 BUY | 0 SELL",
+    "parsed_at": "2026-06-08T06:48:22.357125"
+  }
+}
