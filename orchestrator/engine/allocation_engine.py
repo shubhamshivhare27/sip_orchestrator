@@ -40,16 +40,57 @@ class AllocationPlan:
 
 
 def classify_holdings(holdings: list[dict], config: dict) -> list[dict]:
-    """Map each Upstox holding to a sleeve via config instrument lists."""
+    """Map each Upstox holding to a sleeve via config instrument lists.
+    MF holdings may already have sleeve set by upstox_client._classify_mf.
+    Also checks company_name as hardened fallback for MF classification."""
     sleeve_map = {}
     for sleeve, scfg in config["sleeves"].items():
         for t in scfg["instruments"]:
             sleeve_map[t.upper()] = sleeve
 
-    return [{
-        **h,
-        "sleeve": sleeve_map.get(h["ticker"].upper(), "Core")
-    } for h in holdings]
+    # MF company_name keywords → sleeve (hardened fallback)
+    MF_NAME_MAP = [
+        ("GOLD",       "Hedge"),
+        ("SILVER",     "Hedge"),
+        ("LIQUID",     "Hedge"),
+        ("DEBT",       "Hedge"),
+        ("BOND",       "Hedge"),
+        ("TECHNOLOGY", "Thematic"),
+        ("DIGITAL",    "Thematic"),
+    ]
+
+    result = []
+    for h in holdings:
+        # Priority 1: pre-classified sleeve from upstox_client (MF holdings)
+        sleeve = h.get("sleeve") or ""
+
+        # Priority 2: config instrument list (ETFs/stocks)
+        if not sleeve:
+            sleeve = sleeve_map.get(h["ticker"].upper(), "")
+
+        # Priority 3: company_name keyword match (hardened MF fallback)
+        if not sleeve and h.get("company_name"):
+            name_upper = h["company_name"].upper()
+            for keyword, sl in MF_NAME_MAP:
+                if keyword in name_upper:
+                    sleeve = sl
+                    break
+
+        # Priority 4: ticker keyword match (catches SBIGoldFund*.MF)
+        if not sleeve:
+            ticker_upper = h["ticker"].upper()
+            for keyword, sl in MF_NAME_MAP:
+                if keyword in ticker_upper:
+                    sleeve = sl
+                    break
+
+        # Default: Core
+        if not sleeve:
+            sleeve = "Core"
+
+        result.append({**h, "sleeve": sleeve})
+
+    return result
 
 
 def compute_portfolio_weights(classified: list[dict]) -> dict:
