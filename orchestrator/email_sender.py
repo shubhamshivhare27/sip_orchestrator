@@ -102,7 +102,9 @@ def _build_html(result):
             html+=f'<tr><td style="{td}font-weight:bold;">{ls["ticker"].replace(".NS","")}</td><td style="{td}">{ls.get("total_points",0)}/110 ({ls.get("pct",0)}%)</td><td style="{td}color:{sc};font-weight:bold;">{sig}</td><td style="{td}">₹{ls.get("price",0):,.1f}</td></tr>'
         html+='</table></div>'
 
-    html+=f'<div style="text-align:center;padding:16px;color:{light};font-size:11px;">SIP Orchestrator v3 · {datetime.now().strftime("%d %b %Y %I:%M %p")} · Not financial advice</div></body></html>'
+    dash_url=config.get("email_sender",{}).get("dashboard_url","") if config else ""
+    dash_btn=f'<div style="text-align:center;margin:16px 0;"><a href="{dash_url}" style="display:inline-block;background:#1B4FD8;color:#fff;padding:14px 40px;border-radius:8px;font-size:15px;font-weight:bold;text-decoration:none;">Open Dashboard →</a></div>' if dash_url else ""
+    html+=f'{dash_btn}<div style="text-align:center;padding:16px;color:{light};font-size:11px;">SIP Orchestrator v4 · {datetime.now().strftime("%d %b %Y %I:%M %p")} · Not financial advice</div></body></html>' · {datetime.now().strftime("%d %b %Y %I:%M %p")} · Not financial advice</div></body></html>'
     return html
 
 def send_execution_plan_email(result, config):
