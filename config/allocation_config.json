@@ -1,0 +1,109 @@
+{
+  "_version": "4.0",
+  "_last_updated": "2026-06-09",
+
+  "sleeves": {
+    "Core": {
+      "label": "Core Strategic", "target_pct": 60, "range_min": 55, "range_max": 65,
+      "instruments": ["NIFTYIETF.NS","JUNIORBEES.NS","MID150BEES.NS","QUAL30IETF.NS","MOMOMENTUM.NS"],
+      "sub_weights": {"NIFTYIETF.NS":41.7,"JUNIORBEES.NS":25.0,"MID150BEES.NS":16.7,"QUAL30IETF.NS":8.3,"MOMOMENTUM.NS":8.3}
+    },
+    "International": {
+      "label": "International Exposure", "target_pct": 20, "range_min": 15, "range_max": 25,
+      "instruments": ["MON100.NS","MOUS500.NS","MAFANG.NS","HSET.NS"],
+      "sub_weights": {"MON100.NS":40.0,"MOUS500.NS":25.0,"MAFANG.NS":25.0,"HSET.NS":10.0}
+    },
+    "Thematic": {
+      "label": "Thematic / Business Cycle", "target_pct": 15, "range_min": 10, "range_max": 20,
+      "instruments": ["INFRABEES.NS","MODEFENCE.NS","ITBEES.NS","BANKBEES.NS","PHARMABEES.NS","FMCGBEES.NS","METALBEES.NS","PSUBNKBEES.NS","ENERGYBEES.NS","AUTOBEES.NS"],
+      "phase_rotation": {
+        "STRONG RECOVERY": {"active_etfs":["BANKBEES.NS","AUTOBEES.NS","INFRABEES.NS"],"weights":{"BANKBEES.NS":6,"AUTOBEES.NS":5,"INFRABEES.NS":4}},
+        "MID EXPANSION":   {"active_etfs":["ITBEES.NS","METALBEES.NS","MODEFENCE.NS"],"weights":{"ITBEES.NS":6,"METALBEES.NS":5,"MODEFENCE.NS":4}},
+        "LATE CYCLE":      {"active_etfs":["ENERGYBEES.NS","PHARMABEES.NS","FMCGBEES.NS"],"weights":{"ENERGYBEES.NS":6,"PHARMABEES.NS":5,"FMCGBEES.NS":4}},
+        "CONTRACTION":     {"active_etfs":["FMCGBEES.NS","PHARMABEES.NS","ITBEES.NS"],"weights":{"FMCGBEES.NS":6,"PHARMABEES.NS":5,"ITBEES.NS":4}}
+      }
+    },
+    "Hedge": {
+      "label": "Hedge / Gold / Cash", "target_pct": 5, "range_min": 5, "range_max": 10,
+      "instruments": ["GOLDBEES.NS","LIQUIDBEES.NS"]
+    }
+  },
+
+  "sleeve_rules": {
+    "underweight_aggressive_threshold_pct": 3,
+    "overweight_stop_threshold_pct": 5,
+    "underweight_budget_share": 0.65,
+    "cycle_boost_pct": 4,
+    "cycle_boost_phases": ["STRONG RECOVERY","MID EXPANSION"],
+    "cycle_boost_sleeve": "Thematic",
+    "min_instrument_allocation_inr": 500
+  },
+
+  "scoring_weights": {"macro_stance":0.40,"signal_engine":0.35,"rsi_health":0.15,"momentum_4w":0.10},
+  "scoring_rules": {
+    "macro_stance":{"OW":1.0,"N":0.5,"UW":0.2},
+    "signal_engine":{"engine_confirmed":1.0,"macro_buy":0.8,"watchlist":0.4},
+    "rsi":{"healthy_min":30,"healthy_max":70,"healthy":1.0,"unhealthy":0.5},
+    "momentum_4w":{"strong_threshold":5.0,"strong":1.0,"positive":0.6,"negative":0.2}
+  },
+
+  "tranche_config": {
+    "tranche_a_pct": 0.50, "tranche_b_pct": 0.30, "tranche_c_pct": 0.20,
+    "max_deployments_per_sleeve_per_week": 1,
+    "fallback_day": "3rd_thursday",
+    "carry_forward": true,
+    "multipliers": {
+      "DEEP_DIP":2.0, "MODERATE_DIP":1.5, "NORMAL":1.0, "OVERBOUGHT":0.5
+    },
+    "dip_thresholds": {
+      "rsi_deep":35, "rsi_moderate_low":35, "rsi_moderate_high":45,
+      "rsi_overbought":70, "vix_deep":20, "vix_moderate":16,
+      "sma_deep_pct":-5, "sma_moderate_pct":-3, "sma_overbought_pct":5,
+      "weekly_ret_moderate":-3, "weekly_ret_deep":-5
+    },
+    "etf_special_rules": {
+      "GOLDBEES.NS":    {"mode":"fixed","deploy_day":"2nd_monday","max_mult":1.0,"min_mult":0.75,"note":"Fixed boring SIP"},
+      "HSET.NS":        {"mode":"low_priority","deploy_day":"last_thursday","default_mult":0.5,"max_mult":1.5},
+      "MOMOMENTUM.NS":  {"mode":"skip_unless_golden_cross","max_mult":1.0,"note":"Dip-only until Golden Cross"},
+      "QUAL30IETF.NS":  {"mode":"aggressive","deploy_ab_pct":0.80,"note":"Deploy 80% of allocation immediately"},
+      "MAFANG.NS":      {"mode":"capped","max_mult":1.5,"note":"Concentrated risk cap"},
+      "LIQUIDBEES.NS":  {"mode":"fixed","deploy_day":"1st_monday","max_mult":1.0}
+    },
+    "engine2_override": {
+      "enabled": true,
+      "override_paused_sleeve": true,
+      "borrow_from": "largest_underweight"
+    }
+  },
+
+  "buy_date_rules": {
+    "signal_confirmed_cadence":"Friday","monthly_sip_day":15,
+    "monthly_fallback_day":"3rd_thursday","rebalance_rule":"next_trading_day"
+  },
+
+  "gmail": {
+    "imap_login_account":"shubhamshivhare554@gmail.com",
+    "sender_filter":"shubhamshivhare27@gmail.com",
+    "macro_subject_keyword":"[Macro]",
+    "macro_subject_keywords_alt":["Macro","RECOVERY","EXPANSION","CONTRACTION","LATE CYCLE","MID EXPANSION","STRONG RECOVERY"],
+    "signal_subject_keyword":"Nifty 500 Signals",
+    "lookback_days":10,"imap_host":"imap.gmail.com","imap_port":993
+  },
+
+  "email_sender": {
+    "enabled":true,"smtp_host":"smtp.gmail.com","smtp_port":465,
+    "subject_prefix":"[SIP Orchestrator]",
+    "recipient":"shubhamshivhare554@gmail.com","dashboard_url":""
+  },
+
+  "upstox": {
+    "api_base":"https://api.upstox.com/v2",
+    "holdings_endpoint":"/portfolio/long-term-holdings",
+    "mf_holdings_endpoint":"/mf/holdings"
+  },
+
+  "nse_holidays": [
+    "2025-01-26","2025-02-26","2025-03-14","2025-03-31","2025-04-10","2025-04-14","2025-04-18","2025-05-01","2025-08-15","2025-08-27","2025-10-02","2025-10-20","2025-10-21","2025-11-05","2025-12-25",
+    "2026-01-26","2026-03-03","2026-03-30","2026-04-14","2026-05-01","2026-08-15","2026-09-17","2026-10-02","2026-12-25"
+  ]
+}
