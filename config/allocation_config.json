@@ -93,7 +93,7 @@
   "email_sender": {
     "enabled":true,"smtp_host":"smtp.gmail.com","smtp_port":465,
     "subject_prefix":"[SIP Orchestrator]",
-    "recipient":"shubhamshivhare554@gmail.com","dashboard_url":""
+    "recipient":"shubhamshivhare554@gmail.com", "dashboard_url": "https://siporchestrator-9mjr5oa5qqohsks9feux3r.streamlit.app/"
   },
 
   "upstox": {
