@@ -24,7 +24,9 @@ def _fetch_upstox(ticker, days=400):
     token = os.environ.get("UPSTOX_TOKEN","").strip()
     if not token: return None
     sym = ticker.replace(".NS","")
-    key = f"NSE_EQ%7C{sym}"
+# Try both NSE_EQ (stocks) and NSE_ETF (ETFs) instrument types
+    for inst_type in ["NSE_EQ", "NSE_ETF"]:
+        key = f"{inst_type}%7C{sym}"
     to_d = datetime.today().strftime("%Y-%m-%d")
     fr_d = (datetime.today()-timedelta(days=days)).strftime("%Y-%m-%d")
     try:
@@ -43,7 +45,9 @@ def _fetch_upstox(ticker, days=400):
 def _fetch_yf(ticker, days=400):
     try:
         import yfinance as yf
-        tk=yf.Ticker(ticker)
+        # Ensure .NS suffix for NSE tickers
+        yf_ticker = ticker if ticker.endswith(".NS") else f"{ticker}.NS"
+        tk=yf.Ticker(yf_ticker)
         df=tk.history(start=(datetime.today()-timedelta(days=days)).strftime("%Y-%m-%d"),
             end=datetime.today().strftime("%Y-%m-%d"),interval="1d",auto_adjust=True,actions=False)
         if df is None or df.empty or len(df)<50: return None
