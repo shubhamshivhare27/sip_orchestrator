@@ -324,6 +324,8 @@ def run(sip_amount=None, dry_run=False):
             "ticker":i.ticker,"sleeve":i.sleeve,"tag":i.tag,"stance":i.stance,
             "price":i.price,"rsi":i.rsi,"mom_4w":i.mom_4w,
             "composite":i.composite,"confidence":i.confidence,
+            "macro_score":i.macro_score,"signal_score":i.signal_score,
+            "rsi_score":i.rsi_score,"mom_score":i.mom_score,
             "allocated_inr":i.allocated_inr,
             "deploy_now_inr":i.deploy_now_inr,
             "deploy_tranche":i.deploy_tranche or "PENDING",
