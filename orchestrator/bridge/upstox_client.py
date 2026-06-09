@@ -85,7 +85,7 @@ def fetch_mf_holdings():
 
         holdings = []
         for item in data:
-            fund_name = item.get("trading_symbol") or item.get("tradingsymbol") or item.get("scheme_name") or ""
+            fund_name = item.get("scheme_name") or item.get("fund_name") or item.get("trading_symbol") or item.get("tradingsymbol") or ""
             folio = str(item.get("folio") or item.get("folio_number") or "")
             qty = float(item.get("units") or item.get("quantity") or 0)
             avg = float(item.get("average_nav") or item.get("average_price") or item.get("avg_price") or 0)
