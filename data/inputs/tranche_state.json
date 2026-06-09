@@ -62,6 +62,18 @@
         "date": "2026-06-09",
         "week": "2026-W24"
       }
+    },
+    "Core": {
+      "A": {
+        "deployed": true,
+        "base": 5075.0,
+        "multiplier": 2.0,
+        "actual": 10150.0,
+        "trigger": "DIP",
+        "trigger_detail": "DEEP DIP: RSI 34.6<35",
+        "date": "2026-06-09",
+        "week": "2026-W24"
+      }
     }
   }
 }
