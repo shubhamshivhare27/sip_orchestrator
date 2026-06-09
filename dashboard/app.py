@@ -101,8 +101,8 @@ with tab1:
         for i in insts:
             with st.expander(f"{i['ticker'].replace('.NS','')} — {inr(i['allocated_inr'])} — 📅 {i['buy_date']}"):
                 c1,c2,c3,c4,c5=st.columns(5)
-                c1.metric("Composite",i["composite"]); c2.metric("Macro",i["macro_score"]); c3.metric("Signal",i["signal_score"])
-                c4.metric("RSI",i["rsi_score"]); c5.metric("Mom",i["mom_score"])
+                c1.metric("Composite",i.get("composite",0)); c2.metric("Live Score",f"{i.get('live_score_pct','—')}%"); c3.metric("Live Signal",i.get("live_signal","—"))
+                c4.metric("Tranche",i.get("deploy_tranche","—")); c5.metric("Deploy",f"₹{i.get('deploy_now_inr',0):,.0f}")
                 st.markdown(f"**Rule:** {i.get('buy_date_rule','')}")
                 st.markdown(f"**Source:** {i.get('buy_date_source','')}")
                 if i.get("live_score_pct"): st.markdown(f"**Live 12-indicator:** {i['live_score_pct']}% = {i.get('live_signal','')}")
