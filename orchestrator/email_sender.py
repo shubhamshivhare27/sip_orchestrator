@@ -107,7 +107,6 @@ def _build_html(result, config=None):
     if dash_url:
         dash_btn=f'<div style="text-align:center;margin:16px 0;"><a href="{dash_url}" style="display:inline-block;background:#1B4FD8;color:#fff;padding:14px 40px;border-radius:8px;font-size:15px;font-weight:bold;text-decoration:none;">Open Dashboard</a></div>'
     html+=dash_btn
-    html+=f'<div style="text-align:center;padding:16px;color:{light};font-size:11px;">SIP Orchestrator v4</div></body></html>' · {datetime.now().strftime("%d %b %Y %I:%M %p")} · Not financial advice</div></body></html>'
     return html
 
 def send_execution_plan_email(result, config):
