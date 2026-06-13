@@ -1,0 +1,102 @@
+{
+  "as_of": "2026-05-28T11:06:57.672013",
+  "total_value": 1833085.78,
+  "holdings": [
+    {
+      "ticker": "INFRABEES.NS",
+      "isin": "INF732E01268",
+      "quantity": 51.0,
+      "avg_cost_price": 980.53,
+      "last_price": 980.0,
+      "current_value": 49980.0,
+      "pnl": -27.03,
+      "pnl_pct": -0.05,
+      "exchange": "NSE",
+      "company_name": "NIP IND ETF INFRA BEES",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "JUNIORBEES.NS",
+      "isin": "INF732E01045",
+      "quantity": 67.0,
+      "avg_cost_price": 762.44,
+      "last_price": 775.11,
+      "current_value": 51932.37,
+      "pnl": 848.89,
+      "pnl_pct": 1.66,
+      "exchange": "NSE",
+      "company_name": "NIP IND ETF JUNIOR BEES",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "AUTOBEES.NS",
+      "isin": "INF204KC1337",
+      "quantity": 108.0,
+      "avg_cost_price": 280.88,
+      "last_price": 276.32,
+      "current_value": 29842.56,
+      "pnl": -492.48,
+      "pnl_pct": -1.62,
+      "exchange": "NSE",
+      "company_name": "NIPPONAMC - NETFAUTO",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "WELSPUNLIV.NS",
+      "isin": "INE192B01031",
+      "quantity": 170.0,
+      "avg_cost_price": 147.14,
+      "last_price": 139.45,
+      "current_value": 23706.5,
+      "pnl": -1307.3,
+      "pnl_pct": -5.23,
+      "exchange": "NSE",
+      "company_name": "WELSPUN LIVING LIMITED",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "METALIETF.NS",
+      "isin": "INF109KC19W1",
+      "quantity": 1519.0,
+      "avg_cost_price": 13.15,
+      "last_price": 13.81,
+      "current_value": 20977.39,
+      "pnl": 1002.54,
+      "pnl_pct": 5.02,
+      "exchange": "NSE",
+      "company_name": "ICICIPRAMC - METALIETF",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "MON100.NS",
+      "isin": "INF247L01AP3",
+      "quantity": 291.0,
+      "avg_cost_price": 243.33,
+      "last_price": 328.74,
+      "current_value": 95663.34,
+      "pnl": 24854.31,
+      "pnl_pct": 35.1,
+      "exchange": "NSE",
+      "company_name": "MOTILAL OS NASDAQ100 ETF",
+      "asset_type": "EQUITY"
+    },
+    {
+      "ticker": "",
+      "isin": "",
+      "quantity": 23097.766,
+      "avg_cost_price": 41.8501,
+      "last_price": 105.9296,
+      "current_value": 1560983.62,
+      "pnl": 594341.14,
+      "pnl_pct": 153.12,
+      "exchange": "MF",
+      "company_name": "",
+      "asset_type": "MUTUAL_FUND",
+      "folio": "91086098182",
+      "fund_house": ""
+    }
+  ],
+  "holdings_count": 7,
+  "equity_count": 6,
+  "mf_count": 1
+}
