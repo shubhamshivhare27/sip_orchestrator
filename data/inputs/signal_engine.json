@@ -1,10 +1,113 @@
 {
-  "signal_date": "2026-06-12",
-  "next_run_date": "2026-06-19",
+  "signal_date": "2026-06-19",
+  "next_run_date": "2026-06-26",
   "stocks_in_universe": 0,
   "etfs_in_universe": 0,
   "strategies_run": [],
-  "buy_signals": [],
+  "buy_signals": [
+    {
+      "ticker": "AUTOBEES.NS",
+      "strategy_id": "S5_weekly_etf_breakout",
+      "strategy_name": "Weekly ETF Breakout [Mod-1]",
+      "signal_type": "BUY",
+      "date": "2026-06-15",
+      "rsi_weekly": 53.34,
+      "rsi_daily": null,
+      "rsi_monthly": null,
+      "macd_line_weekly": null,
+      "macd_signal_weekly": null,
+      "ssf50_weekly": 272.01,
+      "conditions": [
+        "price_crossed_above_SSF50_weekly",
+        "RSI14_above_RSI14_MA"
+      ]
+    },
+    {
+      "ticker": "INFRABEES.NS",
+      "strategy_id": "S5_weekly_etf_breakout",
+      "strategy_name": "Weekly ETF Breakout [Mod-1]",
+      "signal_type": "BUY",
+      "date": "2026-06-15",
+      "rsi_weekly": 55.95,
+      "rsi_daily": null,
+      "rsi_monthly": null,
+      "macd_line_weekly": null,
+      "macd_signal_weekly": null,
+      "ssf50_weekly": 954.27,
+      "conditions": [
+        "price_crossed_above_SSF50_weekly",
+        "RSI14_above_RSI14_MA"
+      ]
+    },
+    {
+      "ticker": "QUAL30IETF.NS",
+      "strategy_id": "S5_weekly_etf_breakout",
+      "strategy_name": "Weekly ETF Breakout [Mod-1]",
+      "signal_type": "BUY",
+      "date": "2026-06-15",
+      "rsi_weekly": 51.36,
+      "rsi_daily": null,
+      "rsi_monthly": null,
+      "macd_line_weekly": null,
+      "macd_signal_weekly": null,
+      "ssf50_weekly": 20.69,
+      "conditions": [
+        "price_crossed_above_SSF50_weekly",
+        "RSI14_above_RSI14_MA"
+      ]
+    },
+    {
+      "ticker": "PSUBNKBEES.NS",
+      "strategy_id": "S5_weekly_etf_breakout",
+      "strategy_name": "Weekly ETF Breakout [Mod-1]",
+      "signal_type": "BUY",
+      "date": "2026-06-15",
+      "rsi_weekly": 56.42,
+      "rsi_daily": null,
+      "rsi_monthly": null,
+      "macd_line_weekly": null,
+      "macd_signal_weekly": null,
+      "ssf50_weekly": 96.84,
+      "conditions": [
+        "price_crossed_above_SSF50_weekly",
+        "RSI14_above_RSI14_MA"
+      ]
+    },
+    {
+      "ticker": "QUAL30IETF.NS",
+      "strategy_id": "S5_weekly_etf_breakout",
+      "strategy_name": "Weekly ETF Breakout [Mod-1]",
+      "signal_type": "BUY",
+      "date": "2026-06-15",
+      "rsi_weekly": 51.36,
+      "rsi_daily": null,
+      "rsi_monthly": null,
+      "macd_line_weekly": null,
+      "macd_signal_weekly": null,
+      "ssf50_weekly": 20.69,
+      "conditions": [
+        "price_crossed_above_SSF50_weekly",
+        "RSI14_above_RSI14_MA"
+      ]
+    },
+    {
+      "ticker": "PSUBNKBEES.NS",
+      "strategy_id": "S5_weekly_etf_breakout",
+      "strategy_name": "Weekly ETF Breakout [Mod-1]",
+      "signal_type": "BUY",
+      "date": "2026-06-15",
+      "rsi_weekly": 56.42,
+      "rsi_daily": null,
+      "rsi_monthly": null,
+      "macd_line_weekly": null,
+      "macd_signal_weekly": null,
+      "ssf50_weekly": 96.84,
+      "conditions": [
+        "price_crossed_above_SSF50_weekly",
+        "RSI14_above_RSI14_MA"
+      ]
+    }
+  ],
   "sell_signals": [],
   "urgent_alerts": [
     {
@@ -33,6 +136,6 @@
     }
   ],
   "universe_changes": [],
-  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-06-12 | 0 BUY | 0 SELL",
-  "parsed_at": "2026-06-13T06:37:48.761166"
+  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-06-19 | 6 BUY | 0 SELL",
+  "parsed_at": "2026-06-20T06:46:06.909345"
 }
