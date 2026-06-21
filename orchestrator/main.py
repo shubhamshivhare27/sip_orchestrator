@@ -154,7 +154,21 @@ def run(sip_amount=None, dry_run=False):
 
     # ── Step 8: Live scoring ──────────────────────────────────────────────────
     log.info("STEP 7/13 — 12-indicator live scoring...")
-    all_tickers = list(set(t for s in config["sleeves"].values() for t in s.get("instruments",[])))
+    # Normalized to bare tickers (no .NS) at the source. allocation_config.json's
+    # sleeves.*.instruments lists are .NS-suffixed, but every internal lookup
+    # table downstream assumes bare tickers: instrument_scorer.py's fallback
+    # ETF lists (core_etfs_cfg/intl_etfs_cfg), live_scorer.py's TICKER_ALIAS
+    # and MF_NAV_TICKERS, and tranche_manager.py's ETF_RULES dict are all
+    # keyed bare. Leaving the .NS suffix on meant every live_scores.get(ticker)
+    # lookup against those tables silently missed and fell back to its
+    # default (0, or "skip the alias"), which is what caused the Core/
+    # International execution plan to come back completely empty, the ticker
+    # alias fix to never actually fire (confirmed via the yfinance "$FMCGBEES.NS:
+    # possibly delisted" error — that's literally the un-aliased wrong symbol
+    # being queried), and MOUS500 to silently fall through to candle-scoring
+    # (0/110) instead of NAV-scoring (0-74) since "MOUS500.NS" never matched
+    # MF_NAV_TICKERS = {"MOUS500"}.
+    all_tickers = list(set(t.replace(".NS","") for s in config["sleeves"].values() for t in s.get("instruments",[])))
     live_scores = {}
     if not dry_run:
         try: live_scores = score_all_etfs(all_tickers)
@@ -271,20 +285,26 @@ def run(sip_amount=None, dry_run=False):
     ]
     # Fallback: if no rotation signals have ENTER/HOLD (e.g. no phase change this run),
     # pull the current phase's ETFs directly from config so Thematic is never empty.
+    # Path corrected: allocation_config.json nests this as
+    # sleeves.Thematic.phase_rotation.{phase}.{active_etfs, weights} — the
+    # previous top-level config["thematic_rotation"]["phases"] path doesn't
+    # exist anywhere in the actual config, so this fallback always silently
+    # produced an empty list (confirmed via the "no phase_etfs from Engine 3"
+    # log line firing even on a normal no-rotation run).
     if not _phase_etfs:
-        thematic_cfg = config.get("thematic_rotation", {})
-        phase_map    = thematic_cfg.get("phases", {})
-        current_etfs = phase_map.get(cycle_phase, [])
-        default_weights = [0.06, 0.05, 0.04]
+        thematic_cfg = config.get("sleeves", {}).get("Thematic", {})
+        phase_map    = thematic_cfg.get("phase_rotation", {})
+        phase_data   = phase_map.get(cycle_phase, {})
+        current_etfs = [t.replace(".NS","") for t in phase_data.get("active_etfs", [])]
+        weights_map  = {t.replace(".NS",""): w for t, w in phase_data.get("weights", {}).items()}
+        default_weights_pct = [6.0, 5.0, 4.0]  # percentage points, matching config's weights units (e.g. 6 = 6%)
         _phase_etfs = [
             {
-                "ticker":        etf if isinstance(etf, str) else etf.get("ticker",""),
+                "ticker":        t,
                 "rank":          i + 1,
-                "target_weight": (etf.get("weight", default_weights[i]) / 100
-                                  if isinstance(etf, dict)
-                                  else default_weights[i]),
+                "target_weight": weights_map.get(t, default_weights_pct[i] if i < 3 else 4.0) / 100,
             }
-            for i, etf in enumerate(current_etfs[:3])
+            for i, t in enumerate(current_etfs[:3])
         ]
         if _phase_etfs:
             log.info(f"  phase_etfs fallback: using config for phase '{cycle_phase}': "
