@@ -225,10 +225,16 @@ def run(sip_amount=None, dry_run=False):
     log.info("STEP 10/13 — Scoring instruments (instrument_scorer v5)...")
 
     # ── Build arguments for instrument_scorer v5 ──────────────────────────────
-    # live_scores from score_all_etfs() returns objects with .composite (float 0-110).
-    # v5 scorer expects a plain dict {ticker: float}.
+    # live_scores from score_all_etfs() returns ETFScore objects (.pct 0-100,
+    # .total_points/.max_points raw, .signal, .indicators — there is no
+    # .composite attribute; that was never a real field on ETFScore).
+    # v5 scorer expects a plain dict {ticker: float} on a 0-110 raw-points
+    # basis (WATCH_THRESHOLD = 110 * 0.35 = 38.5). Using .pct directly here
+    # would silently break the WATCH-threshold comparison for MOUS500, whose
+    # NAV-momentum score caps at 74 points, not 110 — pct/100*110 rescales
+    # any max_points basis onto the same comparable 0-110 scale instead.
     _live_scores_dict = {
-        ticker: scorer.composite
+        ticker: (scorer.pct / 100 * 110)
         for ticker, scorer in live_scores.items()
     } if live_scores else {}
 
@@ -333,9 +339,11 @@ def run(sip_amount=None, dry_run=False):
         inst.has_engine2_signal = getattr(inst, "engine2_signal", "") == "BUY"
         inst.engine2_strategy   = ""
 
-        # Score breakdown fields — v5 doesn't split these; use live_scores if available
+        # Score breakdown fields — v5 doesn't split these; use live_scores if available.
+        # ls_obj.pct is 0-100 (matches the dashboard's 0-100 ProgressColumn for
+        # this field) — there is no .composite attribute on ETFScore.
         ls_obj = live_scores.get(inst.ticker)
-        inst.composite    = getattr(inst, "score", ls_obj.composite if ls_obj else 0)
+        inst.composite    = getattr(inst, "score", ls_obj.pct if ls_obj else 0)
         inst.confidence   = ls_obj.signal if ls_obj else getattr(inst, "signal", "")
         inst.macro_score  = 0
         inst.signal_score = 0
