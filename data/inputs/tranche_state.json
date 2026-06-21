@@ -1,0 +1,39 @@
+{
+  "current_month": "2026-06",
+  "sleeves": {
+    "Core": {
+      "tranches_deployed": {
+        "A": 4550.0,
+        "B": 2730.0
+      },
+      "last_deploy_iso_week": "2026-W25",
+      "carry_forward_pct": 0.0,
+      "deployed_inr_month": 7280.0
+    },
+    "International": {
+      "tranches_deployed": {
+        "A": 7789.5
+      },
+      "last_deploy_iso_week": "2026-W25",
+      "carry_forward_pct": 0.0,
+      "deployed_inr_month": 7789.5
+    },
+    "Thematic": {
+      "tranches_deployed": {
+        "A": 3910.5,
+        "B": 2346.3,
+        "C": 3128.4
+      },
+      "last_deploy_iso_week": "2026-W25",
+      "carry_forward_pct": 0.0,
+      "deployed_inr_month": 9385.2
+    },
+    "Hedge": {
+      "tranches_deployed": {},
+      "last_deploy_iso_week": null,
+      "carry_forward_pct": 0.0,
+      "deployed_inr_month": 0.0
+    }
+  },
+  "etfs": {}
+}
