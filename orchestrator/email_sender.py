@@ -21,8 +21,11 @@ def _build_html(result, config=None):
     live_scores=result.get("live_scores",[]); rotation=result.get("thematic_rotation",{})
     tranches=result.get("tranche_deployment",{})
     phase=meta.get("cycle_phase","—"); score=float(meta.get("macro_score",0))*100
-    sip=meta.get("sip_amount",0); deployed=meta.get("total_allocated",0)
-    run_date=meta.get("run_date","—")
+    sip=meta.get("sip_amount",0); run_date=meta.get("run_date","—")
+    # "Deployed" should reflect what's actually gone out this month, not the
+    # planned monthly budget — total_allocated is the latter. grand_total_deployed
+    # (from tranche_manager.get_monthly_summary) is the real month-to-date figure.
+    deployed=tranches.get("monthly_summary",{}).get("grand_total_deployed", meta.get("total_allocated",0))
     blue="#1B4FD8";green="#146B3A";amber="#92400E";red="#991B1B";light="#8C847A";bdr="#E2DDD5"
     sec=f"background:#fff;border:1px solid {bdr};border-radius:10px;padding:20px;margin-bottom:16px;"
     th=f"background:#EEF2FF;color:{blue};font-weight:bold;font-size:12px;padding:10px;text-align:left;border-bottom:2px solid {bdr};"
@@ -30,7 +33,7 @@ def _build_html(result, config=None):
 
     html=f"""<html><body style="background:#F7F6F2;font-family:Georgia,serif;padding:24px;max-width:800px;margin:auto;">
     <div style="text-align:center;margin-bottom:20px;">
-    <div style="font-size:10px;font-weight:bold;letter-spacing:3px;color:{blue};">HYBRID SIP ORCHESTRATOR v3</div>
+    <div style="font-size:10px;font-weight:bold;letter-spacing:3px;color:{blue};">HYBRID SIP ORCHESTRATOR v4</div>
     <div style="font-size:22px;font-weight:bold;">Monthly Execution Plan</div>
     <div style="font-size:12px;color:{light};">{run_date}</div></div>"""
 
@@ -39,7 +42,7 @@ def _build_html(result, config=None):
     <td style="text-align:center;padding:12px;"><div style="font-size:10px;color:{light};">PHASE</div><div style="font-size:18px;font-weight:bold;color:{green};">{phase}</div></td>
     <td style="text-align:center;"><div style="font-size:10px;color:{light};">SCORE</div><div style="font-size:18px;font-weight:bold;">{score:.1f}%</div></td>
     <td style="text-align:center;"><div style="font-size:10px;color:{light};">SIP</div><div style="font-size:18px;font-weight:bold;color:{blue};">{_inr(sip)}</div></td>
-    <td style="text-align:center;"><div style="font-size:10px;color:{light};">DEPLOYED</div><div style="font-size:18px;font-weight:bold;color:{green};">{_inr(deployed)}</div></td>
+    <td style="text-align:center;"><div style="font-size:10px;color:{light};">DEPLOYED MTD</div><div style="font-size:18px;font-weight:bold;color:{green};">{_inr(deployed)}</div></td>
     </tr></table></div>"""
 
     # Thematic rotation
@@ -48,9 +51,12 @@ def _build_html(result, config=None):
         old_p=rot_sigs[0].get("phase_from","?"); new_p=rot_sigs[0].get("phase_to","?")
         html+=f'<div style="{sec}border-left:4px solid {amber};"><div style="font-size:13px;font-weight:bold;color:{amber};">🔄 PHASE CHANGE: {old_p} → {new_p}</div><table style="width:100%;margin-top:8px;">'
         html+=f'<tr><th style="{th}">ETF</th><th style="{th}">Action</th><th style="{th}">Old %</th><th style="{th}">New %</th><th style="{th}">Reason</th></tr>'
+        # Defensive .get() here: these entries come from phase_rotation.py's
+        # signals_to_dict(), a file not available to verify the exact key
+        # names against — same caution applied to the dashboard's Rotation tab.
         for s in rot_sigs:
-            ac={"EXIT":red,"ENTER":green,"KEEP":blue}.get(s["action"],light)
-            html+=f'<tr><td style="{td}font-weight:bold;">{s["ticker"].replace(".NS","")}</td><td style="{td}color:{ac};font-weight:bold;">{s["action"]}</td><td style="{td}">{s.get("old_weight",0)}%</td><td style="{td}">{s.get("new_weight",0)}%</td><td style="{td}font-size:11px;">{s.get("reason","")}</td></tr>'
+            ac={"EXIT":red,"ENTER":green,"KEEP":blue}.get(s.get("action"),light)
+            html+=f'<tr><td style="{td}font-weight:bold;">{s.get("ticker","—").replace(".NS","")}</td><td style="{td}color:{ac};font-weight:bold;">{s.get("action","—")}</td><td style="{td}">{s.get("old_weight",0)}%</td><td style="{td}">{s.get("new_weight",0)}%</td><td style="{td}font-size:11px;">{s.get("reason","")}</td></tr>'
         html+='</table></div>'
 
     # Execution plan
@@ -71,16 +77,31 @@ def _build_html(result, config=None):
             html+=f'<div style="padding:8px 0;border-bottom:1px solid {bdr};"><b>{e["ticker"].replace(".NS","")}</b> <span style="background:{red}18;color:{red};border-radius:4px;padding:2px 6px;font-size:10px;">{e["exit_type"]}</span> <span style="float:right;font-weight:bold;color:{red};">{_inr(e["exit_value"])}</span><div style="font-size:11px;color:#4A4540;">{e["reason"]}</div><div style="font-size:11px;color:{blue};">📅 {e.get("suggested_date","—")}</div></div>'
         html+='</div>'
 
-    # Tranche deployment
-    summary=tranches.get("monthly_summary",{})
-    if summary:
-        rem=summary.get("remaining_tranches",3); dep=summary.get("total_deployed",0)
-        html+=f'<div style="{sec}"><div style="font-size:13px;font-weight:bold;color:{blue};margin-bottom:10px;">📈 TRANCHE STATUS — {3-rem}/3 deployed</div>'
-        for t in summary.get("tranches",[]):
-            if t.get("deployed"):
-                html+=f'<div style="padding:6px 0;border-bottom:1px solid {bdr};"><b>Tranche {t["name"]}</b> — <span style="color:{green};font-weight:bold;">{_inr(t["amount_actual"])} ({t["multiplier"]}×)</span> — {t.get("trigger_type","")} — {t.get("deploy_date","")}</div>'
-            else:
-                html+=f'<div style="padding:6px 0;border-bottom:1px solid {bdr};color:{light};">Tranche {t["name"]} — {_inr(t["amount_base"])} — waiting for dip trigger</div>'
+    # Tranche deployment — rebuilt against the actual v5 tranche_manager.py
+    # output. The previous version of this section read a legacy
+    # "remaining_tranches"/"tranches" schema that v5 never produces, so it
+    # silently rendered "0/3 deployed" with no rows in every single email —
+    # not a crash, just always wrong. Now shows this run's actual triggered
+    # deployments plus a real per-sleeve A/B/C breakdown for the month.
+    dip_deps=tranches.get("dip_deployments",[]); eng2_deps=tranches.get("engine2_deployments",[])
+    rot_dep=tranches.get("rotation_deployment"); summary=tranches.get("monthly_summary",{})
+    run_events=[("sleeve",d) for d in dip_deps if d.get("actual",0)>0]
+    run_events+=[("ticker",d) for d in eng2_deps if d.get("actual",0)>0]
+    if rot_dep and rot_dep.get("actual",0)>0: run_events.append(("sleeve",rot_dep))
+    if summary or run_events:
+        html+=f'<div style="{sec}"><div style="font-size:13px;font-weight:bold;color:{blue};margin-bottom:10px;">📈 TRANCHE STATUS</div>'
+        if run_events:
+            html+=f'<div style="font-size:11px;color:{light};margin-bottom:6px;">This run:</div>'
+            for key_field,d in run_events:
+                label=d.get(key_field, d.get("sleeve","—"))
+                html+=f'<div style="padding:5px 0;border-bottom:1px solid {bdr};"><b>{label}</b> — Tranche {d.get("tranche","—")} — <span style="color:{green};font-weight:bold;">{_inr(d.get("actual",0))}</span> ({d.get("multiplier",1)}×)</div>'
+        for sl_name, sl_data in summary.get("sleeves",{}).items():
+            breakdown=sl_data.get("tranche_breakdown",{})
+            parts=[]
+            for letter in ("A","B","C"):
+                amt=breakdown.get(letter)
+                parts.append(f'{letter}: <b style="color:{green};">{_inr(amt)}</b>' if amt is not None else f'{letter}: <span style="color:{light};">pending</span>')
+            html+=f'<div style="padding:6px 0;border-bottom:1px solid {bdr};"><b>{sl_name}</b> — {_inr(sl_data.get("total_deployed",0))} / {_inr(sl_data.get("budget",0))} — {" · ".join(parts)}</div>'
         html+='</div>'
 
     # Sleeve status
@@ -99,7 +120,9 @@ def _build_html(result, config=None):
         sorted_ls=sorted(live_scores,key=lambda x:x.get("pct",0),reverse=True)
         for ls in sorted_ls[:15]:
             sig=ls.get("signal","—"); sc={"STRONG BUY":green,"BUY":green,"PARTIAL":amber,"WATCH":amber,"AVOID":red}.get(sig,light)
-            html+=f'<tr><td style="{td}font-weight:bold;">{ls["ticker"].replace(".NS","")}</td><td style="{td}">{ls.get("total_points",0)}/110 ({ls.get("pct",0)}%)</td><td style="{td}color:{sc};font-weight:bold;">{sig}</td><td style="{td}">₹{ls.get("price",0):,.1f}</td></tr>'
+            # max_points varies now (110 for candle-scored ETFs, 74 for
+            # NAV-scored MOUS500) — was hardcoded to /110 for every ETF.
+            html+=f'<tr><td style="{td}font-weight:bold;">{ls["ticker"].replace(".NS","")}</td><td style="{td}">{ls.get("total_points",0)}/{ls.get("max_points",110)} ({ls.get("pct",0)}%)</td><td style="{td}color:{sc};font-weight:bold;">{sig}</td><td style="{td}">₹{ls.get("price",0):,.1f}</td></tr>'
         html+='</table></div>'
 
     dash_url=config.get("email_sender",{}).get("dashboard_url","") if config else ""
