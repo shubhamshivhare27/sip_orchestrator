@@ -23,6 +23,7 @@ PLAN_PATH=ROOT/"data/outputs/latest_execution_plan.json"
 SIP_CFG_PATH=ROOT/"data/inputs/sip_config.json"
 
 SLEEVE_CLR={"Core":"#1B4FD8","International":"#5B21B6","Thematic":"#92400E","Hedge":"#0F766E"}
+TRANCHE_SPLIT={"A":0.50,"B":0.30,"C":0.20}  # mirrors tranche_manager.py — display-only constant
 def inr(v):
     try: return f"₹{float(v):,.0f}"
     except: return "—"
@@ -45,7 +46,7 @@ def load_plan():
 now=datetime.now()
 c1,c2=st.columns([6,1])
 with c1:
-    st.markdown('<p style="font-size:10px;font-weight:700;letter-spacing:3px;color:#1B4FD8;margin-bottom:2px;">HYBRID SIP ORCHESTRATOR v3</p>',unsafe_allow_html=True)
+    st.markdown('<p style="font-size:10px;font-weight:700;letter-spacing:3px;color:#1B4FD8;margin-bottom:2px;">HYBRID SIP ORCHESTRATOR v4</p>',unsafe_allow_html=True)
     st.markdown(f'<p style="font-size:12px;color:#8C847A;">{now.strftime("%A, %d %B %Y")} · <b style="color:#1B4FD8;">{now.strftime("%I:%M %p IST")}</b></p>',unsafe_allow_html=True)
 with c2:
     if st.button("🔄 Refresh",use_container_width=True): st.cache_data.clear(); st.rerun()
@@ -76,7 +77,7 @@ m3.metric("Momentum",meta.get("macro_momentum","—")); m4.metric("Portfolio",in
 m5.metric("SIP",inr(cur_amt)); m6.metric("Instruments",str(len(insts))); m7.metric("Exits",str(len(exits)))
 
 run_at=str(meta.get("run_at",""))[:16].replace("T"," ")
-st.markdown(f'<div style="background:#EEF2FF;border:1px solid #1B4FD830;border-radius:8px;padding:10px 16px;font-size:11px;color:#1B4FD8;margin:8px 0 16px 0;">Plan: <b>{run_at}</b> · Signal: <b>{meta.get("signal_date","—")}</b> · Next run: <b>{meta.get("next_signal_run","—")}</b> · Boost: <b>{"✓" if meta.get("cycle_boost") else "—"}</b> · Pipeline: <b>{meta.get("pipeline_version","v2")}</b></div>',unsafe_allow_html=True)
+st.markdown(f'<div style="background:#EEF2FF;border:1px solid #1B4FD830;border-radius:8px;padding:10px 16px;font-size:11px;color:#1B4FD8;margin:8px 0 16px 0;">Plan: <b>{run_at}</b> · Signal: <b>{meta.get("signal_date","—")}</b> · Next run: <b>{meta.get("next_signal_run","—")}</b> · Boost: <b>{"✓" if meta.get("cycle_boost") else "—"}</b> · Pipeline: <b>{meta.get("pipeline_version","v4")}</b></div>',unsafe_allow_html=True)
 
 # ── 8 TABS ────────────────────────────────────────────────────────────────────
 tab1,tab2,tab3,tab4,tab5,tab6,tab7,tab8=st.tabs([
@@ -148,7 +149,7 @@ with tab4:
             c={"Overweight":"#146B3A","Neutral":"#92400E","Underweight":"#991B1B"}.get(stance,"#555")
             st.markdown(f'<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #E2DDD5;"><span>{sector}</span><b style="color:{c};">{stance}</b></div>',unsafe_allow_html=True)
     with mc2:
-        etf_rows=[{"ETF":e["ticker"].replace(".NS",""),"Tag":e["tag"],"Stance":e.get("stance",""),"RSI":e.get("rsi") or "—","4W Mom":f"{e['mom_4w']:+.1f}%" if e.get("mom_4w") is not None else "—"} for e in macro.get("etf_tags",[])]
+        etf_rows=[{"ETF":e.get("ticker","—").replace(".NS",""),"Tag":e.get("tag","—"),"Stance":e.get("stance",""),"RSI":e.get("rsi") or "—","4W Mom":f"{e['mom_4w']:+.1f}%" if e.get("mom_4w") is not None else "—"} for e in macro.get("etf_tags",[])]
         if etf_rows: st.dataframe(pd.DataFrame(etf_rows),use_container_width=True,hide_index=True)
 
 # TAB 5: SIGNAL ENGINE
@@ -161,10 +162,10 @@ with tab5:
             st.markdown(f'<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #E2DDD5;"><span style="color:#8C847A;">{label}</span><b>{val}</b></div>',unsafe_allow_html=True)
     with se2:
         for sig in signals.get("buy_signals",[]):
-            st.markdown(f'<div class="card" style="border-left:4px solid #146B3A;"><b>{sig["ticker"].replace(".NS","")}</b> <span class="stag" style="background:#EDFAF3;color:#146B3A;">BUY</span><br><span style="font-size:11px;">{sig.get("strategy_name","")}</span></div>',unsafe_allow_html=True)
+            st.markdown(f'<div class="card" style="border-left:4px solid #146B3A;"><b>{sig.get("ticker","—").replace(".NS","")}</b> <span class="stag" style="background:#EDFAF3;color:#146B3A;">BUY</span><br><span style="font-size:11px;">{sig.get("strategy_name","")}</span></div>',unsafe_allow_html=True)
         if not signals.get("buy_signals"): st.info("No BUY signals this week.")
         for a in signals.get("urgent_alerts",[]):
-            st.markdown(f'<div class="card" style="border-left:4px solid #92400E;"><b>{a["ticker"].replace(".NS","")}</b><br><span style="font-size:11px;color:#92400E;">{a.get("reason","")}</span></div>',unsafe_allow_html=True)
+            st.markdown(f'<div class="card" style="border-left:4px solid #92400E;"><b>{a.get("ticker","—").replace(".NS","")}</b><br><span style="font-size:11px;color:#92400E;">{a.get("reason","")}</span></div>',unsafe_allow_html=True)
 
 # TAB 6: LIVE SCORES (NEW)
 with tab6:
@@ -173,7 +174,7 @@ with tab6:
         sig_colors={"STRONG BUY":"#146B3A","BUY":"#146B3A","PARTIAL":"#92400E","WATCH":"#92400E","AVOID":"#991B1B"}
         for ls in live_scores:
             sig=ls.get("signal","—"); sc=sig_colors.get(sig,"#555")
-            with st.expander(f"{ls['ticker'].replace('.NS','')} — {ls['total_points']}/110 ({ls['pct']}%) — {sig}",expanded=False):
+            with st.expander(f"{ls['ticker'].replace('.NS','')} — {ls['total_points']}/{ls.get('max_points',110)} ({ls['pct']}%) — {sig}",expanded=False):
                 st.progress(min(ls["pct"]/100,1.0))
                 cats={"Trend":[],"Momentum":[],"Structure":[],"Macro":[]}
                 for ind in ls.get("indicators",[]):
@@ -193,9 +194,9 @@ with tab7:
     rot_signals=rotation.get("signals",[])
     phase_changed=rotation.get("phase_changed",False)
     if phase_changed:
-        exits_r=[s for s in rot_signals if s["action"]=="EXIT"]
-        enters=[s for s in rot_signals if s["action"]=="ENTER"]
-        keeps=[s for s in rot_signals if s["action"]=="KEEP"]
+        exits_r=[s for s in rot_signals if s.get("action")=="EXIT"]
+        enters=[s for s in rot_signals if s.get("action")=="ENTER"]
+        keeps=[s for s in rot_signals if s.get("action")=="KEEP"]
         if exits_r or enters:
             old_p=rot_signals[0].get("phase_from","?") if rot_signals else "?"
             new_p=rot_signals[0].get("phase_to","?") if rot_signals else "?"
@@ -203,59 +204,88 @@ with tab7:
         if exits_r:
             st.markdown('<p class="lbl">EXIT — Sell these thematic ETFs</p>',unsafe_allow_html=True)
             for s in exits_r:
-                st.markdown(f'<div class="card" style="border-left:4px solid #991B1B;"><b>{s["ticker"].replace(".NS","")}</b> <span class="stag" style="background:#FFF1F2;color:#991B1B;">EXIT</span><span style="font-size:11px;color:#8C847A;margin-left:8px;">was {s["old_weight"]}%</span><div style="font-size:11px;color:#4A4540;margin-top:4px;">{s["reason"]}</div></div>',unsafe_allow_html=True)
+                st.markdown(f'<div class="card" style="border-left:4px solid #991B1B;"><b>{s.get("ticker","—").replace(".NS","")}</b> <span class="stag" style="background:#FFF1F2;color:#991B1B;">EXIT</span><span style="font-size:11px;color:#8C847A;margin-left:8px;">was {s.get("old_weight",0)}%</span><div style="font-size:11px;color:#4A4540;margin-top:4px;">{s.get("reason","")}</div></div>',unsafe_allow_html=True)
         if enters:
             st.markdown('<p class="lbl">ENTER — Buy these thematic ETFs</p>',unsafe_allow_html=True)
             for s in enters:
-                st.markdown(f'<div class="card" style="border-left:4px solid #146B3A;"><b>{s["ticker"].replace(".NS","")}</b> <span class="stag" style="background:#EDFAF3;color:#146B3A;">ENTER</span><span style="font-size:11px;color:#1B4FD8;font-weight:700;margin-left:8px;">{s["new_weight"]}%</span><div style="font-size:11px;color:#4A4540;margin-top:4px;">{s["reason"]}</div></div>',unsafe_allow_html=True)
+                st.markdown(f'<div class="card" style="border-left:4px solid #146B3A;"><b>{s.get("ticker","—").replace(".NS","")}</b> <span class="stag" style="background:#EDFAF3;color:#146B3A;">ENTER</span><span style="font-size:11px;color:#1B4FD8;font-weight:700;margin-left:8px;">{s.get("new_weight",0)}%</span><div style="font-size:11px;color:#4A4540;margin-top:4px;">{s.get("reason","")}</div></div>',unsafe_allow_html=True)
         if keeps:
             st.markdown('<p class="lbl">KEEP — Active in both phases</p>',unsafe_allow_html=True)
             for s in keeps:
-                wc="→" if s["old_weight"]==s["new_weight"] else f'{s["old_weight"]}% → {s["new_weight"]}%'
-                st.markdown(f'<div class="card"><b>{s["ticker"].replace(".NS","")}</b> <span class="stag" style="background:#EEF2FF;color:#1B4FD8;">KEEP</span><span style="font-size:11px;color:#8C847A;margin-left:8px;">{wc}</span></div>',unsafe_allow_html=True)
+                wc="→" if s.get("old_weight")==s.get("new_weight") else f'{s.get("old_weight",0)}% → {s.get("new_weight",0)}%'
+                st.markdown(f'<div class="card"><b>{s.get("ticker","—").replace(".NS","")}</b> <span class="stag" style="background:#EEF2FF;color:#1B4FD8;">KEEP</span><span style="font-size:11px;color:#8C847A;margin-left:8px;">{wc}</span></div>',unsafe_allow_html=True)
     else:
         st.success(f"✅ No rotation — phase unchanged ({phase}). Thematic ETFs remain the same.")
         if rot_signals:
             st.markdown('<p class="lbl">Currently Active Thematic ETFs</p>',unsafe_allow_html=True)
             for s in rot_signals:
-                st.markdown(f'<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #E2DDD5;"><b>{s["ticker"].replace(".NS","")}</b><span style="color:#1B4FD8;font-weight:700;">{s.get("new_weight",0)}%</span></div>',unsafe_allow_html=True)
+                st.markdown(f'<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #E2DDD5;"><b>{s.get("ticker","—").replace(".NS","")}</b><span style="color:#1B4FD8;font-weight:700;">{s.get("new_weight",0)}%</span></div>',unsafe_allow_html=True)
 
-# TAB 8: TRANCHE STATUS (NEW)
+# TAB 8: TRANCHE STATUS
+# Rebuilt against the actual v5 tranche_manager.py output — the previous
+# version of this tab expected a "current_check" snapshot and a flat
+# "tranches" list with per-letter $ amounts, neither of which v5 produces.
+# v5 instead surfaces (a) this run's sleeve-level trigger events under
+# tranche_deployment.{dip_deployments,engine2_deployments,rotation_deployment}
+# and (b) a month-to-date summary per sleeve with a real per-letter
+# tranche_breakdown ({"A": 4500.0, "B": None, ...}) — that's what's used below.
 with tab8:
-    current=tranches.get("current_check",{})
-    summary=tranches.get("monthly_summary",{})
+    dip_cond = tranches.get("dip_condition", {})
+    dip_deps = tranches.get("dip_deployments", [])
+    eng2_deps = tranches.get("engine2_deployments", [])
+    rot_dep = tranches.get("rotation_deployment")
+    summary = tranches.get("monthly_summary", {})
 
-    if current:
-        action=current.get("action","—")
-        ac={"DEPLOYED":"#146B3A","HOLD":"#92400E","ALL_DEPLOYED":"#1B4FD8","SKIPPED":"#8C847A"}.get(action,"#555")
-        st.markdown(f'<div class="card" style="border-left:4px solid {ac};"><div style="font-size:10px;color:#8C847A;text-transform:uppercase;">Latest Check</div><div style="font-size:18px;font-weight:700;color:{ac};">{action}</div><div style="font-size:12px;color:#4A4540;margin-top:4px;">{current.get("reason","")}</div>',unsafe_allow_html=True)
-        if action=="DEPLOYED":
-            st.markdown(f'<div style="margin-top:8px;font-size:14px;">Tranche <b>{current.get("tranche","")}</b> · <b style="color:#146B3A;">{inr(current.get("amount_actual",0))}</b> ({current.get("multiplier",1)}×) · {current.get("trigger_type","")}</div>',unsafe_allow_html=True)
-        if current.get("fallback_date"):
-            st.markdown(f'<div style="font-size:11px;color:#92400E;margin-top:4px;">3rd Thursday fallback: {current["fallback_date"]}</div>',unsafe_allow_html=True)
-        st.markdown('</div>',unsafe_allow_html=True)
+    st.markdown('<p class="lbl">This Run</p>', unsafe_allow_html=True)
+    dip_type = dip_cond.get("type", "NONE")
+    dc = {"DEEP_DIP": "#991B1B", "MODERATE_DIP": "#92400E", "NORMAL": "#1B4FD8",
+          "OVERBOUGHT": "#0F766E", "NONE": "#8C847A"}.get(dip_type, "#555")
+    st.markdown(f'<div class="card" style="border-left:4px solid {dc};"><div style="font-size:10px;color:#8C847A;text-transform:uppercase;">Dip Condition</div><div style="font-size:18px;font-weight:700;color:{dc};">{dip_type}</div><div style="font-size:12px;color:#4A4540;margin-top:4px;">{dip_cond.get("reason","—")}</div><div style="font-size:10px;color:#8C847A;margin-top:4px;">RSI: {dip_cond.get("rsi") or "—"} · VIX: {dip_cond.get("vix") or "—"}</div></div>', unsafe_allow_html=True)
+
+    any_event = False
+    for d in dip_deps:
+        if d.get("actual", 0) > 0:
+            any_event = True
+            color = SLEEVE_CLR.get(d.get("sleeve"), "#555")
+            st.markdown(f'<div class="card" style="border-left:4px solid {color};"><b style="color:{color};">{d.get("sleeve","—")}</b> <span class="stag" style="background:{color}18;color:{color};">DIP</span> — Tranche <b>{d.get("tranche","—")}</b> · <b style="color:#146B3A;">{inr(d.get("actual",0))}</b> ({d.get("multiplier",1)}×)</div>', unsafe_allow_html=True)
+    for d in eng2_deps:
+        if d.get("actual", 0) > 0:
+            any_event = True
+            color = SLEEVE_CLR.get(d.get("sleeve"), "#555")
+            borrow = f' · borrowed {inr(d.get("borrowed_amount",0))} from {d.get("borrowed_from")}' if d.get("borrowed_from") else ""
+            st.markdown(f'<div class="card" style="border-left:4px solid {color};"><b>{d.get("ticker","—").replace(".NS","")}</b> <span class="stag" style="background:#EEF2FF;color:#1B4FD8;">ENGINE2</span> — Tranche <b>{d.get("tranche","—")}</b> · <b style="color:#146B3A;">{inr(d.get("actual",0))}</b>{borrow}</div>', unsafe_allow_html=True)
+    if rot_dep and rot_dep.get("actual", 0) > 0:
+        any_event = True
+        st.markdown(f'<div class="card" style="border-left:4px solid {SLEEVE_CLR["Thematic"]};"><b style="color:{SLEEVE_CLR["Thematic"]};">Thematic</b> <span class="stag" style="background:#FEF3E2;color:#92400E;">ROTATION</span> — Tranche <b>{rot_dep.get("tranche","—")}</b> · <b style="color:#146B3A;">{inr(rot_dep.get("actual",0))}</b></div>', unsafe_allow_html=True)
+    if not any_event:
+        st.info("No tranche deployed this run.")
 
     if summary:
-        st.markdown('<p class="lbl" style="margin-top:16px;">Monthly Summary</p>',unsafe_allow_html=True)
-        s1,s2,s3=st.columns(3)
-        s1.metric("Month",summary.get("month","—"))
-        s2.metric("Total Deployed",inr(summary.get("grand_total_deployed",0)))
-        s3.metric("SIP Amount",inr(meta.get("sip_amount",0)))
-        
-        # Per-sleeve breakdown
-        for sl_name, sl_data in summary.get("sleeves",{}).items():
-            color=SLEEVE_CLR.get(sl_name,"#555")
-            st.markdown(f'<div style="margin-top:12px;font-weight:700;color:{color};">{sl_name} — Budget: {inr(sl_data.get("budget",0))} — Deployed: {inr(sl_data.get("total_deployed",0))} — {sl_data.get("remaining",0)} remaining</div>',unsafe_allow_html=True)
+        st.markdown('<p class="lbl" style="margin-top:16px;">Monthly Summary</p>', unsafe_allow_html=True)
+        s1, s2, s3 = st.columns(3)
+        s1.metric("Month", summary.get("month", "—"))
+        s2.metric("Total Deployed", inr(summary.get("grand_total_deployed", 0)))
+        s3.metric("SIP Amount", inr(meta.get("sip_amount", cur_amt)))
 
-        for t in summary.get("tranches",[]):
-            deployed=t.get("deployed",False)
-            bc="#146B3A" if deployed else "#E2DDD5"
-            st.markdown(f'<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;border:1px solid {bc};border-radius:8px;margin-bottom:8px;{"background:#EDFAF3" if deployed else ""}"><div><b style="font-size:14px;">Tranche {t["name"]}</b><span style="font-size:11px;color:#8C847A;margin-left:8px;">({int(t["pct"]*100)}% of SIP = {inr(t["amount_base"])})</span></div><div>',unsafe_allow_html=True)
-            if deployed:
-                st.markdown(f'<span style="font-size:14px;font-weight:700;color:#146B3A;">{inr(t["amount_actual"])} ({t["multiplier"]}×)</span><br><span style="font-size:10px;color:#8C847A;">{t.get("trigger_type","")} · {t.get("deploy_date","")}</span>',unsafe_allow_html=True)
-            else:
-                st.markdown(f'<span style="font-size:12px;color:#8C847A;">Waiting for dip trigger...</span>',unsafe_allow_html=True)
-            st.markdown('</div></div>',unsafe_allow_html=True)
+        for sl_name, sl_data in summary.get("sleeves", {}).items():
+            budget = sl_data.get("budget", 0)
+            color = SLEEVE_CLR.get(sl_name, "#555")
+            st.markdown(f'<div style="margin-top:14px;font-weight:700;color:{color};">{sl_name} — Budget: {inr(budget)} · Deployed: {inr(sl_data.get("total_deployed",0))} · Remaining: {inr(sl_data.get("remaining",0))} ({sl_data.get("pct_deployed",0)}%)</div>', unsafe_allow_html=True)
+            st.progress(min(sl_data.get("pct_deployed", 0) / 100, 1.0))
+            breakdown = sl_data.get("tranche_breakdown", {})
+            cols = st.columns(3)
+            for col, letter in zip(cols, ["A", "B", "C"]):
+                amount = breakdown.get(letter)
+                base = round(budget * TRANCHE_SPLIT[letter], 2)
+                with col:
+                    if amount is not None:
+                        st.markdown(f'<div style="border:1px solid #146B3A;background:#EDFAF3;border-radius:8px;padding:10px;text-align:center;"><b style="font-size:13px;">Tranche {letter}</b><br><span style="font-size:10px;color:#8C847A;">{int(TRANCHE_SPLIT[letter]*100)}% base = {inr(base)}</span><br><span style="font-size:15px;font-weight:700;color:#146B3A;">{inr(amount)}</span></div>', unsafe_allow_html=True)
+                    else:
+                        st.markdown(f'<div style="border:1px solid #E2DDD5;border-radius:8px;padding:10px;text-align:center;"><b style="font-size:13px;">Tranche {letter}</b><br><span style="font-size:10px;color:#8C847A;">{int(TRANCHE_SPLIT[letter]*100)}% base = {inr(base)}</span><br><span style="font-size:12px;color:#8C847A;">Pending</span></div>', unsafe_allow_html=True)
+            if sl_data.get("carry_forward_pct", 0) > 0:
+                st.markdown(f'<div style="font-size:10px;color:#92400E;margin-top:4px;">Carrying forward {sl_data["carry_forward_pct"]*100:.0f}% of budget from unused tranches last month.</div>', unsafe_allow_html=True)
+    else:
+        st.info("No tranche state yet — runs once the first SIP execution completes.")
 
 st.markdown("---")
-st.markdown(f'<p style="font-size:10px;color:#B8B0A8;text-align:center;">SIP Orchestrator v3 · Not financial advice · {run_at}</p>',unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:10px;color:#B8B0A8;text-align:center;">SIP Orchestrator {meta.get("pipeline_version","v4")} · Not financial advice · {run_at}</p>',unsafe_allow_html=True)
