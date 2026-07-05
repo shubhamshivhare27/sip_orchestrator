@@ -1,0 +1,76 @@
+name: Weekly Orchestration Run
+
+# Runs every Tuesday 8:00 AM IST (2:30 UTC Tuesday).
+#
+# WHY TUESDAY:
+#   Engine 2 (Nifty 500 signals) — arrives Friday 10-11 PM IST.
+#     → Already synced by weekly_signal_sync.yml on Saturday.
+#   Engine 3 (macro / sector rotation) — arrives Monday IST.
+#     → Tuesday 8 AM gives the full Monday for Engine 3 to land.
+#
+# HOW THIS FITS WITH YOUR OTHER WORKFLOWS:
+#   Saturday 8 AM IST  → weekly_signal_sync.yml  (tranche dip check only,
+#                         sends [SIP Tranche] email if anything deployed)
+#   Tuesday 8 AM IST   → THIS FILE               (full execution plan,
+#                         sends [SIP Orchestrator] email with all 8 sections)
+#   1st of month       → monthly_sip_run.yml      (unchanged, still runs)
+#
+# ORDER PLACEMENT IS ALWAYS MANUAL — this just generates the plan and email.
+
+on:
+  schedule:
+    - cron: "30 2 * * 2"   # Tuesday 02:30 UTC = 08:00 AM IST
+  workflow_dispatch:        # also triggerable manually from Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  weekly-orchestrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11", cache: "pip"}
+
+      - run: pip install -r requirements.txt
+
+      - name: Restore data cache
+        uses: actions/cache@v4
+        with:
+          path: data/cache
+          key:          sip-cache-${{ github.run_id }}
+          restore-keys: sip-cache-
+
+      - name: Run weekly orchestration
+        env:
+          GMAIL_USER:          ${{ secrets.GMAIL_USER }}
+          GMAIL_PASS:          ${{ secrets.GMAIL_PASS }}
+          UPSTOX_TOKEN:        ${{ secrets.UPSTOX_TOKEN }}
+          UPSTOX_TOKEN_EXPIRY: ${{ secrets.UPSTOX_TOKEN_EXPIRY }}
+        run: python orchestrator/main.py
+
+      - name: Commit execution plan and inputs
+        run: |
+          git config user.name  "SIP Orchestrator Bot"
+          git config user.email "bot@sip-orchestrator.local"
+          git add data/outputs/ data/inputs/
+          git diff --staged --quiet || git commit -m "Weekly plan $(date +'%Y-%m-%d')"
+          git push
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: weekly-plan-${{ github.run_id }}
+          path: data/outputs/latest_execution_plan.json
+          retention-days: 30
+
+      - name: Save data cache
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: sip-cache-${{ github.run_id }}
