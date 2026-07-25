@@ -4,27 +4,30 @@
     "Core": {
       "tranches_deployed": {
         "A": 5051.5,
-        "B": 2920.2
+        "B": 2920.2,
+        "C": 2192.3
       },
-      "last_deploy_iso_week": "2026-W29",
+      "last_deploy_iso_week": "2026-W30",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 7971.7
+      "deployed_inr_month": 10164.0
     },
     "International": {
       "tranches_deployed": {
-        "A": 11667.75
+        "A": 11667.75,
+        "B": 3590.25
       },
-      "last_deploy_iso_week": "2026-W29",
+      "last_deploy_iso_week": "2026-W30",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 11667.75
+      "deployed_inr_month": 15258.0
     },
     "Thematic": {
       "tranches_deployed": {
-        "A": 3604.5
+        "A": 3604.5,
+        "B": 3473.5
       },
-      "last_deploy_iso_week": "2026-W29",
+      "last_deploy_iso_week": "2026-W30",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 3604.5
+      "deployed_inr_month": 7078.0
     },
     "Hedge": {
       "tranches_deployed": {},
