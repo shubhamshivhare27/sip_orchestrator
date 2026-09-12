@@ -1,6 +1,6 @@
 {
-  "signal_date": "2026-09-04",
-  "next_run_date": "2026-09-11",
+  "signal_date": "2026-09-11",
+  "next_run_date": "2026-09-18",
   "stocks_in_universe": 0,
   "etfs_in_universe": 0,
   "strategies_run": [],
@@ -33,6 +33,6 @@
     }
   ],
   "universe_changes": [],
-  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-09-04 | 0 BUY | 0 SELL",
-  "parsed_at": "2026-09-05T07:03:34.482349"
+  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-09-11 | 0 BUY | 0 SELL",
+  "parsed_at": "2026-09-12T07:17:30.660381"
 }
