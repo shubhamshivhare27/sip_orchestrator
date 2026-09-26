@@ -3,27 +3,30 @@
   "sleeves": {
     "Core": {
       "tranches_deployed": {
-        "A": 5326.8
+        "A": 5326.8,
+        "B": 2590.5
       },
-      "last_deploy_iso_week": "2026-W38",
+      "last_deploy_iso_week": "2026-W39",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 5326.8
+      "deployed_inr_month": 7917.3
     },
     "International": {
       "tranches_deployed": {
-        "A": 10567.2
+        "A": 10567.2,
+        "B": 5328.0
       },
-      "last_deploy_iso_week": "2026-W38",
+      "last_deploy_iso_week": "2026-W39",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 10567.2
+      "deployed_inr_month": 15895.2
     },
     "Thematic": {
       "tranches_deployed": {
-        "A": 3606.6
+        "A": 3606.6,
+        "B": 1831.8
       },
-      "last_deploy_iso_week": "2026-W38",
+      "last_deploy_iso_week": "2026-W39",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 3606.6
+      "deployed_inr_month": 5438.4
     },
     "Hedge": {
       "tranches_deployed": {},
