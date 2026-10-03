@@ -1,29 +1,10 @@
 {
-  "signal_date": "2026-09-25",
-  "next_run_date": "2026-10-02",
+  "signal_date": "2026-10-02",
+  "next_run_date": "2026-10-09",
   "stocks_in_universe": 0,
   "etfs_in_universe": 0,
   "strategies_run": [],
-  "buy_signals": [
-    {
-      "ticker": "TEGA.NS",
-      "strategy_id": "S1_monthly_ema20_breakout",
-      "strategy_name": "Monthly EMA20 Breakout",
-      "signal_type": "BUY",
-      "date": "2026-09-01",
-      "rsi_weekly": 65.27,
-      "rsi_daily": 72.93,
-      "rsi_monthly": 62.37,
-      "macd_line_weekly": null,
-      "macd_signal_weekly": null,
-      "ssf50_weekly": null,
-      "conditions": [
-        "price_crossed_above_EMA20_monthly",
-        "RSI14_D_W_M_above_60",
-        "EMA_alignment_confirmed"
-      ]
-    }
-  ],
+  "buy_signals": [],
   "sell_signals": [],
   "urgent_alerts": [
     {
@@ -52,6 +33,6 @@
     }
   ],
   "universe_changes": [],
-  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-09-25 | 1 BUY | 0 SELL",
-  "parsed_at": "2026-09-26T07:56:00.817119"
+  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-10-02 | 0 BUY | 0 SELL",
+  "parsed_at": "2026-10-03T08:26:53.752709"
 }
