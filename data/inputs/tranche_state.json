@@ -9,19 +9,21 @@
     },
     "International": {
       "tranches_deployed": {
-        "A": 15708.0
+        "A": 15708.0,
+        "B": 10774.0
       },
-      "last_deploy_iso_week": "2026-W42",
+      "last_deploy_iso_week": "2026-W43",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 15708.0
+      "deployed_inr_month": 26482.0
     },
     "Thematic": {
       "tranches_deployed": {
-        "A": 3792.0
+        "A": 3792.0,
+        "B": 2226.0
       },
-      "last_deploy_iso_week": "2026-W42",
+      "last_deploy_iso_week": "2026-W43",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 3792.0
+      "deployed_inr_month": 6018.0
     },
     "Hedge": {
       "tranches_deployed": {},
