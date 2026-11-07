@@ -1,98 +1,96 @@
 {
-  "current_month": "2026-10",
+  "current_month": "2026-11",
   "sleeves": {
     "Core": {
-      "tranches_deployed": {},
-      "last_deploy_iso_week": null,
-      "carry_forward_pct": 0.2,
-      "deployed_inr_month": 0.0
+      "tranches_deployed": {
+        "A": 22312.5
+      },
+      "last_deploy_iso_week": "2026-W45",
+      "carry_forward_pct": 0.0,
+      "deployed_inr_month": 22312.5
     },
     "International": {
       "tranches_deployed": {
-        "A": 15708.0,
-        "B": 10774.0,
-        "C": 0
+        "A": 18811.5
       },
-      "last_deploy_iso_week": "2026-W44",
+      "last_deploy_iso_week": "2026-W45",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 26482.0
+      "deployed_inr_month": 18811.5
     },
     "Thematic": {
       "tranches_deployed": {
-        "A": 3792.0,
-        "B": 2226.0,
-        "C": 2091.2
+        "A": 5563.5
       },
-      "last_deploy_iso_week": "2026-W44",
+      "last_deploy_iso_week": "2026-W45",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 8109.2
+      "deployed_inr_month": 5563.5
     },
     "Hedge": {
       "tranches_deployed": {},
       "last_deploy_iso_week": null,
-      "carry_forward_pct": 2.0,
+      "carry_forward_pct": 2.5,
       "deployed_inr_month": 0.0
     }
   },
   "etfs": {
     "JUNIORBEES": {
-      "month": "2026-10",
+      "month": "2026-11",
       "purchase_count_month": 0,
       "tranches_deployed": [],
       "carry_forward_inr": 0.0,
       "last_carry_accum_month": null
     },
     "MID150BEES": {
-      "month": "2026-10",
+      "month": "2026-11",
       "purchase_count_month": 0,
       "tranches_deployed": [],
       "carry_forward_inr": 0.0,
       "last_carry_accum_month": null
     },
     "MOMOMENTUM": {
-      "month": "2026-10",
+      "month": "2026-11",
       "purchase_count_month": 0,
       "tranches_deployed": [],
       "carry_forward_inr": 3587.12,
       "last_carry_accum_month": "2026-07"
     },
     "QUAL30IETF": {
-      "month": "2026-10",
+      "month": "2026-11",
       "purchase_count_month": 0,
       "tranches_deployed": [],
       "carry_forward_inr": 0.0,
       "last_carry_accum_month": null
     },
     "NIFTYIETF": {
-      "month": "2026-10",
+      "month": "2026-11",
       "purchase_count_month": 0,
       "tranches_deployed": [],
       "carry_forward_inr": 0.0,
       "last_carry_accum_month": null
     },
     "MOUS500": {
-      "month": "2026-10",
+      "month": "2026-11",
       "purchase_count_month": 0,
       "tranches_deployed": [],
       "carry_forward_inr": 0.0,
       "last_carry_accum_month": null
     },
     "MON100": {
-      "month": "2026-10",
+      "month": "2026-11",
       "purchase_count_month": 0,
       "tranches_deployed": [],
       "carry_forward_inr": 0.0,
       "last_carry_accum_month": null
     },
     "MAFANG": {
-      "month": "2026-10",
+      "month": "2026-11",
       "purchase_count_month": 0,
       "tranches_deployed": [],
       "carry_forward_inr": 0.0,
       "last_carry_accum_month": null
     },
     "HSET": {
-      "month": "2026-10",
+      "month": "2026-11",
       "purchase_count_month": 0,
       "tranches_deployed": [],
       "carry_forward_inr": 0.0,
