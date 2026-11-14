@@ -1,124 +1,39 @@
 {
-  "signal_date": "2026-11-06",
-  "next_run_date": "2026-11-13",
+  "signal_date": "2026-11-13",
+  "next_run_date": "2026-11-20",
   "stocks_in_universe": 0,
   "etfs_in_universe": 0,
   "strategies_run": [],
   "buy_signals": [
     {
-      "ticker": "SETFNIF50.NS",
+      "ticker": "MID150BEES.NS",
       "strategy_id": "S5_weekly_etf_breakout",
       "strategy_name": "Weekly ETF Breakout [Mod-1]",
       "signal_type": "BUY",
-      "date": "2026-11-02",
-      "rsi_weekly": 60.9,
+      "date": "2026-11-09",
+      "rsi_weekly": 54.09,
       "rsi_daily": null,
       "rsi_monthly": null,
       "macd_line_weekly": null,
       "macd_signal_weekly": null,
-      "ssf50_weekly": 254.46,
+      "ssf50_weekly": 233.98,
       "conditions": [
         "price_crossed_above_SSF50_weekly",
         "RSI14_above_RSI14_MA"
       ]
     },
     {
-      "ticker": "NIFTYBEES.NS",
+      "ticker": "MOMOMENTUM.NS",
       "strategy_id": "S5_weekly_etf_breakout",
       "strategy_name": "Weekly ETF Breakout [Mod-1]",
       "signal_type": "BUY",
-      "date": "2026-11-02",
-      "rsi_weekly": 60.75,
+      "date": "2026-11-09",
+      "rsi_weekly": 54.25,
       "rsi_daily": null,
       "rsi_monthly": null,
       "macd_line_weekly": null,
       "macd_signal_weekly": null,
-      "ssf50_weekly": 269.29,
-      "conditions": [
-        "price_crossed_above_SSF50_weekly",
-        "RSI14_above_RSI14_MA"
-      ]
-    },
-    {
-      "ticker": "BANKBEES.NS",
-      "strategy_id": "S5_weekly_etf_breakout",
-      "strategy_name": "Weekly ETF Breakout [Mod-1]",
-      "signal_type": "BUY",
-      "date": "2026-11-02",
-      "rsi_weekly": 59.63,
-      "rsi_daily": null,
-      "rsi_monthly": null,
-      "macd_line_weekly": null,
-      "macd_signal_weekly": null,
-      "ssf50_weekly": 584.6,
-      "conditions": [
-        "price_crossed_above_SSF50_weekly",
-        "RSI14_above_RSI14_MA"
-      ]
-    },
-    {
-      "ticker": "AUTOBEES.NS",
-      "strategy_id": "S5_weekly_etf_breakout",
-      "strategy_name": "Weekly ETF Breakout [Mod-1]",
-      "signal_type": "BUY",
-      "date": "2026-11-02",
-      "rsi_weekly": 55.07,
-      "rsi_daily": null,
-      "rsi_monthly": null,
-      "macd_line_weekly": null,
-      "macd_signal_weekly": null,
-      "ssf50_weekly": 280.69,
-      "conditions": [
-        "price_crossed_above_SSF50_weekly",
-        "RSI14_above_RSI14_MA"
-      ]
-    },
-    {
-      "ticker": "INFRABEES.NS",
-      "strategy_id": "S5_weekly_etf_breakout",
-      "strategy_name": "Weekly ETF Breakout [Mod-1]",
-      "signal_type": "BUY",
-      "date": "2026-11-02",
-      "rsi_weekly": 56.87,
-      "rsi_daily": null,
-      "rsi_monthly": null,
-      "macd_line_weekly": null,
-      "macd_signal_weekly": null,
-      "ssf50_weekly": 947.82,
-      "conditions": [
-        "price_crossed_above_SSF50_weekly",
-        "RSI14_above_RSI14_MA"
-      ]
-    },
-    {
-      "ticker": "NIFTYIETF.NS",
-      "strategy_id": "S5_weekly_etf_breakout",
-      "strategy_name": "Weekly ETF Breakout [Mod-1]",
-      "signal_type": "BUY",
-      "date": "2026-11-02",
-      "rsi_weekly": 60.73,
-      "rsi_daily": null,
-      "rsi_monthly": null,
-      "macd_line_weekly": null,
-      "macd_signal_weekly": null,
-      "ssf50_weekly": 267.86,
-      "conditions": [
-        "price_crossed_above_SSF50_weekly",
-        "RSI14_above_RSI14_MA"
-      ]
-    },
-    {
-      "ticker": "PSUBNKBEES.NS",
-      "strategy_id": "S5_weekly_etf_breakout",
-      "strategy_name": "Weekly ETF Breakout [Mod-1]",
-      "signal_type": "BUY",
-      "date": "2026-11-02",
-      "rsi_weekly": 55.59,
-      "rsi_daily": null,
-      "rsi_monthly": null,
-      "macd_line_weekly": null,
-      "macd_signal_weekly": null,
-      "ssf50_weekly": 93.76,
+      "ssf50_weekly": 61.14,
       "conditions": [
         "price_crossed_above_SSF50_weekly",
         "RSI14_above_RSI14_MA"
@@ -144,15 +59,23 @@
       "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
     },
     {
+      "ticker": "LIQUIDBEES.NS",
+      "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
+    },
+    {
       "ticker": "MON100.NS",
       "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
     },
     {
       "ticker": "NIFTYBEES.NS",
       "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
+    },
+    {
+      "ticker": "PSUBNKBEES.NS",
+      "reason": "Removed from Engine 2 Google Sheet master list \u2014 exit signals still monitored"
     }
   ],
   "universe_changes": [],
-  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-11-06 | 7 BUY | 0 SELL",
-  "parsed_at": "2026-11-07T09:03:11.281993"
+  "source_email_subject": "\ud83d\udcca Nifty 500 Signals \u2014 2026-11-13 | 2 BUY | 0 SELL",
+  "parsed_at": "2026-11-14T09:14:52.573027"
 }
