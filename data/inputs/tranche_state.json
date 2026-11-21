@@ -3,17 +3,19 @@
   "sleeves": {
     "Core": {
       "tranches_deployed": {
-        "A": 22312.5
+        "A": 22312.5,
+        "B": 2269.5
       },
-      "last_deploy_iso_week": "2026-W45",
+      "last_deploy_iso_week": "2026-W47",
       "carry_forward_pct": 0.0,
-      "deployed_inr_month": 22312.5
+      "deployed_inr_month": 24582.0
     },
     "International": {
       "tranches_deployed": {
-        "A": 18811.5
+        "A": 18811.5,
+        "B": 0
       },
-      "last_deploy_iso_week": "2026-W45",
+      "last_deploy_iso_week": "2026-W47",
       "carry_forward_pct": 0.0,
       "deployed_inr_month": 18811.5
     },
